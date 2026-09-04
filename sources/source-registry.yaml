@@ -101,3 +101,227 @@ sources:
     domains: [EXAM]
     status: discovered
     checked: '2026-09-04'
+  - id: aws-bedrock-genai
+    title: Amazon Bedrock
+    url: https://aws.amazon.com/bedrock/
+    type: aws-service
+    domains: [D2, D3, D4, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-bedrock-pricing
+    title: Amazon Bedrock Pricing
+    url: https://aws.amazon.com/bedrock/pricing/
+    type: aws-pricing
+    domains: [D2, D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-bedrock-provisioned-throughput
+    title: Provisioned Throughput for Amazon Bedrock
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html
+    type: aws-service-documentation
+    domains: [D2, D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-sagemaker-ai
+    title: Amazon SageMaker AI
+    url: https://aws.amazon.com/sagemaker-ai/
+    type: aws-service
+    domains: [D1, D2, D3, D4, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-sagemaker-jumpstart
+    title: Amazon SageMaker JumpStart
+    url: https://aws.amazon.com/sagemaker-ai/jumpstart/
+    type: aws-service
+    domains: [D2, D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-amazon-q
+    title: Amazon Q
+    url: https://aws.amazon.com/q/
+    type: aws-service
+    domains: [D2, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-bedrock-agentcore
+    title: Amazon Bedrock AgentCore
+    url: https://aws.amazon.com/bedrock/agentcore/
+    type: aws-service
+    domains: [D2, D3, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-strands-agents
+    title: Introducing Strands Agents
+    url: https://aws.amazon.com/de/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/
+    type: aws-official-blog
+    domains: [D2, D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-kiro-documentation
+    title: Kiro documentation overview
+    url: https://aws.amazon.com/documentation-overview/kiro/
+    type: aws-documentation
+    domains: [D2]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/03-aws-genai-infrastructure-and-cost.md
+  - id: aws-bedrock-knowledge-bases
+    title: Amazon Bedrock Knowledge Bases
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
+    type: aws-service-documentation
+    domains: [D2, D3, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-bedrock-prompt-caching
+    title: Prompt caching for faster model inference
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-opensearch-knn
+    title: k-Nearest Neighbor search in Amazon OpenSearch Service
+    url: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-aurora-postgresql-vector-db
+    title: Using Aurora PostgreSQL as a Knowledge Base for Amazon Bedrock
+    url: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-neptune-overview
+    title: What Is Amazon Neptune?
+    url: https://docs.aws.amazon.com/neptune/latest/userguide/intro.html
+    type: aws-service-documentation
+    domains: [D3, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-vector-database-comparison
+    title: Vector database comparison
+    url: https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-comparison.html
+    type: aws-prescriptive-guidance
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/01-fm-application-design.md
+  - id: aws-bedrock-prompt-engineering-guidelines
+    title: Prompt engineering concepts
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/02-prompt-engineering-and-rag.md
+  - id: aws-bedrock-prompt-management
+    title: Prompt management in Amazon Bedrock
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/02-prompt-engineering-and-rag.md
+  - id: aws-bedrock-prompt-injection
+    title: Prompt injection security
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html
+    type: aws-service-documentation
+    domains: [D3, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/02-prompt-engineering-and-rag.md
+  - id: aws-bedrock-prompt-attacks
+    title: Detect prompt attacks with Amazon Bedrock Guardrails
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html
+    type: aws-service-documentation
+    domains: [D3, D4, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/02-prompt-engineering-and-rag.md
+  - id: aws-prompt-injection-guidance
+    title: Prompt engineering best practices to avoid prompt injection attacks
+    url: https://docs.aws.amazon.com/prescriptive-guidance/latest/llm-prompt-engineering-best-practices
+    type: aws-prescriptive-guidance
+    domains: [D3, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/02-prompt-engineering-and-rag.md
+  - id: aws-bedrock-custom-models
+    title: Customize a model in Amazon Bedrock
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/03-fm-training-and-customization.md
+  - id: aws-bedrock-fine-tuning
+    title: Customize a model with fine-tuning in Amazon Bedrock
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-fine-tuning.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/03-fm-training-and-customization.md
+  - id: aws-bedrock-model-distillation
+    title: Customize a model with distillation in Amazon Bedrock
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html
+    type: aws-service-documentation
+    domains: [D3]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/03-fm-training-and-customization.md
+  - id: aws-bedrock-evaluation
+    title: Evaluate the performance of Amazon Bedrock resources
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html
+    type: aws-service-documentation
+    domains: [D3, D4]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/04-fm-performance-evaluation.md
+  - id: aws-bedrock-human-evaluation
+    title: Creating a model evaluation that uses human workers
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-human.html
+    type: aws-service-documentation
+    domains: [D3, D4]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/04-fm-performance-evaluation.md
+  - id: aws-bedrock-llm-judge-evaluation
+    title: Evaluate model performance using another LLM as a judge
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html
+    type: aws-service-documentation
+    domains: [D3, D4]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/04-fm-performance-evaluation.md
+  - id: aws-bedrock-evaluation-metrics
+    title: Use metrics to understand model performance
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-metrics.html
+    type: aws-service-documentation
+    domains: [D3, D4]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/04-fm-performance-evaluation.md
+  - id: aws-bedrock-rag-evaluation
+    title: Review metrics for RAG evaluations
+    url: https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-eval-llm-results.html
+    type: aws-service-documentation
+    domains: [D3, D4, D5]
+    status: summarized
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/04-fm-performance-evaluation.md

@@ -107,19 +107,72 @@
 
 [Answer]: A. `aif-c01-korean-guide-comprehensive`가 의도한 제품 범위와 일치한다. 5개 도메인 전체, 초보자 설명, 실무 확장, 출처 추적, 100문항 이상 문제은행과 Anki 자료를 포함한다. `depth`는 Comprehensive, `test strategy`는 Standard로 유지한다.
 
+## Q9. 1개월 이내 시험 준비가 완료되었다고 판단할 기준은 무엇인가요?
+
+기간만으로는 학습자가 시험에 응시할 준비가 되었는지 판정하기 어렵습니다. 문제은행 점수나 도메인별 달성 기준을 정해야 성공 지표를 검증할 수 있습니다.
+
+- A. 자체 문제은행에서 전체 정답률 80% 이상을 달성한다.
+- B. 5개 도메인 각각에서 정답률 80% 이상을 달성한다.
+- C. 별도 합격 판정 기준은 두지 않고 1개월 내 학습 자료 제공 여부만 확인한다.
+- D. Not yet defined
+- X. Other (please specify)
+
+[Answer]:
+
+## Q10. 시험 범위 밖의 실무 확장은 어디까지 포함하나요?
+
+“실무 확장”이 시험 핵심 내용과 별도 심화 자료 중 어디까지를 뜻하는지 정해야 문서와 산출물의 경계를 유지할 수 있습니다.
+
+- A. 시험 개념을 AWS 서비스 선택과 기본 시나리오에 연결하는 범위까지만 포함한다.
+- B. 시험 범위 문서와 별도로 AWS 실무 입문 확장 문서를 포함한다.
+- C. 실무 확장은 이번 범위에서 다루지 않고 향후 확장 항목으로만 기록한다.
+- D. Not yet defined
+- X. Other (please specify)
+
+[Answer]:
+
+## Q11. 문서 작성·관리 주체를 별도 이해관계자로 볼까요?
+
+기존 Q5는 문서 품질에 대한 관심을 확인했지만, 별도 주체의 권한과 역할까지 확정하지는 않았습니다.
+
+- A. 문서 작성·관리 주체를 실제 이해관계자로 포함하며, 공식 출처·누락 방지·최신성 유지에 영향을 준다.
+- B. 별도 이해관계자로 정의하지 않고, 사용자의 품질 요구사항으로만 기록한다.
+- C. Not identified
+- D. Not applicable
+- E. Not yet defined
+- X. Other (please specify)
+
+[Answer]:
+
+## Q12. 한글 커뮤니케이션 요구의 적용 범위는 어디까지인가요?
+
+기존 답변은 사용자와의 질문·설명을 한글로 한다고 확인했습니다. 검토 자료와 학습 문서까지 같은 요구를 적용할지 구분해야 합니다.
+
+- A. 사용자에게 보내는 질문·설명에만 적용한다.
+- B. 사용자 질문·설명과 검토 자료에 적용한다.
+- C. 사용자 질문·설명, 검토 자료, 학습 문서 전체에 적용한다.
+- D. Not yet defined
+- X. Other (please specify)
+
+[Answer]:
+
+## Q13. 문제은행의 Test strategy 설정은 무엇으로 확정할까요?
+
+확정된 요약은 `Standard`를 선택했지만 현재 workflow 상태에는 `Comprehensive`로 기록되어 있어 문제 수와 검증 범위가 달라질 수 있습니다.
+
+- A. `Standard`로 확정한다.
+- B. `Comprehensive`로 확정한다.
+- C. Not yet defined
+- X. Other (please specify)
+
+[Answer]:
+
 ## Assumptions & Open Questions
 
 None.
 
 ## Consolidated Summary Confirmation
 
-위 질문과 답변을 바탕으로 다음 내용을 산출물에 반영합니다.
+Q9~Q13의 답변을 반영한 수정 요약을 아직 확정하지 않았습니다.
 
-- AIF-C01 합격을 최우선 목표로 하되 장기 AI/ML 교재와 AWS 실무 입문 자료로도 사용할 수 있는 한국어 가이드를 작성합니다.
-- 대상은 AI/ML과 AWS 모두 처음인 완전 초보자이며, 코드·수학·유료 AWS 실습은 기본 범위에서 제외합니다.
-- AWS 공식 AIF-C01 시험 안내서의 5개 도메인과 작업·기술 항목을 빠짐없이 추적하고, 시험 범위와 2026년 현재의 실무 확장을 구분합니다.
-- D1→D2→D3→D4→D5 순서로 작성하며, 도메인별 Markdown·카드 요약·진도표·용어 퀴즈·100문항 이상의 자체 문제은행·Anki 가져오기 자료를 제공합니다.
-- 사용자는 범위와 우선순위를 승인하고, 공식 시험 안내서가 시험 범위의 기준이 됩니다.
-- 현재 선택된 `aif-c01-korean-guide-comprehensive` 범위, `Comprehensive` depth, `Standard` test strategy를 유지합니다.
-
-[Answer]: Looks correct
+[Answer]:

@@ -87,3 +87,59 @@
 - [ ] 각 목표를 하나 이상의 도메인 문서에 연결한다.
 - [ ] 공식 AWS 서비스 문서의 상세 링크를 추가로 수집한다.
 - [ ] 수집 자료를 그대로 복제하지 않고 한국어 학습 문서로 재구성한다.
+
+## 6. D2 AWS GenAI 기술 보조 출처
+
+D2 공식 시험 범위에 나열된 AWS 기술을 초보자용 문서로 재구성할 때 확인한 AWS 공식 서비스·가격 자료다. 시험 범위 근거와 실무 확장 자료를 구분한다.
+
+| 자료 | URL | 연결 분류 | 상태 |
+|---|---|---|---|
+| Amazon Bedrock | [Bedrock](https://aws.amazon.com/bedrock/) | D2, D3, D4, D5 | summarized |
+| Amazon Bedrock Pricing | [Bedrock Pricing](https://aws.amazon.com/bedrock/pricing/) | D2, D3 | summarized |
+| Provisioned Throughput | [Provisioned Throughput](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html) | D2, D3 | summarized |
+| Amazon SageMaker AI | [SageMaker AI](https://aws.amazon.com/sagemaker-ai/) | D1, D2, D3, D4, D5 | summarized |
+| Amazon SageMaker JumpStart | [JumpStart](https://aws.amazon.com/sagemaker-ai/jumpstart/) | D2, D3 | summarized |
+| Amazon Q | [Amazon Q](https://aws.amazon.com/q/) | D2, D5 | summarized |
+| Amazon Bedrock AgentCore | [AgentCore](https://aws.amazon.com/bedrock/agentcore/) | D2, D3, D5 | summarized |
+| Strands Agents | [Strands Agents](https://aws.amazon.com/de/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) | D2, D3 | summarized |
+| Kiro | [Kiro documentation](https://aws.amazon.com/documentation-overview/kiro/) | D2 | summarized |
+
+## 7. D3 FM 애플리케이션 설계 보조 출처
+
+D3 3.1을 집필하며 확인한 AWS 공식 서비스·지침 자료다. AIF-C01 시험 범위의 근거인 Domain 3과 AWS 실무 확장 출처를 구분한다.
+
+| 자료 | URL | 연결 분류 | 상태 |
+|---|---|---|---|
+| Amazon Bedrock Knowledge Bases | [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) | D3, D5 | summarized |
+| Amazon Bedrock Prompt Caching | [Prompt caching](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) | D3 | summarized |
+| Amazon OpenSearch Service k-NN | [k-NN search](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html) | D3 | summarized |
+| Aurora PostgreSQL 벡터 저장 | [Aurora PostgreSQL Knowledge Base](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html) | D3 | summarized |
+| Amazon Neptune | [Neptune overview](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html) | D3, D5 | summarized |
+| AWS 벡터 데이터베이스 비교 | [Vector database comparison](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-comparison.html) | D3 | summarized |
+
+## 8. D3 프롬프트 엔지니어링 보조 출처
+
+D3 3.2를 집필하며 확인한 AWS 공식 프롬프트·보안 자료다.
+
+| 자료 | URL | 연결 분류 | 상태 |
+|---|---|---|---|
+| Prompt engineering concepts | [Prompt engineering](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html) | D3 | summarized |
+| Amazon Bedrock Prompt Management | [Prompt management](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html) | D3 | summarized |
+| Prompt injection security | [Prompt injection](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html) | D3, D5 | summarized |
+| Bedrock Guardrails prompt attacks | [Prompt attacks](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html) | D3, D4, D5 | summarized |
+| Prompt injection Prescriptive Guidance | [Prompt engineering security guidance](https://docs.aws.amazon.com/prescriptive-guidance/latest/llm-prompt-engineering-best-practices) | D3, D5 | summarized |
+
+## 9. D3 FM 훈련·평가 보조 출처
+
+D3 3.3·3.4를 집필하며 확인한 AWS 공식 사용자 지정·평가 자료다.
+
+| 자료 | URL | 연결 분류 | 상태 |
+|---|---|---|---|
+| Amazon Bedrock 모델 사용자 지정 | [Customize models](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html) | D3 | summarized |
+| Amazon Bedrock 미세 조정 | [Fine-tuning](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-fine-tuning.html) | D3 | summarized |
+| Amazon Bedrock 모델 증류 | [Model distillation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html) | D3 | summarized |
+| Amazon Bedrock 리소스 평가 | [Model evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html) | D3, D4 | summarized |
+| 인간 평가 | [Human evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-human.html) | D3, D4 | summarized |
+| LLM-as-a-judge | [LLM judge evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html) | D3, D4 | summarized |
+| 평가 지표 | [Evaluation metrics](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-metrics.html) | D3, D4 | summarized |
+| RAG 평가 지표 | [RAG evaluation metrics](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-eval-llm-results.html) | D3, D4, D5 | summarized |
