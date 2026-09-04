@@ -1,6 +1,6 @@
 ---
 title: "AIF-C01 초보자용 완벽 가이드 전체 목차 초안"
-status: "draft"
+status: "approved"
 source_urls:
   - "https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html"
   - "https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
@@ -293,4 +293,4 @@ source_checked: "2026-09-04"
 
 ## 개정 1 승인 상태
 
-`outline_revision_required` — 사용자 확인 전까지 확정하지 않는다.
+`approved` — 사용자 답변과 개정 1 목차를 승인함.

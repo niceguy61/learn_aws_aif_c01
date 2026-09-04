@@ -405,5 +405,42 @@
       "performance-validation": "EXECUTE",
       "feedback-optimization": "EXECUTE"
     }
+  },
+  "aif-c01-korean-guide-comprehensive": {
+    "stages": {
+      "workspace-scaffold": "EXECUTE",
+      "workspace-detection": "EXECUTE",
+      "state-init": "EXECUTE",
+      "intent-capture": "EXECUTE",
+      "market-research": "SKIP",
+      "feasibility": "EXECUTE",
+      "scope-definition": "EXECUTE",
+      "team-formation": "EXECUTE",
+      "rough-mockups": "EXECUTE",
+      "approval-handoff": "EXECUTE",
+      "reverse-engineering": "SKIP",
+      "practices-discovery": "EXECUTE",
+      "requirements-analysis": "EXECUTE",
+      "user-stories": "EXECUTE",
+      "refined-mockups": "SKIP",
+      "domain-design": "EXECUTE",
+      "units-generation": "EXECUTE",
+      "contract-design": "SKIP",
+      "delivery-planning": "EXECUTE",
+      "functional-design": "EXECUTE",
+      "nfr-requirements": "EXECUTE",
+      "nfr-design": "EXECUTE",
+      "infrastructure-design": "SKIP",
+      "code-generation": "EXECUTE",
+      "build-and-test": "EXECUTE",
+      "ci-pipeline": "SKIP",
+      "deployment-pipeline": "SKIP",
+      "environment-provisioning": "SKIP",
+      "deployment-execution": "SKIP",
+      "observability-setup": "SKIP",
+      "incident-response": "SKIP",
+      "performance-validation": "SKIP",
+      "feedback-optimization": "SKIP"
+    }
   }
 }
