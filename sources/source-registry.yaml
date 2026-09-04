@@ -1,0 +1,103 @@
+version: 1
+project: AIF-C01 beginner guide
+last_checked: '2026-09-04'
+status_values:
+  - discovered
+  - downloaded
+  - summarized
+  - reviewed
+  - verified
+  - blocked
+sources:
+  - id: aif-c01-main
+    title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html
+    type: aws-certification
+    domains: [FOUNDATION, EXAM]
+    status: downloaded
+    checked: '2026-09-04'
+    output: sources/aws-sidebar-index.md
+  - id: aif-c01-main-markdown
+    title: AIF-C01 한국어 Markdown 원문
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.md
+    type: aws-certification-source
+    domains: [FOUNDATION, EXAM]
+    status: discovered
+    checked: '2026-09-04'
+    output: sources/raw/aif-practitioner-01.md
+  - id: aif-c01-main-pdf
+    title: AIF-C01 PDF 시험 안내서
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.pdf
+    type: aws-certification-source
+    domains: [FOUNDATION, EXAM]
+    status: discovered
+    checked: '2026-09-04'
+    output: sources/raw/aif-practitioner-01.pdf
+  - id: aif-c01-domain1
+    title: 콘텐츠 도메인 1: AI 및 ML의 기초
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html
+    type: aws-certification
+    domains: [D1]
+    status: downloaded
+    checked: '2026-09-04'
+    output: docs/01-ai-ml-foundations/README.md
+  - id: aif-c01-domain2
+    title: 콘텐츠 도메인 2: GenAI의 기초
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html
+    type: aws-certification
+    domains: [D2]
+    status: downloaded
+    checked: '2026-09-04'
+    output: docs/02-generative-ai/README.md
+  - id: aif-c01-domain3
+    title: 콘텐츠 도메인 3: 파운데이션 모델의 적용
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html
+    type: aws-certification
+    domains: [D3]
+    status: downloaded
+    checked: '2026-09-04'
+    output: docs/03-foundation-models/README.md
+  - id: aif-c01-domain4
+    title: 콘텐츠 도메인 4: 책임 있는 AI에 대한 가이드라인
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html
+    type: aws-certification
+    domains: [D4]
+    status: downloaded
+    checked: '2026-09-04'
+    output: docs/04-responsible-ai/README.md
+  - id: aif-c01-domain5
+    title: 콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스
+    url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html
+    type: aws-certification
+    domains: [D5]
+    status: downloaded
+    checked: '2026-09-04'
+    output: docs/05-security-compliance/README.md
+  - id: aws-exam-guides
+    title: AWS Certification Exam Guides
+    url: https://docs.aws.amazon.com/aws-certification/latest/examguides/index.html
+    type: aws-certification-navigation
+    domains: [EXAM]
+    status: discovered
+    checked: '2026-09-04'
+  - id: aws-ai-practitioner-certification
+    title: AWS Certified AI Practitioner 자격증 페이지
+    url: https://aws.amazon.com/certification/certified-ai-practitioner/
+    type: aws-certification
+    domains: [EXAM]
+    status: discovered
+    checked: '2026-09-04'
+  - id: aws-skill-builder-aif-c01
+    title: AWS Skill Builder AIF-C01 시험 준비 자료
+    url: https://skillbuilder.aws/category/exam-prep/ai-practitioner-AIF-C01
+    type: aws-learning
+    domains: [EXAM]
+    status: discovered
+    checked: '2026-09-04'
+  - id: aws-schedule-exam
+    title: 시험 일정 예약
+    url: https://cp.certmetrics.com/amazon/en/schedule/schedule-exam
+    type: exam-registration
+    domains: [EXAM]
+    status: discovered
+    checked: '2026-09-04'
