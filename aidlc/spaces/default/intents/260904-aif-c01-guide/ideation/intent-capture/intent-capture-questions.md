@@ -115,6 +115,7 @@
 - B. 5개 도메인 각각에서 정답률 80% 이상을 달성한다.
 - C. 별도 합격 판정 기준은 두지 않고 1개월 내 학습 자료 제공 여부만 확인한다.
 - D. Not yet defined
+- E. Not identified
 - X. Other (please specify)
 
 [Answer]:
@@ -127,6 +128,7 @@
 - B. 시험 범위 문서와 별도로 AWS 실무 입문 확장 문서를 포함한다.
 - C. 실무 확장은 이번 범위에서 다루지 않고 향후 확장 항목으로만 기록한다.
 - D. Not yet defined
+- E. Not identified
 - X. Other (please specify)
 
 [Answer]:
@@ -176,4 +178,6 @@ None.
 
 ## Consolidated Summary Confirmation
 
-Q9~Q13의 답변을 반영한 수정 요약을 아직 �
+Q9~Q13의 답변을 반영한 수정 요약을 아직 확정하지 않았습니다.
+
+[Answer]:
