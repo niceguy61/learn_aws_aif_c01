@@ -151,7 +151,8 @@
 - A. 사용자에게 보내는 질문·설명에만 적용한다.
 - B. 사용자 질문·설명과 검토 자료에 적용한다.
 - C. 사용자 질문·설명, 검토 자료, 학습 문서 전체에 적용한다.
-- D. Not yet defined
+- D. Not applicable
+- E. Not yet defined
 - X. Other (please specify)
 
 [Answer]:
@@ -162,7 +163,9 @@
 
 - A. `Standard`로 확정한다.
 - B. `Comprehensive`로 확정한다.
-- C. Not yet defined
+- C. Not applicable
+- D. Not yet defined
+- E. Not identified
 - X. Other (please specify)
 
 [Answer]:
@@ -173,6 +176,4 @@ None.
 
 ## Consolidated Summary Confirmation
 
-Q9~Q13의 답변을 반영한 수정 요약을 아직 확정하지 않았습니다.
-
-[Answer]:
+Q9~Q13의 답변을 반영한 수정 요약을 아직 �
