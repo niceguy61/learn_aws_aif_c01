@@ -1,0 +1,75 @@
+{
+  "stage": "units-generation",
+  "summary_confirmation": "Looks correct",
+  "upstream_ids": [
+    "US1.1",
+    "US1.2",
+    "US2.1",
+    "US3.1",
+    "US4.1",
+    "US4.2",
+    "US5.1"
+  ],
+  "coverage": [
+    {
+      "id": "US1.1",
+      "status": "OK",
+      "target": "U1",
+      "directory": "u1-baseline-and-source-registry",
+      "supporting_units": ["U2", "U3", "U4", "U5", "U6"]
+    },
+    {
+      "id": "US1.2",
+      "status": "OK",
+      "target": "U2",
+      "directory": "u2-d1-ai-ml-foundations",
+      "supporting_units": ["U3", "U4", "U5", "U6", "U7"]
+    },
+    {
+      "id": "US2.1",
+      "status": "OK",
+      "target": "U2",
+      "directory": "u2-d1-ai-ml-foundations",
+      "supporting_units": ["U3", "U4", "U5", "U6", "U1"]
+    },
+    {
+      "id": "US3.1",
+      "status": "OK",
+      "target": "U7",
+      "directory": "u7-assessment-and-review",
+      "supporting_units": ["U1", "U2", "U3", "U4", "U5", "U6"]
+    },
+    {
+      "id": "US4.1",
+      "status": "OK",
+      "target": "U7",
+      "directory": "u7-assessment-and-review",
+      "supporting_units": ["U1", "U2", "U3", "U4", "U5", "U6"]
+    },
+    {
+      "id": "US4.2",
+      "status": "OK",
+      "target": "U7",
+      "directory": "u7-assessment-and-review",
+      "supporting_units": ["U1", "U2", "U3", "U4", "U5", "U6", "U8"]
+    },
+    {
+      "id": "US5.1",
+      "status": "OK",
+      "target": "U8",
+      "directory": "u8-quality-evidence",
+      "supporting_units": ["U1", "U2", "U3", "U4", "U5", "U6", "U7"]
+    }
+  ],
+  "unmapped_ids": [],
+  "units": [
+    {"id": "U1", "directory": "u1-baseline-and-source-registry", "kind": "spec"},
+    {"id": "U2", "directory": "u2-d1-ai-ml-foundations", "kind": "packaging"},
+    {"id": "U3", "directory": "u3-d2-generative-ai", "kind": "packaging"},
+    {"id": "U4", "directory": "u4-d3-foundation-models", "kind": "packaging"},
+    {"id": "U5", "directory": "u5-d4-responsible-ai", "kind": "packaging"},
+    {"id": "U6", "directory": "u6-d5-security-compliance-governance", "kind": "packaging"},
+    {"id": "U7", "directory": "u7-assessment-and-review", "kind": "packaging"},
+    {"id": "U8", "directory": "u8-quality-evidence", "kind": "spec"}
+  ]
+}

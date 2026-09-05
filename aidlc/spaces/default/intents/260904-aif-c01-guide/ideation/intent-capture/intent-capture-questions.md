@@ -105,7 +105,7 @@
 - E. Not yet defined
 - X. Other (please specify)
 
-[Answer]: A. `aif-c01-korean-guide-comprehensive`가 의도한 제품 범위와 일치한다. 5개 도메인 전체, 초보자 설명, 실무 확장, 출처 추적, 100문항 이상 문제은행과 Anki 자료를 포함한다. `depth`는 Comprehensive, `test strategy`는 Standard로 유지한다.
+[Answer]: A. `aif-c01-korean-guide-comprehensive`가 의도한 제품 범위와 일치한다. 5개 도메인 전체, 초보자 설명, 실무 확장, 출처 추적, 100문항 이상 문제은행과 Anki 자료를 포함한다. `depth`는 Comprehensive로 유지한다. Q8에 기록된 `test strategy: Standard`는 당시의 초기 제안이며, 후속 Q13의 `Comprehensive` 결정으로 대체되었다. 현재 적용값은 `Comprehensive`이다.
 
 ## Q9. 1개월 이내 시험 준비가 완료되었다고 판단할 기준은 무엇인가요?
 
@@ -118,7 +118,7 @@
 - E. Not identified
 - X. Other (please specify)
 
-[Answer]:
+[Answer]: A
 
 ## Q10. 시험 범위 밖의 실무 확장은 어디까지 포함하나요?
 
@@ -131,7 +131,7 @@
 - E. Not identified
 - X. Other (please specify)
 
-[Answer]:
+[Answer]: A
 
 ## Q11. 문서 작성·관리 주체를 별도 이해관계자로 볼까요?
 
@@ -144,7 +144,7 @@
 - E. Not yet defined
 - X. Other (please specify)
 
-[Answer]:
+[Answer]: B
 
 ## Q12. 한글 커뮤니케이션 요구의 적용 범위는 어디까지인가요?
 
@@ -157,11 +157,11 @@
 - E. Not yet defined
 - X. Other (please specify)
 
-[Answer]:
+[Answer]: C
 
 ## Q13. 문제은행의 Test strategy 설정은 무엇으로 확정할까요?
 
-확정된 요약은 `Standard`를 선택했지만 현재 workflow 상태에는 `Comprehensive`로 기록되어 있어 문제 수와 검증 범위가 달라질 수 있습니다.
+초기 요약에는 `Standard`가 제안되었지만, 현재 workflow 상태와 범위를 일치시키기 위해 이 질문에서 현재 적용할 값을 확정합니다.
 
 - A. `Standard`로 확정한다.
 - B. `Comprehensive`로 확정한다.
@@ -170,7 +170,7 @@
 - E. Not identified
 - X. Other (please specify)
 
-[Answer]:
+[Answer]: B
 
 ## Assumptions & Open Questions
 
@@ -178,6 +178,13 @@ None.
 
 ## Consolidated Summary Confirmation
 
-Q9~Q13의 답변을 반영한 수정 요약을 아직 확정하지 않았습니다.
+Q9~Q13의 답변과 R-05 정리 내용을 반영한 최신 요약은 다음과 같습니다.
 
-[Answer]:
+- 1개월 이내 시험 준비의 완료 기준은 자체 문제은행 전체 정답률 80% 이상입니다. [Q9]
+- 실무 확장은 시험 개념을 AWS 서비스 선택과 기본 시나리오에 연결하는 범위까지만 포함합니다. [Q10]
+- 문서 작성·관리 주체는 별도 이해관계자로 정의하지 않고 사용자의 품질 요구사항으로 기록합니다. [Q11]
+- 사용자 질문·설명, 검토 자료, 학습 문서 전체를 한글로 작성합니다. [Q12]
+- 문제은행의 현재 `test strategy`는 `Comprehensive`로 확정합니다. Q8의 `Standard`는 초기 제안이었으며 Q13의 결정으로 대체되었습니다. [Q8][Q13]
+- 기존 범위, 초보자 대상, 5개 도메인 전체, 문제은행·Anki 자료, D1→D5 작성 순서는 유지합니다. [Q3][Q7][Q8]
+
+[Answer]: Looks correct

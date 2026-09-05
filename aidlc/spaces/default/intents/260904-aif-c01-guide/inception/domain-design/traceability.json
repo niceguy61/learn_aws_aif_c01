@@ -1,0 +1,70 @@
+{
+  "stage": "domain-design",
+  "summary_confirmation": "Looks correct",
+  "upstream_ids": [
+    "US1.1",
+    "US1.2",
+    "US2.1",
+    "US3.1",
+    "US4.1",
+    "US4.2",
+    "US5.1"
+  ],
+  "coverage": [
+    {
+      "id": "US1.1",
+      "status": "OK",
+      "target": "LearningContent",
+      "supporting_entities": ["DomainReadme", "LearningDocument"],
+      "related_component": "ReferenceCatalog"
+    },
+    {
+      "id": "US1.2",
+      "status": "OK",
+      "target": "LearningContent",
+      "supporting_entities": ["DomainReadme", "LearningDocument"],
+      "related_component": "AssessmentContent"
+    },
+    {
+      "id": "US2.1",
+      "status": "OK",
+      "target": "LearningContent",
+      "supporting_entities": ["LearningDocument", "GlossaryTerm"],
+      "related_component": "ReferenceCatalog"
+    },
+    {
+      "id": "US3.1",
+      "status": "OK",
+      "target": "AssessmentContent",
+      "supporting_entities": ["QuestionBankItem", "Card", "TermQuizItem"],
+      "related_component": "LearningContent"
+    },
+    {
+      "id": "US4.1",
+      "status": "OK",
+      "target": "AssessmentContent",
+      "supporting_entities": ["Card", "TermQuizItem", "AnkiNote"],
+      "related_component": "LearningContent"
+    },
+    {
+      "id": "US4.2",
+      "status": "OK",
+      "target": "AssessmentContent",
+      "supporting_entities": ["QuestionBankItem", "ScoreSheet"],
+      "related_component": "ReferenceCatalog"
+    },
+    {
+      "id": "US5.1",
+      "status": "OK",
+      "target": "QualityEvidence",
+      "supporting_entities": ["QualityCheckRecord"],
+      "related_component": "ReferenceCatalog"
+    }
+  ],
+  "unmapped_ids": [],
+  "notes": [
+    "컴포넌트는 정적 산출물과 검토 책임을 나타내며 배포 단위가 아니다.",
+    "상세 엔터티 타입·검증 제약·카디널리티는 Functional Design에서 확정한다.",
+    "AWS 서비스와 공식 문서는 컴포넌트가 아니라 ReferenceCatalog의 외부 의존성·학습 참조 대상이다."
+  ]
+}

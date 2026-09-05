@@ -7,10 +7,10 @@
 - **Scope**: aif-c01-korean-guide-comprehensive
 - **Start Date**: 2026-09-04T01:07:58Z
 - **State Version**: 8
-- **Active Agent**: aidlc-product-agent
+- **Active Agent**: aidlc-architect-agent
 - **Worktree Path**:
 - **Bolt Refs**:
-- **Practices Affirmed Timestamp**:
+- **Practices Affirmed Timestamp**: 2026-09-04T06:04:00Z
 
 ## Scope Configuration
 - **Stages to Execute**: 0.1, 0.2, 0.3, 1.1, 1.3, 1.4, 1.5, 1.6, 1.7, 2.2, 2.3, 2.4, 2.6, 2.7, 2.9, 3.1, 3.2, 3.3, 3.5, 3.6
@@ -27,19 +27,20 @@
 
 ## Execution Plan Summary
 - **Total Stages**: 20
-- **Completed**: 3
-- **In Progress**: intent-capture
+- **Completed**: 16
+- **In Progress**: nfr-requirements
 
 ## Runtime State
-- **Revision Count**: 1
+- **Revision Count**: 3
 
+- **Skeleton Stance**: on
 ## Phase Progress
 <!-- Status values: Pending, Active, Verified, Skipped -->
 
 - **Initialization**: Verified
-- **Ideation**: Active
-- **Inception**: Pending
-- **Construction**: Pending
+- **Ideation**: Verified
+- **Inception**: Verified
+- **Construction**: Active
 - **Operation**: Skipped
 
 ## Stage Progress
@@ -51,29 +52,29 @@
 - [x] state-init — EXECUTE
 
 ### IDEATION PHASE
-- [R] intent-capture — EXECUTE
+- [x] intent-capture — EXECUTE
 - [ ] market-research — SKIP
-- [ ] feasibility — EXECUTE
-- [ ] scope-definition — EXECUTE
-- [ ] team-formation — EXECUTE
-- [ ] rough-mockups — EXECUTE
-- [ ] approval-handoff — EXECUTE
+- [x] feasibility — EXECUTE
+- [x] scope-definition — EXECUTE
+- [x] team-formation — EXECUTE
+- [x] rough-mockups — EXECUTE
+- [x] approval-handoff — EXECUTE
 
 ### INCEPTION PHASE
 - [ ] reverse-engineering — SKIP
-- [ ] practices-discovery — EXECUTE
-- [ ] requirements-analysis — EXECUTE
-- [ ] user-stories — EXECUTE
+- [x] practices-discovery — EXECUTE
+- [x] requirements-analysis — EXECUTE
+- [x] user-stories — EXECUTE
 - [ ] refined-mockups — SKIP
-- [ ] domain-design — EXECUTE
-- [ ] units-generation — EXECUTE
+- [x] domain-design — EXECUTE
+- [x] units-generation — EXECUTE
 - [ ] contract-design — SKIP
-- [ ] delivery-planning — EXECUTE
+- [x] delivery-planning — EXECUTE
 
 ### CONSTRUCTION PHASE
 Per unit: [TBD]
-- [ ] functional-design — EXECUTE
-- [ ] nfr-requirements — EXECUTE
+- [x] functional-design — EXECUTE
+- [R] nfr-requirements — EXECUTE
 - [ ] nfr-design — EXECUTE
 - [ ] infrastructure-design — SKIP
 - [ ] code-generation — EXECUTE
@@ -90,13 +91,13 @@ Per unit: [TBD]
 - [ ] feedback-optimization — SKIP
 
 ## Current Status
-- **Lifecycle Phase**: IDEATION
-- **Current Stage**: intent-capture
-- **Next Stage**: feasibility
+- **Lifecycle Phase**: CONSTRUCTION
+- **Current Stage**: nfr-requirements
+- **Next Stage**: nfr-design
 - **Status**: Running
-- **Last Updated**: 2026-09-04T02:47:31Z
+- **Last Updated**: 2026-09-05T01:42:27Z
 
 ## Session Resume Point
-- **Last Completed Stage**: state-init
-- **Next Action**: Execute Intent Capture & Framing
+- **Last Completed Stage**: functional-design
+- **Next Action**: Execute NFR Requirements
 - **Pending Artifacts**: none

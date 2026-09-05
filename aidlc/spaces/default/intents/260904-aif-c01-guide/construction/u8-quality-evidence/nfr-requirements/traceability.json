@@ -1,0 +1,250 @@
+{
+  "stage": "nfr-requirements",
+  "unit": "u8-quality-evidence",
+  "upstream_contract": {
+    "requirements": "aidlc/spaces/default/intents/260904-aif-c01-guide/inception/requirements-analysis/requirements.md",
+    "user_stories": "aidlc/spaces/default/intents/260904-aif-c01-guide/inception/user-stories/stories.md",
+    "unit_of_work": "aidlc/spaces/default/intents/260904-aif-c01-guide/inception/units-generation/unit-of-work.md",
+    "functional_spec": "aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u8-quality-evidence/functional-design/functional-spec.md",
+    "rules": "aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u8-quality-evidence/functional-design/rules.md",
+    "source_contract": "sources/source-registry.yaml + sources/content-traceability.yaml"
+  },
+  "unit_contract": {
+    "kind": "spec",
+    "deployment_model": "shared static package",
+    "owns": ["QualityCheckRecord", "quality evidence and recheck records"],
+    "record_required_fields": ["target_type", "target_id", "target_path", "check_id", "status", "evidence", "checked_at"],
+    "allowed_statuses": ["통과", "실패", "보류"],
+    "allowed_target_types": ["DomainReadme", "LearningDocument", "GlossaryTerm", "QuestionBankItem", "ScoreSheet", "Card", "TermQuizItem", "AnkiNote", "SourceRecord", "BaselineItem"],
+    "non_goals": ["No API", "No database", "No AWS account or resource", "No deployment or hosting", "No paid lab", "No learner state or answer storage", "No automatic freshness monitoring", "No new dependency", "No content authoring on behalf of another Unit"]
+  },
+  "quality_check_records": [
+    {
+      "target_type": "SourceRecord",
+      "target_id": "SRC-aif-c01-main",
+      "target_path": "sources/source-registry.yaml",
+      "check_id": "source-metadata",
+      "status": "통과",
+      "evidence": {
+        "tool": "manual registry inspection",
+        "scope": "aif-c01-main URL, title, checked date, status, output",
+        "observations": ["source registry entry exists and points to the official AIF-C01 guide"],
+        "findings": [],
+        "action": "none",
+        "recheck_condition": "recheck when the official guide revision changes"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "SourceRecord",
+      "target_id": "SRC-aif-c01-main",
+      "target_path": "sources/source-registry.yaml",
+      "check_id": "baseline-manifest",
+      "status": "보류",
+      "evidence": {
+        "tool": "file existence and contract inspection",
+        "scope": "sources/content-traceability.yaml and BaselineItem rows",
+        "observations": ["canonical baseline manifest is not present in the workspace"],
+        "findings": ["baseline row IDs, revisions, and bidirectional derived IDs cannot be verified"],
+        "action": "U1 creates the canonical manifest and records the source-to-baseline mapping",
+        "owner": "u1-baseline-and-source-registry",
+        "recheck_condition": "manifest exists, parses, and every confirmed row has required fields"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "DomainReadme",
+      "target_id": "D1-README",
+      "target_path": "docs/01-ai-ml-foundations/README.md",
+      "check_id": "beginner-perspective",
+      "status": "보류",
+      "evidence": {
+        "tool": "manual target inventory",
+        "scope": "D1 README and linked learning path",
+        "observations": ["target file exists", "canonical baseline manifest is not available"],
+        "findings": ["full source, scope, and bidirectional traceability cannot yet be verified"],
+        "action": "recheck after U1 manifest and D1 stable IDs are available",
+        "owner": "u2-d1-ai-ml-foundations",
+        "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "DomainReadme",
+      "target_id": "D2-README",
+      "target_path": "docs/02-generative-ai/README.md",
+      "check_id": "beginner-perspective",
+      "status": "보류",
+      "evidence": {
+        "tool": "manual target inventory",
+        "scope": "D2 README and linked learning path",
+        "observations": ["target file exists", "canonical baseline manifest is not available"],
+        "findings": ["full source, scope, and bidirectional traceability cannot yet be verified"],
+        "action": "recheck after U1 manifest and D2 stable IDs are available",
+        "owner": "u3-d2-generative-ai",
+        "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "DomainReadme",
+      "target_id": "D3-README",
+      "target_path": "docs/03-foundation-models/README.md",
+      "check_id": "beginner-perspective",
+      "status": "보류",
+      "evidence": {
+        "tool": "manual target inventory",
+        "scope": "D3 README and linked learning path",
+        "observations": ["target file exists", "canonical baseline manifest is not available"],
+        "findings": ["full source, scope, and bidirectional traceability cannot yet be verified"],
+        "action": "recheck after U1 manifest and D3 stable IDs are available",
+        "owner": "u4-d3-foundation-models",
+        "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "DomainReadme",
+      "target_id": "D4-README",
+      "target_path": "docs/04-responsible-ai/README.md",
+      "check_id": "target-existence",
+      "status": "보류",
+      "evidence": {
+        "tool": "workspace target inventory",
+        "scope": "D4 README target",
+        "observations": ["target path is part of the approved contract", "target file is not present at this checkpoint"],
+        "findings": ["D4 content must be created by U5 before content quality checks can run"],
+        "action": "U5 creates the README and learning documents, then U8 rechecks all applicable records",
+        "owner": "u5-d4-responsible-ai",
+        "recheck_condition": "D4 README and stable document IDs exist"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "DomainReadme",
+      "target_id": "D5-README",
+      "target_path": "docs/05-security-compliance/README.md",
+      "check_id": "target-existence",
+      "status": "보류",
+      "evidence": {
+        "tool": "workspace target inventory",
+        "scope": "D5 README target",
+        "observations": ["target path is part of the approved contract", "target file is not present at this checkpoint"],
+        "findings": ["D5 content must be created by U6 before content quality checks can run"],
+        "action": "U6 creates the README and learning documents, then U8 rechecks all applicable records",
+        "owner": "u6-d5-security-compliance-governance",
+        "recheck_condition": "D5 README and stable document IDs exist"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "QuestionBankItem",
+      "target_id": "Q-<n>",
+      "target_path": "assessment/question-bank.md",
+      "check_id": "question-bank-contract",
+      "status": "보류",
+      "evidence": {
+        "tool": "contract inspection",
+        "scope": "U7 question bank target pattern and minimum cardinality",
+        "observations": ["actual question rows are downstream content and are not present in U7 NFR Requirements"],
+        "findings": ["question IDs, count, answer validity, distractors, difficulty, and duplication cannot be checked yet"],
+        "action": "U7 downstream content creates Q-<n> rows and U8 runs per-item checks",
+        "owner": "u7-assessment-and-review",
+        "recheck_condition": "question bank contains resolved stable IDs and source mappings"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "ScoreSheet",
+      "target_id": "SCORE-<slug>",
+      "target_path": "assessment/score-sheet.md",
+      "check_id": "static-boundary",
+      "status": "통과",
+      "evidence": {
+        "tool": "contract inspection",
+        "scope": "static score worksheet contract",
+        "observations": ["manual formula and separate retry rows are defined", "no answer upload or learner-state storage is allowed"],
+        "findings": [],
+        "action": "recheck the generated worksheet structure when U7 creates it",
+        "owner": "u7-assessment-and-review",
+        "recheck_condition": "SCORE stable ID and worksheet path exist"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "AnkiNote",
+      "target_id": "ANKI-<n>",
+      "target_path": "assessment/anki.csv",
+      "check_id": "encoding-and-format",
+      "status": "보류",
+      "evidence": {
+        "tool": "contract inspection",
+        "scope": "UTF-8 CSV and front,back contract",
+        "observations": ["actual CSV rows are downstream content and are not present"],
+        "findings": ["encoding, quoting, row-level source mapping, and sensitive-data checks cannot yet be run"],
+        "action": "U7 creates the CSV; U8 parses it with a standard CSV parser and records a recheck",
+        "owner": "u7-assessment-and-review",
+        "recheck_condition": "CSV exists, parses, and every row has a stable ID and source mapping"
+      },
+      "checked_at": "2026-09-04"
+    },
+    {
+      "target_type": "SourceRecord",
+      "target_id": "SRC-aif-c01-main",
+      "target_path": "sources/source-registry.yaml",
+      "check_id": "sensitive-data",
+      "status": "통과",
+      "evidence": {
+        "tool": "manual metadata inspection",
+        "scope": "source registry metadata and U8 contract artifacts",
+        "observations": ["no learner answer, credential, token, or real account identifier is used in the recorded contract"],
+        "findings": [],
+        "action": "recheck changed files at each downstream quality gate",
+        "recheck_condition": "any source metadata or generated learning artifact changes"
+      },
+      "checked_at": "2026-09-04"
+    }
+  ],
+  "upstream_ids": [
+    "FR1.1", "FR1.2", "FR1.3", "FR1.4", "FR2.1", "FR2.2", "FR2.3", "FR2.4", "FR2.5", "FR2.6",
+    "FR3.1", "FR3.2", "FR3.3", "FR3.4", "FR4.1", "FR4.2", "FR4.3", "FR4.4", "FR4.5",
+    "FR5.1", "FR5.2", "FR5.3", "FR5.4", "FR6.1", "FR6.2", "FR6.3", "FR6.4",
+    "NFR1", "NFR2", "NFR3", "NFR4", "NFR5", "NFR6", "NFR7", "NFR8", "NFR9",
+    "US1.1", "US1.2", "US2.1", "US3.1", "US4.1", "US4.2", "US5.1",
+    "AC1.1.1", "AC1.1.2", "AC1.1.3", "AC1.1.4", "AC1.2.1", "AC1.2.2", "AC1.2.3", "AC1.2.4",
+    "AC2.1.1", "AC2.1.2", "AC2.1.3", "AC2.1.4", "AC2.1.5", "AC3.1.1", "AC3.1.2", "AC3.1.3", "AC3.1.4",
+    "AC4.1.1", "AC4.1.2", "AC4.1.3", "AC4.1.4", "AC4.2.1", "AC4.2.2", "AC4.2.3", "AC4.2.4", "AC4.2.5",
+    "AC5.1.1", "AC5.1.2", "AC5.1.3", "AC5.1.4", "AC5.1.5", "AC5.1.6"
+  ],
+  "coverage": [
+    {"id":"FR1.1","status":"OK","target":"baseline-manifest"}, {"id":"FR1.2","status":"OK","target":"baseline-manifest"}, {"id":"FR1.3","status":"Deferred","target":"traceability"}, {"id":"FR1.4","status":"OK","target":"source-metadata"},
+    {"id":"FR2.1","status":"Deferred","target":"beginner-perspective"}, {"id":"FR2.2","status":"Deferred","target":"concept-unit"}, {"id":"FR2.3","status":"Deferred","target":"markdown-structure"}, {"id":"FR2.4","status":"Deferred","target":"beginner-perspective"}, {"id":"FR2.5","status":"Deferred","target":"scope-classification"}, {"id":"FR2.6","status":"Deferred","target":"scope-classification"},
+    {"id":"FR3.1","status":"Deferred","target":"static-learning-flow"}, {"id":"FR3.2","status":"Deferred","target":"traceability"}, {"id":"FR3.3","status":"Deferred","target":"internal-links"}, {"id":"FR3.4","status":"Deferred","target":"encoding-and-format"},
+    {"id":"FR4.1","status":"Deferred","target":"question-bank-contract"}, {"id":"FR4.2","status":"Deferred","target":"question-bank-contract"}, {"id":"FR4.3","status":"Deferred","target":"source-metadata"}, {"id":"FR4.4","status":"Deferred","target":"question-quality"}, {"id":"FR4.5","status":"Deferred","target":"static-learning-flow"},
+    {"id":"FR5.1","status":"Deferred","target":"source-metadata"}, {"id":"FR5.2","status":"Deferred","target":"source-status-gate"}, {"id":"FR5.3","status":"Deferred","target":"source-status-gate"}, {"id":"FR5.4","status":"Deferred","target":"scope-classification"},
+    {"id":"FR6.1","status":"Deferred","target":"quality-summary"}, {"id":"FR6.2","status":"Deferred","target":"internal-links"}, {"id":"FR6.3","status":"Deferred","target":"quality-summary"}, {"id":"FR6.4","status":"Deferred","target":"quality-summary"},
+    {"id":"NFR1","status":"Deferred","target":"beginner-perspective"}, {"id":"NFR2","status":"Deferred","target":"accessibility"}, {"id":"NFR3","status":"Deferred","target":"traceability"}, {"id":"NFR4","status":"Deferred","target":"source-status-gate"}, {"id":"NFR5","status":"Deferred","target":"markdown-structure"}, {"id":"NFR6","status":"Deferred","target":"encoding-and-format"}, {"id":"NFR7","status":"Deferred","target":"sensitive-data"}, {"id":"NFR8","status":"Deferred","target":"scope-classification"}, {"id":"NFR9","status":"Deferred","target":"static-learning-flow"},
+    {"id":"US1.1","status":"Deferred","target":"baseline-manifest"}, {"id":"US1.2","status":"Deferred","target":"static-learning-flow"}, {"id":"US2.1","status":"Deferred","target":"beginner-perspective"}, {"id":"US3.1","status":"Deferred","target":"question-quality"}, {"id":"US4.1","status":"Deferred","target":"traceability"}, {"id":"US4.2","status":"Deferred","target":"question-bank-contract"}, {"id":"US5.1","status":"Deferred","target":"quality-summary"},
+    {"id":"AC1.1.1","status":"Deferred","target":"baseline-manifest"}, {"id":"AC1.1.2","status":"Deferred","target":"beginner-perspective"}, {"id":"AC1.1.3","status":"Deferred","target":"traceability"}, {"id":"AC1.1.4","status":"Deferred","target":"scope-classification"},
+    {"id":"AC1.2.1","status":"Deferred","target":"static-learning-flow"}, {"id":"AC1.2.2","status":"Deferred","target":"static-learning-flow"}, {"id":"AC1.2.3","status":"Deferred","target":"static-boundary"}, {"id":"AC1.2.4","status":"Deferred","target":"static-boundary"},
+    {"id":"AC2.1.1","status":"Deferred","target":"beginner-perspective"}, {"id":"AC2.1.2","status":"Deferred","target":"concept-unit"}, {"id":"AC2.1.3","status":"Deferred","target":"internal-links"}, {"id":"AC2.1.4","status":"Deferred","target":"scope-classification"}, {"id":"AC2.1.5","status":"Deferred","target":"accessibility"},
+    {"id":"AC3.1.1","status":"Deferred","target":"question-quality"}, {"id":"AC3.1.2","status":"Deferred","target":"source-metadata"}, {"id":"AC3.1.3","status":"Deferred","target":"source-status-gate"}, {"id":"AC3.1.4","status":"Deferred","target":"question-quality"},
+    {"id":"AC4.1.1","status":"Deferred","target":"traceability"}, {"id":"AC4.1.2","status":"Deferred","target":"encoding-and-format"}, {"id":"AC4.1.3","status":"Deferred","target":"traceability"}, {"id":"AC4.1.4","status":"Deferred","target":"scope-classification"},
+    {"id":"AC4.2.1","status":"Deferred","target":"question-bank-contract"}, {"id":"AC4.2.2","status":"Deferred","target":"question-quality"}, {"id":"AC4.2.3","status":"Deferred","target":"static-learning-flow"}, {"id":"AC4.2.4","status":"Deferred","target":"question-quality"}, {"id":"AC4.2.5","status":"Deferred","target":"sensitive-data"},
+    {"id":"AC5.1.1","status":"Deferred","target":"source-metadata"}, {"id":"AC5.1.2","status":"Deferred","target":"scope-classification"}, {"id":"AC5.1.3","status":"Deferred","target":"source-status-gate"}, {"id":"AC5.1.4","status":"Deferred","target":"quality-summary"}, {"id":"AC5.1.5","status":"Deferred","target":"accessibility"}, {"id":"AC5.1.6","status":"Deferred","target":"sensitive-data"}
+  ],
+  "validation_evidence": {
+    "static_packaging": "PASS: U8 defines records only; no executable feature, API, DB, AWS resource, deployment, paid lab, learner state/data store, or new dependency",
+    "record_schema": "PASS: every quality_check_records entry contains the required seven fields",
+    "allowed_statuses": "PASS: records use only 통과, 실패, 보류",
+    "source_state": "Deferred: canonical baseline manifest is absent and must be created by U1",
+    "content_checks": "Deferred: actual U2~U7 content targets require stable IDs and generated files",
+    "sensitive_data_boundary": "PASS: evidence avoids copying secret or learner values",
+    "unresolved_records": "보류 records remain until their recheck conditions are met"
+  },
+  "open_issues": [
+    {"id":"OQ1","status":"Deferred","description":"U1 must create sources/content-traceability.yaml and resolve BaselineItem rows before downstream verified promotion."},
+    {"id":"OQ2","status":"Deferred","description":"U2~U7 content targets and stable IDs require their owning Units to complete downstream content generation."},
+    {"id":"OQ3","status":"Deferred","description":"Final domain report placement and recheck aggregation are specified in NFR Design."}
+  ]
+}
