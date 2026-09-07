@@ -73,13 +73,17 @@ function splitMarkdownRow(line: string): string[] {
   const cells: string[] = [];
   let cell = "";
   let escaped = false;
+  let inCodeSpan = false;
   for (const char of body) {
     if (escaped) {
       cell += char;
       escaped = false;
     } else if (char === "\\") {
       escaped = true;
-    } else if (char === "|") {
+    } else if (char === "`") {
+      cell += char;
+      inCodeSpan = !inCodeSpan;
+    } else if (char === "|" && !inCodeSpan) {
       cells.push(cell.trim());
       cell = "";
     } else {
@@ -186,10 +190,24 @@ export function parseReviewArtifact(
     const value = (name: string): string =>
       cells[index.get(name) ?? -1]?.trim() ?? "";
     const id = value("ID");
+    const severity = value("Severity");
+    const location = value("Location");
+    const status = value("Status");
+    const findingText = value("Finding");
+    const requiredAction = value("Required action");
+    if (
+      (id === "—" || id === "없음") &&
+      severity === "—" &&
+      status === "—" &&
+      (findingText.includes("없음") ||
+        findingText.includes("못했다") ||
+        requiredAction.includes("없음"))
+    ) {
+      continue;
+    }
     if (!/^R-[0-9]+$/.test(id)) {
       throw new Error(`${artifact}: invalid finding ID ${JSON.stringify(id)}`);
     }
-    const status = value("Status");
     if (!validFindingStatus(status)) {
       throw new Error(
         `${artifact}#${id}: invalid finding status ${JSON.stringify(status)}`,
@@ -199,8 +217,8 @@ export function parseReviewArtifact(
       artifact,
       ...(unit ? { unit } : {}),
       id,
-      severity: value("Severity"),
-      location: value("Location"),
+      severity,
+      location,
       finding: value("Finding"),
       requiredAction: value("Required action"),
       status,

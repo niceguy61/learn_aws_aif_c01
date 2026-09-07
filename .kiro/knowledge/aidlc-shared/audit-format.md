@@ -163,7 +163,7 @@ the active space's shared `codekb/<repo>/` tree.
 |-------|------|-----------------|---------|
 | `ARTIFACT_CREATED` | New artifact written in the active intent record or space-level codekb tree | Timestamp, Tool, File, Context | `hooks/aidlc-write-audit-log.ts` (PostToolUse; Write to net-new path) |
 | `ARTIFACT_UPDATED` | Existing artifact modified in either tree | Timestamp, Tool, File, Context | `hooks/aidlc-write-audit-log.ts` (PostToolUse; Edit, or Write overwriting existing) |
-| `ARTIFACT_REUSED` | Re-use decision on backward jump or per-repo pipeline reuse evidence; only `Decision=keep` grants the pipeline exemption; reserved from the public audit CLI | Timestamp, Stage, Decision, Artifacts, optional Repo, optional Workflow (`single-stage:<slug>` for isolated freshness-bound reuse) | `tools/aidlc-state.ts reuse-artifact` |
+| `ARTIFACT_REUSED` | Re-use decision on backward jump or per-repo pipeline reuse evidence; only `Decision=keep` grants the pipeline exemption; a guarded `Recovery=prior-attempt` row may explicitly bridge an unchanged prior main-workflow Unit after a redo boundary. The bridge must carry the Unit, current questions file/hash, current artifact fingerprint, and exact prior summary/review-request/review/Unit-completion shard-position references; later artifact or Unit lifecycle writes invalidate it. Reserved from the public audit CLI | Timestamp, Stage, Decision, Artifacts, optional Repo, optional Workflow (`single-stage:<slug>` for isolated freshness-bound reuse), optional Unit + Recovery + Questions File + Questions SHA-256 + Artifact Fingerprint + prior-evidence references | `tools/aidlc-state.ts reuse-artifact` |
 
 ### Subagent Events (1 event — hook-emitted)
 

@@ -59,7 +59,7 @@ U8은 콘텐츠 본문을 대신 수정하지 않는다. U8은 UI/API/DB/AWS 계
 1. 각 검사 결과를 `통과|실패|보류` 중 하나로 판정한다.
 2. `통과`에는 검사 명령·확인한 필드·링크·행·섹션 등 재현 가능한 evidence를 기록한다.
 3. `실패` 또는 `보류`에는 findings, 수정·제거·치환·출처 재확인 action, 책임 Unit, 후속 검사 조건을 기록한다.
-4. 수정 Unit이 변경을 완료하면 U8은 이전 기록을 덮어쓰지 않고 새 검사 시도를 수행해 `recheck_result`를 기록한다.
+4. 수정 Unit이 변경을 완료하면 U8은 이전 record를 덮어쓰지 않고 새 검사 시도를 수행한다. 새 record는 새 `check_id`, 현재 `checked_at`, 동일한 `target_id`·`check_type`, 이전 record를 가리키는 `recheck_of`를 가진다.
 5. 모든 확인된 대상이 필수 검사에서 통과하고 출처 승격 게이트를 통과할 때만 통합 보고서에서 `verified` 승격 가능 상태로 표시한다.
 6. 미해결 실패·보류·blocked 출처가 하나라도 있으면 보고서의 상태는 `review` 또는 보류로 유지한다.
 
@@ -134,8 +134,37 @@ erDiagram
 - `aidlc/spaces/default/intents/260904-aif-c01-guide/inception/domain-design/components.md`
 ## Review
 
-**Verdict:** READY
+**Verdict:** NOT-READY
 **Reviewer:** aidlc-architecture-reviewer-agent
+**Date:** 2026-09-07T08:37:13Z
 **Iteration:** 1
+**Request Challenge:** review:f158e38db6416743865880235f9e79ba
 
-U8의 경계는 `QualityEvidence`와 `QualityCheckRecord`로 제한되며, U1 기준선·출처 계약과 U2~U7 정적 자료를 참조한다. 출처 상태와 문서 상태를 분리하고, `blocked`·`확인 필요` 출처의 `verified` 승격을 차단한다. `BR8.1`~`BR8.12` 규칙은 대상 식별, 출처·기준선 추적, 초보자·링크·형식·민감정보 검사, 재검사와 정적 비수집 경계를 포괄한다. UI/API/DB와 학습자 데이터 저장을 포함하지 않으며, Mermaid 사용 시 텍스트 fallback을 요구한다.
+### Findings
+
+| ID | Severity | Location | Finding | Required action | Status |
+|---|---|---|---|---|---|
+| R-01 | Major | `functional-spec.md` > `상태 전이`와 `entities.md` > `QualityCheckRecord.status` | 엔터티의 `status` 허용값은 `통과|실패|보류`뿐인데 workflow는 `planned`, `running`, `recheck`를 검사 상태로 사용한다. 실행 중·재검사 대기·최종 판정의 저장 표현과 허용 전이가 달라 구현자가 상태를 어느 필드에 기록해야 하는지 결정할 수 없다. | 최종 판정 필드와 lifecycle 필드를 분리하거나 한 상태 열거형으로 통합하고, `planned → running → 실패/보류 → 조치 → recheck` 및 재검사 성공·실패의 모든 허용 전이와 terminal 의미를 명시한다. | Unresolved |
+| R-02 | Major | `entities.md` > `QualityCheckRecord.check_id` 및 `entity_constraints` | `check_id`는 unique이고 `QC-<target-type>-<target-id>-<check-type>` 형식인데, 같은 target/check_type의 재검사는 새 `check_id`를 추가해야 한다. 현재 형식에는 시도·revision·sequence 식별자가 없어 append-only 재검사와 고유성 계약이 동시에 구현되지 않는다. | 재검사마다 충돌하지 않는 결정적 attempt/sequence 또는 revision suffix를 ID 형식에 포함하고, 최초 기록·`recheck_of`·동일 시각 재검사의 순서와 uniqueness 규칙을 정의한다. | Unresolved |
+| R-03 | Major | `rules.md` > `BR8.3`·`BR8.5`, `functional-spec.md` > `Workflow 2`, `entities.md` > `source_status_at_check` | U1 계약의 `BaselineItem`과 `SourceRecord`에 대해 `blocked`/`확인 필요` 승격 게이트와 revision·접근 상태 일치를 검사하지만, `QualityCheckRecord`에는 source 상태만 스냅샷하고 baseline 상태·source revision/title/checked date/access status의 필수 보존 필드가 없다. 이후 U1 등록부가 바뀌면 당시 판정 근거를 재구성할 수 없다. | U1의 baseline/source 상태, revision, title, checked date, access status를 검사 시점의 불변 snapshot으로 저장하는 명시적 속성 또는 `evidence` 하위 스키마를 정의하고, baseline과 source 각각의 승격 게이트 입력을 연결한다. | Unresolved |
+| R-04 | Major | `traceability.json` > `reverse` | 모든 `BR8.1`~`BR8.12`가 `coverage`의 `OK.target`으로 이미 매핑되어 있는데도 `reverse`에 `status: N/A`로 전부 반복된다. Functional Design 계약의 `reverse`는 AC가 없는 규칙을 설명하는 용도인데, 현재 `target` 문구는 오히려 AC로 행사된다고 설명하여 `N/A` 의미와 충돌하고 고아 규칙을 숨길 수 있다. | `coverage`로 설명된 규칙은 `reverse`에서 제거하고, 실제 AC가 없는 규칙만 `N/A`와 정당화 문구로 남긴다. 모든 규칙이 AC를 가지면 `reverse: []`로 두며, 이 의미가 유지되도록 센서·검토 기준을 명시한다. | Unresolved |
+| R-05 | Major | `functional-spec.md` > `Workflow 3·5`, `entities.md` > `check_type` | U8 Unit 계약과 요구사항의 문항 메타데이터·문항 수·오답 선택지·난이도·중복 최종 검토를 포함해야 하지만, `question-bank-contract`와 `question-quality` `check_type`만 선언되어 있고 이를 실행하는 workflow 단계, BR, 필수 대상별 검사 매트릭스가 없다. 따라서 `QuestionBankItem`·`ScoreSheet` 품질 완료 여부를 판정할 수 없다. | `target_type`별 필수 `check_type` 매트릭스를 추가하고 문항 수·필수 필드·정답/오답·난이도·중복 검사를 BR과 ordered workflow에 연결한다. 관련 AC coverage와 traceability target도 함께 갱신한다. | Unresolved |
+| R-06 | Major | `unit-of-work.md` > U8 산출물, `functional-spec.md` > `Workflow 6` | U8 계약은 도메인별 품질 보고서와 최종 통합 점검표를 산출한다고 하지만, 명세는 `QualityCheckRecord`의 파생 Markdown 뷰라고만 하고 파일 경로·파일명·생성 범위·상태 집계 규칙·README 링크 target을 정의하지 않는다. 도메인 Unit과 U8이 어떤 파일을 소유하고 구현자가 어디에 기록할지 알 수 없다. | 도메인 보고서와 최종 보고서의 구체적인 workspace-relative 경로, 필수 섹션/필드, target별 집계·승격 규칙, README 상대 링크의 소유·갱신 경계를 정의하고 U8 output 계약과 연결한다. | Unresolved |
+| R-07 | Minor | `rules.md` > source-of-truth `BR8.9.category`, `BR8.10.category` | Stage 계약이 규칙 `category`를 `validation|authorization|constraint|calculation|policy`로 제시하는데 `BR8.9`는 `accessibility`, `BR8.10`은 `security`를 사용한다. 범주가 확장 가능한지 폐쇄형인지 불명확하여 규칙 파서·검증기의 해석이 달라질 수 있다. | 현재 stage 계약에 맞는 `category`로 매핑하거나, `category`가 확장 가능하다는 별도 계약을 명시한다. | Unresolved |
+| R-08 | Minor | `entities.md` > `target_path`, `unit-of-work.md` > U8 `target_path` 예시 | `sources/*.yaml#<id>`와 `assessment/anki.csv#anki-<n>`을 일반 문서 anchor처럼 사용하지만 YAML 레코드와 CSV 행의 fragment/row 해석 규칙이 없다. 파일은 존재해도 해당 stable ID를 어떻게 검증할지 구현자마다 달라질 수 있다. | Markdown anchor, YAML key/record selector, CSV header 기준 row selector의 문법과 검증 방법을 `target_type`별로 정의하고 예시를 계약에 고정한다. | Unresolved |
+
+### Validation Tool Results
+
+| Tool | Result | Interpretation |
+|---|---|---|
+| `bun .kiro/tools/aidlc-sensor-traceability.ts --stage functional-design --output-path .../traceability.json` | PASS; `gaps: []`, `orphans: []`, `missing_from_table: []`, `missing_from_upstream_ids: []`, `invalid_entries: []`, `invalid_targets: []`, `findings_count: 0` | AC5.1.1~AC5.1.6가 모두 선언되고 각 `OK` target의 BR ID가 `rules.md`에 존재하며 기계적으로 파생된 BR orphan이 없다. `reverse`의 의미적 충돌은 이 센서가 검사하지 않는다. |
+| `bun .kiro/tools/aidlc-sensor-required-sections.ts --stage functional-design --output-path .../functional-spec.md` | PASS; `h2_count: 14`, `findings_count: 0` | 산출물에 필요한 최소 H2 구조가 있으며 terminal `## Review` 섹션도 하나로 인식된다. |
+| `bun .kiro/tools/aidlc-sensor-upstream-coverage.ts --stage functional-design --output-path .../functional-spec.md --consumes unit-of-work,unit-of-work-story-map,requirements,components --deliverables entities,rules,functional-spec,traceability` | PASS; `unreferenced: []`, `findings_count: 0` | 지정된 필수 상위 계약 네 가지가 U8 Functional Design 산출물 전체에서 참조된다. 선택 입력인 `contract-summary`는 제공된 경로에 없어 검사 대상에서 제외했다. |
+| `bun .kiro/tools/aidlc-validate.ts outputs construction` | PASS; `missing: []` | Construction stage 선언 산출물의 파일명 참조가 모두 유효하다. |
+| `git diff --check -- aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u8-quality-evidence/functional-design` | PASS; line-ending 경고만 출력 | 공백·diff 형식 오류는 없으며 Windows 줄바꿈 정규화 경고는 설계 결함이 아니다. |
+| `linter`, `type-check` sensors | NOT APPLICABLE | 이번 검토 대상은 Markdown과 JSON이며 TypeScript/JavaScript 코드 산출물이 없어 실행할 대상이 없다. |
+| 외부 URL live check | NOT RUN | 요청 범위에 따라 실제 외부 URL 접근 검증은 수행하지 않았다. |
+
+### Summary
+
+기계적 센서는 AC와 BR의 존재·구조·상위 참조를 통과시켰지만, `QualityCheckRecord`의 상태·재검사·스냅샷 모델과 U8의 필수 검사·보고서 출력 계약이 구현 수준으로 닫히지 않았다. 6개의 Unresolved Major finding이 남아 있어 구현자가 핵심 저장·판정·출력 계약을 임의로 결정해야 하므로 verdict는 `NOT-READY`다.

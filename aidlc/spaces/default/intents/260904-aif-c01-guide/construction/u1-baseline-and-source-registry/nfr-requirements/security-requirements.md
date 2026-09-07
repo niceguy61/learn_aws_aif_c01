@@ -13,10 +13,10 @@ U1은 `ReferenceCatalog`의 `BaselineItem`, `SourceRecord`, `SidebarLink`만 소
 | ID | 요구사항 | 검증 증거 | 관련 규칙·AC |
 |---|---|---|---|
 | NFR3.1 | `BaselineItem.baseline_id`, `SourceRecord.source_id`, `SidebarLink.link_id`는 각각 유일해야 하며, `AIF-C01-D<n>-T<n>`, `SRC-<slug>`, `SIDE-<slug>` 형식을 보존한다. ID는 URL이나 표시 제목으로 대체하지 않는다. | 중복·형식·참조 무결성 검사 결과 | BR1.1, BR1.7; AC1.1.1, AC1.1.3 |
-| NFR3.2 | 기준선·출처·사이드바 링크와 파생 자료의 연결은 stable ID를 양방향으로 기록한다. 존재하지 않는 ID, URL만 있는 연결, 한쪽에만 있는 연결은 검사 실패로 처리한다. | `sources/content-traceability.yaml`의 정방향·역방향 비교 | BR1.3, BR1.7; AC1.1.3 |
-| NFR4.1 | 모든 `BaselineItem`과 `SourceRecord`는 공식 URL, 공식 제목, `source_revision` 또는 `revision_title`, `checked_date`/`source_checked`, 접근 상태를 가져야 한다. | 필수 키·날짜 형식·허용 enum 검사 | BR1.2; AC1.1.1, AC1.1.2 |
-| NFR4.2 | `blocked` 또는 `확인 필요` 출처·기준선은 차단 사유, 영향받는 자료, 후속 확인 대상을 `notes`에 남기며 관련 파생 자료를 `verified`로 표시하지 않는다. | 상태 전이·notes·파생 상태 대조 | BR1.5; AC1.1.4 |
-| NFR4.3 | 공식 링크의 제목·상위 주제·출처 유형·도메인 매핑·확인일·접근 상태를 `sources/source-registry.yaml`에서 재현할 수 있어야 한다. | `aws-sidebar-index.md`와 registry URL 집합 비교 | BR1.6; AC1.1.3 |
+| NFR3.2 | 기준선·출처·사이드바 링크와 파생 자료의 연결은 canonical stable ID를 양방향으로 기록한다. `SidebarLink.linked_source_id`는 필수 reference이며 정확히 하나의 `SourceRecord.source_id`를 가리킨다. `SourceRecord.linked_sidebar_ids`는 필수 `list<string>` reverse collection이며 0개 이상 `SidebarLink.link_id`를 가진다. 각 SourceRecord에서 정방향·역방향 ID 집합은 정확히 동등해야 한다. 존재하지 않는 ID, URL만 있는 연결, 한쪽에만 있는 연결, 중복·누락은 검사 실패로 처리하며 기존 `source_id` alias는 허용하지 않는다. | `sources/content-traceability.yaml`와 registry의 정방향·역방향 집합 비교 및 fail-closed 결과 | BR1.3, BR1.6, BR1.7; AC1.1.3 |
+| NFR4.1 | 모든 `BaselineItem`은 공식 URL, 공식 제목, `source_revision`, `revision_title`, canonical `source_checked`, 접근 상태를 가져야 한다. `BaselineItem.source_checked`는 `YYYY-MM-DD` UTC calendar date 문자열만 허용하는 유일한 기준선 확인일 필드이며 `BaselineItem.checked_date`는 존재하지 않아야 하고 alias·fallback은 허용하지 않는다. `SourceRecord.checked_date`는 출처가 소유하는 별도 확인일 필드지만 연결된 모든 BaselineItem.source_checked와 문자 단위로 일치해야 한다. `SourceRecord`는 revision 필드를 별도로 소유하지 않는다. | 필수 키·canonical 날짜 형식·timezone/time 거부·날짜 equality·허용 enum·BaselineItem↔SourceRecord 연결 검사 | BR1.2; AC1.1.1, AC1.1.2 |
+| NFR4.2 | `discovered`, `downloaded`, `summarized`, `reviewed`, `blocked`, `확인 필요` 상태의 출처·기준선은 파생 자료를 `draft` 또는 `review`(필요하면 보류)로만 허용하고 `verified` 승격을 금지한다. `verified` 출처·기준선일 때도 공식 URL·제목·revision·canonical 날짜 equality·stable-ID 집합 동등성·파생 자료 내용 검토 증거가 있어야 `verified`로 전이할 수 있다. `blocked` 또는 `확인 필요` 해소는 새 확인 증거와 실제 상태 전이 후 순차 재검증으로만 가능하다. | 상태별 허용/금지 매트릭스, 필수 증거, fail-closed 전이, notes의 차단 사유·영향 자료·후속 확인 대상 대조 | BR1.5; AC1.1.4 |
+| NFR4.3 | 공식 링크의 제목·상위 주제·출처 유형·도메인 매핑·확인일·접근 상태를 `sources/source-registry.yaml`에서 재현할 수 있어야 한다. `aws-sidebar-index.md`의 각 SidebarLink는 필수 `linked_source_id`로 정확히 하나의 SourceRecord에 연결되고, SourceRecord의 필수 `linked_sidebar_ids` reverse collection은 연결된 `link_id`를 정확히 포함해야 한다. sidebar에 없는 공식 registry 출처는 허용한다. | sidebar URL 중복·registry URL 중복·stable-ID 중복·orphan·누락을 분리 검사하고 정방향/역방향 집합 동등성을 확인 | BR1.6; AC1.1.3 |
 | NFR7.1 | U1의 파일, 예시, 로그, 출처 메타데이터에는 자격 증명, 토큰, API 키, 비밀번호, 실제 계정 식별자, 개인 식별 정보(PII), 결제·건강정보를 기록하거나 배포하지 않는다. | 민감정보 패턴 검사와 수동 검토 기록 | AC1.1.2, AC1.1.3 |
 | NFR7.2 | 공식 URL과 공개 문서 메타데이터만 저장하고 AWS API 호출, 계정 인증, 비밀 저장소, 학습자 답안·진도 저장을 사용하지 않는다. | 의존성·코드·파일 범위 점검 | BR1.8; AC1.1.2 |
 | NFR8.1 | 기준선과 실무 확장은 각각 `시험 범위` 또는 관련 `AIF-C01-D<n>-T<n>`를 앞세운 `실무 확장`으로 구분하고, 차단·미확인 사실은 `verified`로 표현하지 않는다. | 범위 표지 및 상태 승격 검사 | BR1.5, BR1.7; AC1.1.4 |
@@ -41,10 +41,10 @@ U1은 런타임 접근 제어를 구현하지 않는다. 대신 저장소의 코
 
 공식 AIF-C01 시험 안내서는 시험 범위를 결정하는 1차 근거다. AWS 문서, AWS 공식 블로그, AWS Skill Builder는 학습 해설을 보완하는 출처로 유형을 구분한다. 출처의 접근 상태와 문서 상태는 서로 다른 enum이며 혼용하지 않는다.
 
-- `discovered → downloaded → summarized → reviewed → verified`는 출처 확인 수준이다.
-- `blocked`는 접근 또는 내용 확인이 되지 않은 상태다.
-- 문서의 `draft|review|verified`는 파생 문서의 집필 검토 상태다.
-- 출처 또는 기준선이 `blocked`/`확인 필요`이면 파생 자료는 `verified`가 될 수 없다. `확인 필요`는 enum 값이 아니라 notes에 기록하는 보류 라벨이다.
+- `discovered → downloaded → summarized → reviewed → verified`는 출처 확인 수준이다. `blocked`는 접근 또는 내용 확인이 되지 않은 상태다.
+- `BaselineItem.source_checked`는 기준선의 유일한 canonical 확인일이고, `SourceRecord.checked_date`는 출처가 소유하는 별도 확인일이다. 두 값은 `YYYY-MM-DD` UTC calendar date로 문자 단위 equality를 가져야 하며 `BaselineItem.checked_date` alias는 허용하지 않는다.
+- 문서의 `draft|review|verified`는 파생 문서의 집필 검토 상태다. `discovered`, `downloaded`, `summarized`, `reviewed`, `blocked`, `확인 필요` 상태에서는 파생 자료를 `verified`로 승격할 수 없다. `verified` 상태에서도 매트릭스의 내용·provenance·양방향 링크 증거가 필요하다.
+- `확인 필요`는 enum 값이 아니라 notes에 기록하는 보류 라벨이다. `blocked`/`확인 필요` 해소 후 새 증거로 순차 재검증하며 이전 verified 표시는 자동 복구하지 않는다.
 
 U1은 법률·규제 적합성을 선언하지 않는다. 규정명이나 AWS 기능의 변동 가능한 사실을 기록할 때는 공식 URL, 제목, 확인일, 접근 상태와 범위 분류를 함께 남기며, 전문적인 법률 판단은 범위 밖으로 둔다.
 
@@ -78,3 +78,51 @@ U1은 법률·규제 적합성을 선언하지 않는다. 규정명이나 AWS �
 - 공식 AIF-C01 revision·작업·기술 행의 실제 값은 기준선 등록 작업에서 공식 페이지를 확인한 뒤 채운다. 확인 전에는 추측하지 않는다.
 - 현재 U1에는 런타임·배포·학습자 데이터가 없다는 승인된 경계를 적용했다.
 - U8이 최종 품질 검사 증거를 소유하므로 U1은 검사 규칙과 필요한 증거 필드를 제공하고 품질 보고서 본문을 대신 소유하지 않는다.
+
+## Review
+
+### architecture 관점
+
+READY. U1은 `ReferenceCatalog`의 정적 계약만 소유하며 `LearningContent`, `AssessmentContent`, `QualityEvidence`의 본문·검사 결과를 침범하지 않는다. stable ID와 양방향 연결은 Unit 간 경계와 일치한다. 런타임·배포·DB를 만들지 않는 결정은 승인된 `spec` Unit 및 `shared static package` 모델과 일치한다.
+
+### security 관점
+
+READY. 민감정보·자격 증명·PII 비저장, URL·revision·확인일·상태의 provenance, `blocked`/`확인 필요`의 `verified` 승격 차단, 원격 업로드 금지와 변경 무결성 규칙을 명시했다. IAM·KMS·네트워크 보안 항목은 해당 없음으로 근거를 남겼다.
+
+### quality 관점
+
+READY. UTF-8, YAML·JSON·CSV 파싱, Markdown 링크·제목, Mermaid 텍스트 fallback, stable ID와 양방향 orphan 검사를 반복 가능한 로컬 검사 증거로 연결했다. 문서 상태와 출처 상태를 구분했다.
+
+### 미해결 사항
+
+실제 공식 revision·URL·작업·기술 행과 차단된 출처의 대체 경로는 출처 조사 결과에 따라 후속 확정한다. 그 전까지 관련 기준선과 파생 자료의 `verified` 승격은 보류한다.
+<!-- 산출물은 Consolidated Summary Confirmation 이후 저장되었다. -->
+
+<!-- Revalidated after the current NFR summary confirmation; substantive content unchanged. -->
+## Review
+
+**Verdict:** READY
+**Reviewer:** aidlc-architecture-reviewer-agent
+**Date:** 2026-09-05T01:39:06Z
+**Iteration:** 1
+**Request Challenge:** review:fc665515433b2329f925cce2ef290a69
+
+### Findings
+
+없음.
+
+### Validation Tool Results
+
+| Tool | Result | Interpretation |
+|---|---|---|
+| `aidlc-sensor-required-sections.ts` — `security-requirements.md` | PASS (`h2_count: 9`, `findings_count: 0`) | 보안 요구사항과 U1 정적 산출물의 문서 구조가 유효하다. |
+| `aidlc-sensor-required-sections.ts` — `tech-stack-decisions.md` | PASS (`h2_count: 9`, `findings_count: 0`) | 기술 결정과 정적 파일 계약의 문서 구조가 유효하다. |
+| `aidlc-sensor-upstream-coverage.ts` | PASS (`unreferenced: []`) | `functional-spec`, `rules`, `requirements` 상위 산출물 참조가 유효하다. |
+| `aidlc-sensor-traceability.ts` — `traceability.json` | PASS (`gaps: []`, `orphans: []`, `missing_from_table: []`, `missing_from_upstream_ids: []`, `invalid_entries: []`, `invalid_targets: []`) | 상위 FR/NFR/AC와 상세 NFR·Unit·컴포넌트·역방향·양방향 연결이 유효하다. |
+| `aidlc-sensor-linter.ts` | N/A (`no-eslint-config`) | 실행 코드가 없는 정적 Markdown/YAML/JSON/CSV 계약이다. |
+| `aidlc-sensor-type-check.ts` | N/A (`no-tsconfig-found`) | TypeScript/JavaScript 산출물이 없다. |
+| Cross-artifact architecture review | PASS | `ReferenceCatalog` 정적 경계와 stable ID·provenance·상태 전이·양방향 추적성·민감정보 비저장·로컬 검사 계약이 상위 설계와 일치한다. |
+
+### Summary
+
+U1 NFR 산출물은 실행형 런타임이나 배포 자원을 도입하지 않고 `ReferenceCatalog`의 정적 계약 범위를 유지한다. 검증 가능한 추적성·출처 상태·보안 경계가 상위 계약과 정합적이며 추가 아키텍처 판단 없이 진행할 수 있다.

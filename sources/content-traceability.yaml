@@ -1,0 +1,286 @@
+# U1 canonical baseline-to-content traceability manifest
+# Baseline rows are registered from the existing research record. The official
+# revision and technology-row wording remain blocked until independently checked.
+schema_version: '2.0'
+owner: u1-baseline-and-source-registry
+status: draft
+source_registry: sources/source-registry.yaml
+baseline_item_schema:
+  required_fields:
+    - baseline_id
+    - source_id
+    - source_revision
+    - revision_title
+    - domain
+    - task
+    - technology
+    - official_source_url
+    - official_source_title
+    - source_checked
+    - status
+    - learning_document_ids
+    - question_ids
+    - card_ids
+    - quiz_ids
+    - anki_ids
+    - notes
+  baseline_id_pattern: 'AIF-C01-D<n>-T<n>'
+  allowed_statuses:
+    - discovered
+    - downloaded
+    - summarized
+    - reviewed
+    - verified
+    - blocked
+    - 확인 필요
+  canonical_date_field: source_checked
+  forbidden_aliases:
+    - checked_date
+baseline_items:
+  - baseline_id: AIF-C01-D1-T1
+    source_id: SRC-aif-c01-domain1
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D1
+    task: '1.1 기본 AI 개념과 용어'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html
+    official_source_title: '콘텐츠 도메인 1: AI 및 ML의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D1-T2
+    source_id: SRC-aif-c01-domain1
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D1
+    task: '1.2 AI 실제 사용 사례'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html
+    official_source_title: '콘텐츠 도메인 1: AI 및 ML의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D1-T3
+    source_id: SRC-aif-c01-domain1
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D1
+    task: '1.3 ML 개발 수명 주기'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html
+    official_source_title: '콘텐츠 도메인 1: AI 및 ML의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D2-T1
+    source_id: SRC-aif-c01-domain2
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D2
+    task: '2.1 GenAI 기본 개념'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html
+    official_source_title: '콘텐츠 도메인 2: GenAI의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D2-T2
+    source_id: SRC-aif-c01-domain2
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D2
+    task: '2.2 비즈니스 문제 해결을 위한 기능과 한계'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html
+    official_source_title: '콘텐츠 도메인 2: GenAI의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D2-T3
+    source_id: SRC-aif-c01-domain2
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D2
+    task: '2.3 AWS 인프라와 기술'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html
+    official_source_title: '콘텐츠 도메인 2: GenAI의 기초'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D3-T1
+    source_id: SRC-aif-c01-domain3
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D3
+    task: '3.1 FM 애플리케이션 설계'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html
+    official_source_title: '콘텐츠 도메인 3: 파운데이션 모델의 적용'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D3-T2
+    source_id: SRC-aif-c01-domain3
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D3
+    task: '3.2 프롬프트 엔지니어링'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html
+    official_source_title: '콘텐츠 도메인 3: 파운데이션 모델의 적용'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D3-T3
+    source_id: SRC-aif-c01-domain3
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D3
+    task: '3.3 훈련·미세 조정'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html
+    official_source_title: '콘텐츠 도메인 3: 파운데이션 모델의 적용'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D3-T4
+    source_id: SRC-aif-c01-domain3
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D3
+    task: '3.4 성능 평가'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html
+    official_source_title: '콘텐츠 도메인 3: 파운데이션 모델의 적용'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D4-T1
+    source_id: SRC-aif-c01-domain4
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D4
+    task: '4.1 책임 있는 AI 시스템 개발'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html
+    official_source_title: '콘텐츠 도메인 4: 책임 있는 AI에 대한 가이드라인'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D4-T2
+    source_id: SRC-aif-c01-domain4
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D4
+    task: '4.2 투명하고 설명 가능한 모델'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html
+    official_source_title: '콘텐츠 도메인 4: 책임 있는 AI에 대한 가이드라인'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D5-T1
+    source_id: SRC-aif-c01-domain5
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D5
+    task: '5.1 AI 시스템 보안'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html
+    official_source_title: '콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+  - baseline_id: AIF-C01-D5-T2
+    source_id: SRC-aif-c01-domain5
+    source_revision: 확인 필요
+    revision_title: AWS Certified AI Practitioner(AIF-C01) 시험 안내서
+    domain: D5
+    task: '5.2 AI 시스템 거버넌스와 규정 준수'
+    technology: 확인 필요
+    official_source_url: https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html
+    official_source_title: '콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스'
+    source_checked: '2026-09-04'
+    status: blocked
+    learning_document_ids: []
+    question_ids: []
+    card_ids: []
+    quiz_ids: []
+    anki_ids: []
+    notes: 공식 revision과 기술 행 원문을 독립 확인하지 못해 확인 필요로 보류한다.
+open_items:
+  - id: OQ1
+    status: 확인 필요
+    description: 공식 AIF-C01 시험 안내서의 실제 revision과 기술 행 원문을 다시 확인한다.
+    impact: 기준선의 blocked 상태를 실제 검증 수준으로 갱신하고 후속 문서·문항 매핑을 시작한다.
+  - id: OQ2
+    status: 확인 필요
+    description: 확인된 각 baseline item에 학습 문서와 문제 ID를 연결한다.
+    impact: blocked 기준선의 verified 승격 조건을 충족한다.

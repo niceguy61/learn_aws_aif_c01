@@ -103,30 +103,20 @@ U3의 보안은 모델 호출을 보호하는 런타임 설계가 아니라 정�
 - 모델명·기능·요금·리전·할당량은 작성일 기준 공식 문서에서 별도 재확인해야 한다.
 ## Review
 
-**Request Challenge:** review:a7d2d3413b18be98ecbdfca840397ad6
+**Request Challenge:** review:09e78adb38e90960fde43c891d49220e
 **Verdict:** NOT-READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-04T21:27:29Z
-**Iteration:** 2
+**Date:** 2026-09-05T01:48:45Z
+**Iteration:** 1
 
 ### Findings
 
-| ID | Severity | Location | Finding | Required action | Status |
-|---|---|---|---|---|---|
-| R-01 | Critical | `aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u3-d2-generative-ai/nfr-requirements/traceability.json` > `upstream_contract.functional-spec`; `construction/u3-d2-generative-ai/functional-design/` | The nfr-requirements stage contract marks `functional-spec` as required and requires the functional-design stage, but U3 still declares it `N/A` and no U3 functional-spec file exists. The upstream sensor only proves that the token is mentioned, not that the required artifact exists. | Add a minimal U3 functional-spec for the static Markdown/JSON outputs and no runtime behavior, or establish an explicit machine-recognized packaging-unit exception in the stage/unit contract; update the NFR upstream evidence. | Unresolved |
-| R-02 | Major | `aidlc/spaces/default/intents/260904-aif-c01-guide/inception/units-generation/unit-of-work.md` > U3 outputs; `security-requirements.md` > `docs/glossary.md`; `traceability.json` > `FR3.3` | The upstream contract identifies `GlossaryTerm` as part of `LearningContent` and requires cumulative `docs/glossary.md`, but U3 owns only a D2 terminology inventory, no central glossary file exists, and no named assembly owner or handoff contract resolves `FR3.3`. | Assign the central glossary and update responsibility to a named Unit, or define the downstream assembly owner and inventory-to-glossary handoff; make `FR3.3` target and completion evidence concrete. | Unresolved |
-| R-03 | Major | `tech-stack-decisions.md` > TECH3.3/TECH3.4; `traceability.json` > `source_paths` and `NFR3.2` | The U1 contract now confirms `sources/content-traceability.yaml` as the canonical manifest and defines baseline-side fields, but the manifest file is absent, U3's `source_paths` omits it, and U3 still defines no serialization for its `LearningDocument`/`GlossaryTerm` IDs and reverse mappings. A developer cannot reproduce the promised bidirectional content check without guessing. | Add the canonical manifest to U3's consumed source paths and specify the exact U3 document/term ID, baseline/source reference, reverse-link, and validation fields, or explicitly delegate that contract with a concrete handoff. | Unresolved |
-
-### Validation Tool Results
-
-| Tool | Result | Interpretation |
-|---|---|---|
-| `aidlc-sensor-required-sections.ts` — security and tech-stack artifacts | PASS; 11 H2 headings each | Markdown structure is valid; it does not validate required upstream artifact existence or ownership. |
-| `aidlc-sensor-upstream-coverage.ts` — security artifact | PASS; `unreferenced: []` | Required upstream names are mentioned, but the required U3 functional-spec file is absent. |
-| `aidlc-sensor-traceability.ts` — `traceability.json` | PASS; gaps/orphans/invalid targets all empty | Requirement-level mapping parses cleanly, but it does not prove glossary ownership or content-manifest existence/schema. |
-| File existence and JSON parse check | U3 functional-spec: FAIL; `sources/content-traceability.yaml`: FAIL; `docs/glossary.md`: FAIL; JSON parse: PASS | Confirms the three unresolved cross-artifact gaps while the traceability JSON itself is syntactically readable. |
-| linter/type-check | NOT APPLICABLE | U3 produces no TypeScript/JavaScript code or runtime configuration. |
+| ID | Severity | Finding | Status |
+|---|---|---|---|
+| R-01 | Critical | U3의 필수 `functional-spec` 산출물과 정적 packaging 예외 계약이 아직 정합적으로 확정되지 않았다. | Unresolved |
+| R-02 | Major | 중앙 `docs/glossary.md`의 소유자와 U3 terminology inventory handoff가 구현 가능한 계약으로 확정되지 않았다. | Unresolved |
+| R-03 | Major | U1 canonical manifest와 U3 문서·용어 ID의 정·역방향 직렬화·검증 규칙이 구현 가능한 수준으로 확정되지 않았다. | Unresolved |
 
 ### Summary
 
-The static, no-runtime/no-credentials boundary remains coherent, and the local structural sensors pass. However, the required functional-spec input and two cross-Unit content contracts are still not implementable without architectural clarification, so the prior R-01–R-03 findings remain unresolved and the verdict is NOT-READY.
+정적·무실행·무자격 증명 경계는 유지되지만, 필수 upstream과 두 cross-Unit 추적성 계약의 미해결 사항으로 U3는 NOT-READY다.

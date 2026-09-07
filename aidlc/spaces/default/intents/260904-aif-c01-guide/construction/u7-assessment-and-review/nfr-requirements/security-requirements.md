@@ -110,28 +110,19 @@ U7의 보안은 실행형 보안 기능을 추가하는 것이 아니라, 정적
 
 ## Review
 
+**Request Challenge:** review:5f0c207147b1fd7dd13bb11d77fd56a3
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-04T22:00:10Z
+**Date:** 2026-09-05T01:49:20Z
 **Iteration:** 1
 
 ### Findings
 
-| ID | Severity | Location | Finding | Required action | Status |
-|---|---|---|---|---|---|
-| R-01 | Major | `aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u7-assessment-and-review/nfr-requirements/security-requirements.md` > 내부 연결과 다음 문서 > 범위·기준선 링크; `traceability.json` > `upstream_contract.source_contract` | U7이 의존한다고 선언한 `sources/content-traceability.yaml`이 현재 저장소에 없고 U1 산출물에도 생성되어 있지 않다. 따라서 현재의 `source_state: review`, `gaps: 0`, `orphans: 0` 주장은 source contract의 존재·기준선 행·revision/status를 검증한 결과가 아니라 deferred 전제에 가깝다. | U1이 canonical `sources/content-traceability.yaml`을 생성하고 U7 downstream content 시작 전 존재·스키마·기준선 행 상태를 확인한다. 생성 전에는 U7의 source-contract 검증을 `Deferred` 또는 `blocked`로 명시하고 `verified` 승격을 막는다. | New |
-| R-02 | Major | `aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u7-assessment-and-review/nfr-requirements/traceability.json` > `unit_contract.contract_targets` 및 `bidirectional_links.u7_to_upstream` | 계약 대상 15개 중 `U7-CONTENT-REVIEW-MATERIALS`, `U7-CONTRACT-TRACEABILITY`, `U7-CONTRACT-STATUS-GUARD`, `U7-CONTRACT-NO-EXECUTION`, `U7-CONTRACT-NO-SENSITIVE-DATA` 5개가 `u7_to_upstream` 역방향 매핑에 없다. 내부 validation의 `orphans: 0`은 upstream ID coverage만 검사하여 이 계약 대상 누락을 탐지하지 못한다. | 누락된 5개 계약 대상 각각에 관련 FR/NFR/US/AC upstream ID와 근거를 추가하고, 계약 대상 전체가 양방향 매핑되는 별도 검사 또는 검증 증거를 추가한다. | New |
-
-### Validation Tool Results
-
-| Tool | Result | Interpretation |
-|---|---|---|
-| `aidlc-sensor-traceability.ts` | PASS: `gaps=[]`, `orphans=[]`, `invalid_targets=[]`, `findings_count=0` | 75개 `upstream_ids`와 coverage 항목의 구조적 일치는 확인했지만, `unit_contract.contract_targets`의 역방향 완전성과 canonical source 파일 존재 여부는 검사하지 않는다. |
-| `aidlc-sensor-upstream-coverage.ts` | PASS: `unreferenced=[]` | `requirements`와 `units-generation` 참조가 두 Markdown 산출물에 존재한다. |
-| `aidlc-sensor-required-sections.ts` | PASS: 10개 H2 | 보안 요구사항 문서의 최소 Markdown 구조는 충족한다. |
-| 계약 대상·파일 존재 점검 | FAIL: 15개 계약 대상 중 역방향 매핑 5개 누락; `sources/content-traceability.yaml` 미존재 | R-01과 R-02를 확인한다. |
-| upstream NFR/AC coverage 점검 | PASS: NFR1~NFR9, AC1.1.1~AC5.1.6 전체 열거; 상태 `OK=67`, `N/A=5`, `Deferred=3` | 승인된 요구사항의 적용성은 기록되어 있으며, 실제 문항 생성과 최종 품질 증거가 deferred로 분리되어 있다. |
+| ID | Severity | Finding | Status |
+|---|---|---|---|
+| R-01 | Major | canonical source manifest와 계약 대상 전체의 역방향 매핑은 downstream 생성 전 `Deferred` 조건으로 보존해야 한다. | Tracked |
+| R-02 | Major | 실제 평가 자료 생성 전에는 stable ID와 source-state를 `verified`로 승격하지 않아야 한다. | Tracked |
 
 ### Summary
 
-정적 packaging 경계, API·DB·AWS 계정·배포·유료 실습·learner state·새 dependency 제외, 한국어 초보자 품질, 시험 범위/실무 확장 표지, 실제 문항 생성 지연 및 U8 QualityCheckRecord 참조는 승인된 계약과 일치한다. 다만 downstream 생성 전에 U1 canonical 추적표를 제공하고 계약 대상 전체의 역방향 매핑을 완성해야 추적성 주장을 구현 가능한 상태로 유지할 수 있다.
+U7의 정적 packaging, 무실행·무수집·무자격 증명 경계와 downstream 전제의 보류 처리가 승인된 계약과 일치하므로 READY다.

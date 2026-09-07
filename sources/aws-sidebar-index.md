@@ -1,145 +1,67 @@
 # AIF-C01 공식 안내서 사이드바 링크 인덱스
 
 - 기준 페이지: [AWS Certified AI Practitioner(AIF-C01) 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html)
-- 확인일: 2026-09-04
-- 상태: 초안 수집 완료
-- 목적: 공식 안내서의 탐색 항목과 5개 도메인 페이지를 누락 없이 추적하고, 이후 학습 문서와 연결한다.
+- 기준 출처 ID: `SRC-aif-c01-main`
+- 확인일: `2026-09-04`
+- 상태: `blocked`
+- 목적: 공식 안내서에서 확인된 링크를 stable ID와 상위 주제로 추적한다. 시험 안내서 revision과 기술 행 원문을 현재 작업에서 독립적으로 재확인하지 못했으므로 기준선의 verified 승격은 보류한다.
 
-## 1. 안내서 내부 탐색 링크
+## 링크 인벤토리
 
-| 항목 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| 서론 | [시험 안내서 서론](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-intro) | FOUNDATION, EXAM | downloaded |
-| 대상 응시자 설명 | [대상 응시자](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-target) | FOUNDATION, EXAM | downloaded |
-| 시험 콘텐츠 | [시험 콘텐츠](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-exam-content) | EXAM | downloaded |
-| 콘텐츠 도메인과 가중치 | [콘텐츠 도메인](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-domains) | EXAM | downloaded |
-| 설문 조사 | [설문 조사](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-survey) | EXAM | discovered |
+| link_id | 제목 | URL | parent_topic | related_domain | linked_source_id | access_status |
+|---|---|---|---|---|---|---|
+| `SIDE-aif-c01-intro` | 시험 안내서 서론 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-intro) | AIF-C01 시험 안내서 | FOUNDATION | `SRC-aif-c01-intro` | downloaded |
+| `SIDE-aif-c01-target` | 대상 응시자 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-target) | AIF-C01 시험 안내서 | FOUNDATION | `SRC-aif-c01-target` | downloaded |
+| `SIDE-aif-c01-exam-content` | 시험 콘텐츠 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-exam-content) | AIF-C01 시험 안내서 | EXAM | `SRC-aif-c01-exam-content` | downloaded |
+| `SIDE-aif-c01-domains` | 콘텐츠 도메인과 가중치 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-domains) | AIF-C01 시험 안내서 | EXAM | `SRC-aif-c01-domains` | downloaded |
+| `SIDE-aif-c01-survey` | 설문 조사 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html#ai-practitioner-01-survey) | AIF-C01 시험 안내서 | EXAM | `SRC-aif-c01-survey` | discovered |
+| `SIDE-aif-c01-domain1` | 콘텐츠 도메인 1: AI 및 ML의 기초 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html) | 콘텐츠 도메인 | D1 | `SRC-aif-c01-domain1` | downloaded |
+| `SIDE-aif-c01-domain2` | 콘텐츠 도메인 2: GenAI의 기초 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html) | 콘텐츠 도메인 | D2 | `SRC-aif-c01-domain2` | downloaded |
+| `SIDE-aif-c01-domain3` | 콘텐츠 도메인 3: 파운데이션 모델의 적용 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html) | 콘텐츠 도메인 | D3 | `SRC-aif-c01-domain3` | downloaded |
+| `SIDE-aif-c01-domain4` | 콘텐츠 도메인 4: 책임 있는 AI에 대한 가이드라인 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html) | 콘텐츠 도메인 | D4 | `SRC-aif-c01-domain4` | downloaded |
+| `SIDE-aif-c01-domain5` | 콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html) | 콘텐츠 도메인 | D5 | `SRC-aif-c01-domain5` | downloaded |
+| `SIDE-aws-exam-guides` | AWS Certification Exam Guides | [공식 링크](https://docs.aws.amazon.com/aws-certification/latest/examguides/index.html) | AWS Certification 탐색 | EXAM | `SRC-aws-exam-guides` | discovered |
+| `SIDE-aws-ai-practitioner-certification` | AWS Certified AI Practitioner 자격증 페이지 | [공식 링크](https://aws.amazon.com/certification/certified-ai-practitioner/) | AWS Certification 탐색 | EXAM | `SRC-aws-ai-practitioner-certification` | discovered |
+| `SIDE-aws-skill-builder-aif-c01` | AWS Skill Builder AIF-C01 시험 준비 자료 | [공식 링크](https://skillbuilder.aws/category/exam-prep/ai-practitioner-AIF-C01) | AWS Skill Builder | EXAM | `SRC-aws-skill-builder-aif-c01` | discovered |
+| `SIDE-aws-schedule-exam` | 시험 일정 예약 | [공식 링크](https://cp.certmetrics.com/amazon/en/schedule/schedule-exam) | 시험 운영 | EXAM | `SRC-aws-schedule-exam` | discovered |
+| `SIDE-aif-c01-main-markdown` | AIF-C01 한국어 Markdown 원문 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.md) | AIF-C01 시험 안내서 | EXAM | `SRC-aif-c01-main-markdown` | discovered |
+| `SIDE-aif-c01-main-pdf` | AIF-C01 PDF 시험 안내서 | [공식 링크](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.pdf) | AIF-C01 시험 안내서 | EXAM | `SRC-aif-c01-main-pdf` | discovered |
+| `SIDE-aws-bedrock-genai` | Amazon Bedrock | [공식 링크](https://aws.amazon.com/bedrock/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-bedrock-genai` | summarized |
+| `SIDE-aws-bedrock-pricing` | Amazon Bedrock Pricing | [공식 링크](https://aws.amazon.com/bedrock/pricing/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-bedrock-pricing` | summarized |
+| `SIDE-aws-bedrock-provisioned-throughput` | Provisioned Throughput for Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html) | AWS GenAI 기술 자료 | D2 | `SRC-aws-bedrock-provisioned-throughput` | summarized |
+| `SIDE-aws-sagemaker-ai` | Amazon SageMaker AI | [공식 링크](https://aws.amazon.com/sagemaker-ai/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-sagemaker-ai` | summarized |
+| `SIDE-aws-sagemaker-jumpstart` | Amazon SageMaker JumpStart | [공식 링크](https://aws.amazon.com/sagemaker-ai/jumpstart/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-sagemaker-jumpstart` | summarized |
+| `SIDE-aws-amazon-q` | Amazon Q | [공식 링크](https://aws.amazon.com/q/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-amazon-q` | summarized |
+| `SIDE-aws-bedrock-agentcore` | Amazon Bedrock AgentCore | [공식 링크](https://aws.amazon.com/bedrock/agentcore/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-bedrock-agentcore` | summarized |
+| `SIDE-aws-strands-agents` | Introducing Strands Agents | [공식 링크](https://aws.amazon.com/de/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-strands-agents` | summarized |
+| `SIDE-aws-kiro-documentation` | Kiro documentation overview | [공식 링크](https://aws.amazon.com/documentation-overview/kiro/) | AWS GenAI 기술 자료 | D2 | `SRC-aws-kiro-documentation` | summarized |
+| `SIDE-aws-bedrock-knowledge-bases` | Amazon Bedrock Knowledge Bases | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-bedrock-knowledge-bases` | summarized |
+| `SIDE-aws-bedrock-prompt-caching` | Prompt caching for faster model inference | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-bedrock-prompt-caching` | summarized |
+| `SIDE-aws-opensearch-knn` | k-Nearest Neighbor search in Amazon OpenSearch Service | [공식 링크](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-opensearch-knn` | summarized |
+| `SIDE-aws-aurora-postgresql-vector-db` | Using Aurora PostgreSQL as a Knowledge Base for Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-aurora-postgresql-vector-db` | summarized |
+| `SIDE-aws-neptune-overview` | What Is Amazon Neptune? | [공식 링크](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-neptune-overview` | summarized |
+| `SIDE-aws-vector-database-comparison` | Vector database comparison | [공식 링크](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-comparison.html) | FM 애플리케이션 설계 | D3 | `SRC-aws-vector-database-comparison` | summarized |
+| `SIDE-aws-bedrock-prompt-engineering-guidelines` | Prompt engineering concepts | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html) | 프롬프트 엔지니어링 | D3 | `SRC-aws-bedrock-prompt-engineering-guidelines` | summarized |
+| `SIDE-aws-bedrock-prompt-management` | Prompt management in Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html) | 프롬프트 엔지니어링 | D3 | `SRC-aws-bedrock-prompt-management` | summarized |
+| `SIDE-aws-bedrock-prompt-injection` | Prompt injection security | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html) | 프롬프트 엔지니어링 | D3 | `SRC-aws-bedrock-prompt-injection` | summarized |
+| `SIDE-aws-bedrock-prompt-attacks` | Detect prompt attacks with Amazon Bedrock Guardrails | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html) | 프롬프트 엔지니어링 | D3 | `SRC-aws-bedrock-prompt-attacks` | summarized |
+| `SIDE-aws-prompt-injection-guidance` | Prompt engineering best practices to avoid prompt injection attacks | [공식 링크](https://docs.aws.amazon.com/prescriptive-guidance/latest/llm-prompt-engineering-best-practices) | 프롬프트 엔지니어링 | D3 | `SRC-aws-prompt-injection-guidance` | summarized |
+| `SIDE-aws-bedrock-custom-models` | Customize a model in Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html) | FM 훈련·사용자 지정 | D3 | `SRC-aws-bedrock-custom-models` | summarized |
+| `SIDE-aws-bedrock-fine-tuning` | Customize a model with fine-tuning in Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-fine-tuning.html) | FM 훈련·사용자 지정 | D3 | `SRC-aws-bedrock-fine-tuning` | summarized |
+| `SIDE-aws-bedrock-model-distillation` | Customize a model with distillation in Amazon Bedrock | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html) | FM 훈련·사용자 지정 | D3 | `SRC-aws-bedrock-model-distillation` | summarized |
+| `SIDE-aws-bedrock-evaluation` | Evaluate the performance of Amazon Bedrock resources | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html) | FM 평가 | D3 | `SRC-aws-bedrock-evaluation` | summarized |
+| `SIDE-aws-bedrock-human-evaluation` | Creating a model evaluation that uses human workers | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-human.html) | FM 평가 | D3 | `SRC-aws-bedrock-human-evaluation` | summarized |
+| `SIDE-aws-bedrock-llm-judge-evaluation` | Evaluate model performance using another LLM as a judge | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html) | FM 평가 | D3 | `SRC-aws-bedrock-llm-judge-evaluation` | summarized |
+| `SIDE-aws-bedrock-evaluation-metrics` | Use metrics to understand model performance | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-metrics.html) | FM 평가 | D3 | `SRC-aws-bedrock-evaluation-metrics` | summarized |
+| `SIDE-aws-bedrock-rag-evaluation` | Review metrics for RAG evaluations | [공식 링크](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-eval-llm-results.html) | FM 평가 | D3 | `SRC-aws-bedrock-rag-evaluation` | summarized |
 
-## 2. 도메인 링크
+## 범위와 상태 해석
 
-| 도메인 | 공식 페이지 | 가중치 | 작업 | 관련 학습 디렉터리 | 상태 |
-|---|---|---:|---|---|---|
-| D1 AI 및 ML의 기초 | [Domain 1](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html) | 20% | 1.1 기본 AI 개념과 용어, 1.2 AI 실제 사용 사례, 1.3 ML 개발 수명 주기 | `docs/01-ai-ml-foundations/` | downloaded |
-| D2 GenAI의 기초 | [Domain 2](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html) | 24% | 2.1 GenAI 기본 개념, 2.2 비즈니스 문제 해결을 위한 기능과 한계, 2.3 AWS 인프라와 기술 | `docs/02-generative-ai/` | downloaded |
-| D3 파운데이션 모델의 적용 | [Domain 3](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html) | 28% | 3.1 FM 애플리케이션 설계, 3.2 프롬프트 엔지니어링, 3.3 훈련·미세 조정, 3.4 성능 평가 | `docs/03-foundation-models/` | downloaded |
-| D4 책임 있는 AI | [Domain 4](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html) | 14% | 4.1 책임 있는 AI 시스템 개발, 4.2 투명하고 설명 가능한 모델 | `docs/04-responsible-ai/` | downloaded |
-| D5 보안·규정 준수·거버넌스 | [Domain 5](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html) | 14% | 5.1 AI 시스템 보안, 5.2 AI 시스템 거버넌스와 규정 준수 | `docs/05-security-compliance/` | downloaded |
+- `downloaded`와 `summarized`는 자료를 확보하거나 요약한 기록이며 공식 revision 검증 완료를 뜻하지 않는다.
+- `blocked` 또는 `확인 필요`인 출처를 참조하는 파생 문서는 `verified`로 승격하지 않는다.
+- URL은 보조 정보다. 연결의 영구 키는 `link_id`와 `linked_source_id`다.
+- 이 파일은 링크 인벤토리만 소유하며 도메인 학습 문서와 문제은행 본문은 소유하지 않는다.
 
-## 3. 안내서에서 연결된 외부·배포 자료
+## 출처
 
-이 링크들은 사이드바 또는 안내서의 보조 탐색 영역에서 확인되었으며, 본문 도메인 범위의 근거와 구분한다.
-
-| 자료 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| AWS Certification 시험 안내서 목록 | [Exam guides](https://docs.aws.amazon.com/aws-certification/latest/examguides/index.html) | EXAM | discovered |
-| 한국어 Markdown 원문 | [AIF-C01 Markdown](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.md) | EXAM | discovered |
-| PDF 시험 안내서 | [AIF-C01 PDF](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.pdf) | EXAM | discovered |
-| AWS Certified AI Practitioner 자격증 페이지 | [Certification page](https://aws.amazon.com/certification/certified-ai-practitioner/) | EXAM | discovered |
-| AWS Skill Builder AIF-C01 자료 | [Skill Builder](https://skillbuilder.aws/category/exam-prep/ai-practitioner-AIF-C01) | EXAM | discovered |
-| 시험 일정 예약 | [Schedule exam](https://cp.certmetrics.com/amazon/en/schedule/schedule-exam) | EXAM | discovered |
-
-## 4. 도메인 범위 핵심 추적표
-
-상세 목표는 각 공식 도메인 페이지에서 추출해 도메인별 README와 `source-registry.yaml`의 문서 연결 항목으로 확장한다.
-
-### D1
-- AI, ML, 딥 러닝, 신경망, CV, NLP, 모델, 알고리즘, 훈련, 추론, 편향, 공정성, LLM
-- AI·ML·GenAI·딥 러닝의 관계와 차이
-- 배치·실시간·비동기·서버리스 추론, 데이터 유형, 지도·비지도·강화 학습
-- AI/ML 사용 사례의 적합성, 회귀·분류·클러스터링, 관리형 AI/ML 서비스
-- ML 파이프라인, 사전 훈련 모델·사용자 지정 모델, 프로덕션 사용, MLOps, 모델·비즈니스 지표
-
-### D2
-- 토큰, 청킹, 임베딩, 벡터, 프롬프트 엔지니어링, Transformer LLM, FM, 멀티모달·확산 모델
-- 이미지·비디오·오디오 생성, 요약, 어시스턴트, 번역, 코드 생성, 에이전트, 검색·추천
-- FM 수명 주기, 토큰 기반 가격, 컨텍스트 엔지니어링, 멀티 에이전트·MCP·메모리·도구·오케스트레이션
-- GenAI의 장점·한계·선택 기준·비즈니스 지표
-- Amazon Bedrock, SageMaker AI, SageMaker JumpStart, Amazon Q, Kiro, Strands Agents, Amazon Bedrock AgentCore 및 인프라 비용 절충
-
-### D3
-- FM 선택 기준, 추론 파라미터, RAG, 임베딩 저장 서비스, FM 사용자 지정 비용 절충, AI 에이전트
-- 컨텍스트·명령·네거티브 프롬프트, zero-shot·one-shot·few-shot, 프롬프트 템플릿과 위험
-- 사전 훈련·미세 조정·지속적인 사전 훈련·증류, 데이터 큐레이션·거버넌스·대표성·RL
-- 인간 평가, 벤치마크, Amazon Bedrock 모델 평가, ROUGE·BLEU·BERTScore·LLM-as-a-judge
-- RAG·에이전트·워크플로 평가와 생산성·참여·작업 완료율·비용 등 비즈니스 지표
-
-### D4
-- 편향성·공정성·포용성·견고성·안전성·진실성, Amazon Bedrock Guardrails
-- 지속 가능성을 포함한 책임 있는 모델 선택
-- 지적 재산권, 편향 출력, 신뢰 상실, 사용자 위험, 환각의 법적·비즈니스 위험
-- 데이터 다양성·포용성·큐레이션·균형, 편향·분산·과적합·과소적합
-- 레이블 품질, 인간 감사, 하위 그룹 분석, SageMaker Clarify·Model Monitor·Amazon A2I
-- 투명성·설명 가능성, 모델 카드, 모델 평가, 오픈 소스·데이터·라이선스, 인간 중심 설계
-
-### D5
-- IAM 역할·정책·권한, 암호화, Amazon Macie, AWS PrivateLink, 공동 책임 모델
-- Amazon Bedrock AgentCore Identity·정책, Amazon Bedrock Guardrails
-- 출처 인용, 데이터 계보·카탈로그, SageMaker Model Cards, 데이터 품질·프라이버시·무결성
-- 애플리케이션 보안, 위협 탐지, 취약성 관리, 인프라 보호, prompt injection, 암호화, DLP, 필터·검증, 감사·로깅, 독성
-- 환각 탐지·RAG grounding·출력 검증·신뢰도 점수
-- AWS Config, Amazon Inspector, AWS Audit Manager, AWS Artifact, AWS CloudTrail, AWS Trusted Advisor
-- 데이터 수명 주기·로깅·레지던시·모니터링·관찰·보존, 정책·검토·Security Scoping Matrix·투명성·교육
-
-## 5. 다음 수집 단계
-
-- [ ] Markdown 원문과 PDF의 접근 가능 여부를 확인한다.
-- [ ] 각 도메인 페이지의 모든 목표를 `source-registry.yaml`에 항목별로 분해한다.
-- [ ] 각 목표를 하나 이상의 도메인 문서에 연결한다.
-- [ ] 공식 AWS 서비스 문서의 상세 링크를 추가로 수집한다.
-- [ ] 수집 자료를 그대로 복제하지 않고 한국어 학습 문서로 재구성한다.
-
-## 6. D2 AWS GenAI 기술 보조 출처
-
-D2 공식 시험 범위에 나열된 AWS 기술을 초보자용 문서로 재구성할 때 확인한 AWS 공식 서비스·가격 자료다. 시험 범위 근거와 실무 확장 자료를 구분한다.
-
-| 자료 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| Amazon Bedrock | [Bedrock](https://aws.amazon.com/bedrock/) | D2, D3, D4, D5 | summarized |
-| Amazon Bedrock Pricing | [Bedrock Pricing](https://aws.amazon.com/bedrock/pricing/) | D2, D3 | summarized |
-| Provisioned Throughput | [Provisioned Throughput](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html) | D2, D3 | summarized |
-| Amazon SageMaker AI | [SageMaker AI](https://aws.amazon.com/sagemaker-ai/) | D1, D2, D3, D4, D5 | summarized |
-| Amazon SageMaker JumpStart | [JumpStart](https://aws.amazon.com/sagemaker-ai/jumpstart/) | D2, D3 | summarized |
-| Amazon Q | [Amazon Q](https://aws.amazon.com/q/) | D2, D5 | summarized |
-| Amazon Bedrock AgentCore | [AgentCore](https://aws.amazon.com/bedrock/agentcore/) | D2, D3, D5 | summarized |
-| Strands Agents | [Strands Agents](https://aws.amazon.com/de/blogs/opensource/introducing-strands-agents-an-open-source-ai-agents-sdk/) | D2, D3 | summarized |
-| Kiro | [Kiro documentation](https://aws.amazon.com/documentation-overview/kiro/) | D2 | summarized |
-
-## 7. D3 FM 애플리케이션 설계 보조 출처
-
-D3 3.1을 집필하며 확인한 AWS 공식 서비스·지침 자료다. AIF-C01 시험 범위의 근거인 Domain 3과 AWS 실무 확장 출처를 구분한다.
-
-| 자료 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| Amazon Bedrock Knowledge Bases | [Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) | D3, D5 | summarized |
-| Amazon Bedrock Prompt Caching | [Prompt caching](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html) | D3 | summarized |
-| Amazon OpenSearch Service k-NN | [k-NN search](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html) | D3 | summarized |
-| Aurora PostgreSQL 벡터 저장 | [Aurora PostgreSQL Knowledge Base](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html) | D3 | summarized |
-| Amazon Neptune | [Neptune overview](https://docs.aws.amazon.com/neptune/latest/userguide/intro.html) | D3, D5 | summarized |
-| AWS 벡터 데이터베이스 비교 | [Vector database comparison](https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-an-aws-vector-database-for-rag-use-cases/vector-db-comparison.html) | D3 | summarized |
-
-## 8. D3 프롬프트 엔지니어링 보조 출처
-
-D3 3.2를 집필하며 확인한 AWS 공식 프롬프트·보안 자료다.
-
-| 자료 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| Prompt engineering concepts | [Prompt engineering](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html) | D3 | summarized |
-| Amazon Bedrock Prompt Management | [Prompt management](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html) | D3 | summarized |
-| Prompt injection security | [Prompt injection](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html) | D3, D5 | summarized |
-| Bedrock Guardrails prompt attacks | [Prompt attacks](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-prompt-attack.html) | D3, D4, D5 | summarized |
-| Prompt injection Prescriptive Guidance | [Prompt engineering security guidance](https://docs.aws.amazon.com/prescriptive-guidance/latest/llm-prompt-engineering-best-practices) | D3, D5 | summarized |
-
-## 9. D3 FM 훈련·평가 보조 출처
-
-D3 3.3·3.4를 집필하며 확인한 AWS 공식 사용자 지정·평가 자료다.
-
-| 자료 | URL | 연결 분류 | 상태 |
-|---|---|---|---|
-| Amazon Bedrock 모델 사용자 지정 | [Customize models](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html) | D3 | summarized |
-| Amazon Bedrock 미세 조정 | [Fine-tuning](https://docs.aws.amazon.com/bedrock/latest/userguide/custom-model-fine-tuning.html) | D3 | summarized |
-| Amazon Bedrock 모델 증류 | [Model distillation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-distillation.html) | D3 | summarized |
-| Amazon Bedrock 리소스 평가 | [Model evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html) | D3, D4 | summarized |
-| 인간 평가 | [Human evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-human.html) | D3, D4 | summarized |
-| LLM-as-a-judge | [LLM judge evaluation](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation-judge.html) | D3, D4 | summarized |
-| 평가 지표 | [Evaluation metrics](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-metrics.html) | D3, D4 | summarized |
-| RAG 평가 지표 | [RAG evaluation metrics](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base-eval-llm-results.html) | D3, D4, D5 | summarized |
+- [AWS Certified AI Practitioner(AIF-C01) 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01.html) — 공식 사이드바 기준 페이지, 확인일 `2026-09-04`, revision 확인 상태 `blocked`.

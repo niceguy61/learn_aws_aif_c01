@@ -47,7 +47,7 @@ rules:
     category: validation
     applies_to: SourceRecord, BaselineItem, QualityCheckRecord
     trigger: 외부 사실의 출처와 revision을 검사할 때
-    logic: IF 자료가 외부 사실을 포함하면 THEN URL, 공식 제목, source_type, parent_topic, domain_mappings, checked_date, access_status, revision_title과 연결 문서를 registry에서 확인한다.
+    logic: IF 자료가 외부 사실을 포함하면 THEN URL, 공식 제목, source_type, parent_topic, domain_mappings, registry의 `checked` 확인일·access_status·revision_title과 연결 문서를 확인하고, QualityCheckRecord의 검사 시각은 별도 `checked_at`에 기록한다.
     violation_behaviour: 누락·불일치·중복 URL을 findings에 기록하고 해당 자료의 확정을 보류한다.
     source: FR1.4, FR5.1, FR6.1, NFR4
   - id: BR8.6
@@ -91,11 +91,11 @@ rules:
     violation_behaviour: 발견 내용을 그대로 증거에 복사하지 않고 안전한 패턴 설명과 조치만 기록한다.
     source: FR6.4, NFR7
   - id: BR8.11
-    statement: 실패·보류 판정은 조치와 재검사 결과 없이는 완료되지 않는다.
+    statement: 실패·보류 판정은 top-level findings와 action, 그리고 append-only 재검사 연결 없이는 완료되지 않는다.
     category: constraint
     applies_to: QualityCheckRecord
     trigger: 품질 보고서를 통합하거나 문서를 verified로 승격할 때
-    logic: IF result가 `실패` 또는 `보류`이면 THEN findings, action, 후속 검사 시점과 recheck_result를 기록하고, 통과 전에는 완료로 집계하지 않는다.
+    logic: IF status가 `실패` 또는 `보류`이면 THEN 기존 record를 수정하지 않고 새 record에 새 check_id, checked_at, 이전 check_id를 가리키는 recheck_of를 기록하며, 통과 전에는 완료로 집계하지 않는다.
     violation_behaviour: 근거 없는 통과·verified 승격을 거부하고 미해결 항목으로 유지한다.
     source: FR6.1, FR6.4, NFR4, NFR8
   - id: BR8.12

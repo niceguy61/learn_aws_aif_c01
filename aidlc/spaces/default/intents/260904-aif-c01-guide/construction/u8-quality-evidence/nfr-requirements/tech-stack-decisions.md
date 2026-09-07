@@ -35,7 +35,8 @@ U8은 실행형 애플리케이션이 아니라 버전 관리되는 정적 품�
   "target_type": "DomainReadme",
   "target_id": "D1-README",
   "target_path": "docs/01-ai-ml-foundations/README.md",
-  "check_id": "beginner-perspective",
+  "check_id": "QC-DomainReadme-D1-README-beginner-perspective",
+  "check_type": "beginner-perspective",
   "status": "보류",
   "evidence": {
     "tool": "manual-review",
@@ -46,7 +47,10 @@ U8은 실행형 애플리케이션이 아니라 버전 관리되는 정적 품�
     "owner": "u1-baseline-and-source-registry",
     "recheck_condition": "baseline manifest exists and stable IDs resolve"
   },
-  "checked_at": "2026-09-04"
+  "findings": ["See evidence.findings; no sensitive value is duplicated."],
+  "action": "See evidence.action.",
+  "checked_at": "2026-09-04",
+  "recheck_of": null
 }
 ```
 

@@ -1,0 +1,130 @@
+{
+  "stage": "nfr-design",
+  "unit": "u7-assessment-and-review",
+  "artifact": "security-design.md",
+  "upstream_ids": [
+    "NFR1.1",
+    "NFR1.2",
+    "NFR2.1",
+    "NFR2.2",
+    "NFR3.1",
+    "NFR3.2",
+    "NFR4.1",
+    "NFR4.2",
+    "NFR5.1",
+    "NFR6.1",
+    "NFR7.1",
+    "NFR7.2",
+    "NFR8.1",
+    "NFR8.2",
+    "NFR9.1"
+  ],
+  "required_upstream_applicability": [
+    {
+      "id": "performance-requirements",
+      "status": "N/A",
+      "reason": "U7 is a static Markdown/CSV packaging Unit with no runtime performance, serving, or latency contract."
+    },
+    {
+      "id": "scalability-requirements",
+      "status": "N/A",
+      "reason": "U7 creates no API, database, service instance, or concurrent learner state, so scaling requirements do not apply."
+    },
+    {
+      "id": "reliability-requirements",
+      "status": "N/A",
+      "reason": "U7 has no stateful execution path or availability SLO; file validation failures are handled as review/blocking states."
+    },
+    {
+      "id": "observability-requirements",
+      "status": "N/A",
+      "reason": "U7 performs no telemetry, logging, alerting, or tracing; static check results are handed off to U8 as evidence."
+    }
+  ],
+  "coverage": [
+    {
+      "id": "NFR1.1",
+      "status": "OK",
+      "target": "SD7.3 and SD7.5: Korean-first explanations with original English terms and AWS proper names preserved"
+    },
+    {
+      "id": "NFR1.2",
+      "status": "OK",
+      "target": "SD7.3: synthetic question, answer, distractor, card, quiz, and Anki examples only; no learner data"
+    },
+    {
+      "id": "NFR2.1",
+      "status": "OK",
+      "target": "SD7.1 and SD7.6: static Markdown/CSV readable by ordinary viewers/parsers without runtime or renderer dependency"
+    },
+    {
+      "id": "NFR2.2",
+      "status": "OK",
+      "target": "SD7.6: relative Markdown links, text labels, keyboard-readable structure, and alt/caption/text fallback when visuals are unavoidable"
+    },
+    {
+      "id": "NFR3.1",
+      "status": "OK",
+      "target": "SD7.4: stable Q/SCORE/CARD/TQ/ANKI IDs and AIF-C01-D<n>-T<n> baseline IDs with duplicate checks"
+    },
+    {
+      "id": "NFR3.2",
+      "status": "Deferred",
+      "target": "SD7.4: forward_refs/reverse_refs contract and orphan check; actual U1 manifest and downstream items are not yet present"
+    },
+    {
+      "id": "NFR4.1",
+      "status": "Deferred",
+      "target": "SD7.4 and SD7.7: U1 registry URL/title/revision/date/status reference and matching check; actual registry-item matching awaits U1/downstream content"
+    },
+    {
+      "id": "NFR4.2",
+      "status": "OK",
+      "target": "SD7.7: blocked/review/확인 필요 sources remain unverified and require documented follow-up"
+    },
+    {
+      "id": "NFR5.1",
+      "status": "OK",
+      "target": "SD7.1 and SD7.6: separate question bank, score sheet, cards, term quiz, and Anki outputs with workspace-relative links"
+    },
+    {
+      "id": "NFR6.1",
+      "status": "OK",
+      "target": "SD7.6: strict UTF-8, front/back header, RFC 4180-compatible quoting, and ordinary-parser round-trip check"
+    },
+    {
+      "id": "NFR7.1",
+      "status": "OK",
+      "target": "SD7.2 and SD7.3: no answer/progress/account/PII/payment/health/credential/token/AWS identifier collection, storage, or distribution"
+    },
+    {
+      "id": "NFR7.2",
+      "status": "OK",
+      "target": "SD7.1 and Section 5: no API, DB, AWS resource/account, deployment, paid lab, learner state/data storage, runtime, or new dependency"
+    },
+    {
+      "id": "NFR8.1",
+      "status": "Deferred",
+      "target": "SD7.5: item-level 시험 범위/실무 확장/학습자용 해설 classification; actual downstream item classification awaits content generation"
+    },
+    {
+      "id": "NFR8.2",
+      "status": "OK",
+      "target": "SD7.3 and SD7.5: synthetic learner explanation is separated from official fact; no full-text copying, official guarantee, or legal advice"
+    },
+    {
+      "id": "NFR9.1",
+      "status": "OK",
+      "target": "SD7.2: four-week relative schedule may be represented as a static worksheet, with manual calculation and no automatic progress/score storage"
+    }
+  ],
+  "summary": {
+    "declared_detailed_nfr_count": 15,
+    "covered_ok": 12,
+    "deferred": 3,
+    "gaps": [],
+    "orphans": [],
+    "deferred_ids": ["NFR3.2", "NFR4.1", "NFR8.1"],
+    "deferred_reason": "U1 canonical manifest and downstream U7 content outputs are not yet present; the design contract is declared and must be rechecked at U8/content generation."
+  }
+}

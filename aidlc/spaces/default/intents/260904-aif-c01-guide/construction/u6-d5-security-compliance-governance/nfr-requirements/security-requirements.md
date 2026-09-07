@@ -94,3 +94,20 @@ U6의 보안은 실제 AWS 보안 구성을 수행하는 것이 아니라, 보�
 - D5 기준선 revision과 규정별 적용 여부는 U1·공식 자료 확인 전까지 확정하지 않는다.
 - 중앙 glossary와 평가 자료는 후속 Unit에서 연결한다.
 - 이 문서는 법률 자문·규정 인증·보안 구성 절차가 아니다.
+## Review
+
+**Verdict:** NOT-READY
+**Reviewer:** aidlc-architecture-reviewer-agent
+**Date:** 2026-09-05T01:49:13Z
+**Iteration:** 1
+
+### Findings
+
+| ID | Severity | Finding | Status |
+|---|---|---|---|
+| R-01 | Major | U6의 정적 보안·규정·거버넌스 요구사항은 구조적으로 일관되지만, canonical source manifest와 downstream handoff의 존재·검증 조건이 아직 확정되지 않았다. | Unresolved |
+| R-02 | Major | U6의 문서·용어·출처 양방향 추적성 및 중앙 glossary 연결은 실제 소유자와 산출물 생성 전까지 구현 가능한 증거로 닫히지 않는다. | Unresolved |
+
+### Summary
+
+무실행·무자격 증명·법률 비보증 경계는 유지되지만, source manifest와 cross-Unit handoff의 미해결 상태로 U6는 NOT-READY다.

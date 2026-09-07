@@ -97,34 +97,22 @@ U5의 보안은 책임 있는 AI 원칙을 실제 데이터·정책 집행 시�
 - 중앙 glossary는 후속 단계에서 생성·연결한다.
 ## Review
 
+**Request Challenge:** review:c8ac72715b93dc1abf4a4af6f72df02b
 **Verdict:** NOT-READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-04T21:34:45Z
-**Iteration:** 2
-**Request Challenge:** review:1d5c6e9a7ab5d1ada02b5b655b0afdeb
+**Date:** 2026-09-05T01:49:13Z
+**Iteration:** 1
 
 ### Findings
 
-| ID | Severity | Location | Finding | Required action | Status |
-|---|---|---|---|---|---|
-| R-01 | Major | `security-requirements.md` > `NFR4.1`; `tech-stack-decisions.md` > `TECH5.3`; `traceability.json` > `AC5.1.1` | Iteration 2 artifacts still specify only URL/title/date/status and an unkeyed U1 registry reference. They do not require the U1 contract's `source_id`/`baseline_id`, `revision_title`, source type/parent topic/domain, linked-document set, or deterministic used-URL comparison evidence. `AC5.1.1` remains overstated as `NFR4.1`. | Define the canonical U1 `source_id`/`baseline_id` crosswalk consumed by U5 documents and traceability, require all AC5.1.1 metadata and URL-set comparison evidence, and target those detailed requirements from `AC5.1.1`. | Unresolved |
-| R-02 | Major | `security-requirements.md` > `NFR3.2`; `traceability.json` > `bidirectional_links` | `NFR3.2` still promises principle/risk/source/learning-document forward and reverse links, but `traceability.json` has no `reverse` entries or stable content-level entity schema; its links remain only requirement, unit, component, and path-level links. A developer still cannot implement or validate this requirement. | Define stable IDs, owning files, forward/reverse entry shapes, and validation rules for principles, risks, sources, and U5 learning documents, or explicitly narrow/defer NFR3.2 to the existing requirement/unit/component contract. | Unresolved |
-| R-03 | Major | `security-requirements.md` > `NFR9.1`; `traceability.json` > `NFR9`, `AC1.2.1`, `AC1.2.2` | The U5 Unit contract owns D4 README/concepts/terminology, while NFR9 is product-wide. `NFR9` remains `Deferred` with target `NFR9.1; schedule downstream`, but `NFR9.1` still combines the four-week path with U5's non-storage and D5-navigation boundary. The schedule owner and exact U5 handoff are not defined. | Mark the schedule obligation explicitly deferred/N/A for U5 with a named owner, and retain only U5's non-storage/navigation contribution under a correctly scoped requirement and handoff link. | Unresolved |
-| R-04 | Minor | `traceability.json` > `source_paths` | The traceability artifact still omits `inception/user-stories/stories.md`, even though its coverage includes AC IDs defined there. This leaves acceptance-criteria provenance incomplete. | Add the user-stories upstream path and synchronize `source_paths` with every ID family used by the artifact. | Unresolved |
-| R-05 | Minor | `security-requirements.md` > `NFR6.1`; `tech-stack-decisions.md` > `TECH5.4` | “결정적 JSON” and “deterministic order” still define no canonical key ordering, array ordering, whitespace/encoding, or validation command. The same logical traceability data can therefore produce different byte-level artifacts. | Specify canonical JSON serialization and validation rules, or narrow the requirement to parseable UTF-8 JSON with stable ID ordering. | Unresolved |
-
-### Validation Tool Results
-
-| Tool | Result | Interpretation |
-|---|---|---|
-| `aidlc-sensor-required-sections.ts` — `security-requirements.md` | PASS — `h2_count=11`, `findings_count=0` | The artifact has one review section and the required Markdown shape. |
-| `aidlc-sensor-required-sections.ts` — `tech-stack-decisions.md` | PASS — `h2_count=11`, `findings_count=0` | The technology-decision artifact has the required Markdown shape. |
-| `aidlc-sensor-upstream-coverage.ts` | PASS — `functional-spec`, `rules`, and `requirements` referenced across both deliverables | Structural upstream references exist; the sensor does not validate semantic field completeness. |
-| `aidlc-sensor-traceability.ts` | PASS — `gaps=[]`, `orphans=[]`, `missing_from_table=[]`, `missing_from_upstream_ids=[]`, `invalid_targets=[]` | The JSON is structurally valid, but this sensor does not enforce content-level reverse links or source metadata completeness. |
-| PowerShell `ConvertFrom-Json` and targeted contract inspection | PASS — 58 upstream IDs and 58 coverage rows; `reverse=0`; no `source_id`, `baseline_id`, `stories` path, or serialization rule detected | Confirms the unresolved R-01, R-02, R-04, and R-05 contract gaps; `NFR9` remains deferred to an unnamed downstream schedule owner. |
-| `aidlc-sensor-linter.ts` | NOT APPLICABLE — `no-eslint-config` | No executable JavaScript/TypeScript lint target exists for this static packaging unit. |
-| `aidlc-sensor-type-check.ts` | NOT APPLICABLE — `no-tsconfig-found` | No runtime TypeScript project exists for this static packaging unit. |
+| ID | Severity | Finding | Status |
+|---|---|---|---|
+| R-01 | Major | U1 source crosswalk의 필수 metadata와 사용 URL 집합 비교 evidence가 구현 계약으로 충분히 구체화되지 않았다. | Unresolved |
+| R-02 | Major | 책임 원칙·위험·출처·학습 문서의 content-level 정·역방향 링크 schema와 검증 규칙이 없다. | Unresolved |
+| R-03 | Major | U5의 4주 일정 의무와 D4 handoff의 소유자·범위가 분리되어 있지 않다. | Unresolved |
+| R-04 | Minor | acceptance criteria의 provenance를 위한 `user-stories/stories.md` source path가 누락되어 있다. | Unresolved |
+| R-05 | Minor | 결정적 JSON 직렬화의 key·array·encoding·validation 규칙이 정의되지 않았다. | Unresolved |
 
 ### Summary
 
-The static packaging, no-runtime, no-credentials, synthetic-case, and non-collection boundaries remain coherent and validation sensors pass structurally. The same three Major contract gaps remain unresolved, so U5 is NOT-READY for implementation without architectural clarification.
+정적 packaging 및 비수집 경계는 일관되지만, 위 계약 gap이 남아 있어 U5는 NOT-READY다.

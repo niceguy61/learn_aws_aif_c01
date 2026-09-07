@@ -106,29 +106,27 @@ U2의 보안은 서비스 경계가 아니라 문서 경계다. 안정 ID·공�
 
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-04T21:24:31Z
-**Iteration:** 3
-**Request Challenge:** review:165dd3c033fd3147fa93ffed61b97fb7
+**Date:** 2026-09-05T10:45:09Z
+**Iteration:** 1
+**Request Challenge:** review:a60b04435268b0e4f980bc45ac2983ef
 
 ### Findings
 
 | ID | Severity | Location | Finding | Required action | Status |
 |---|---|---|---|---|---|
-| R-01 | Critical | `security-requirements.md` > `## 단계 upstream 계약과 적용성`; `tech-stack-decisions.md` > `## 단계 upstream 적용성`; `traceability.json` > `upstream_contract` | Prior upstream-contract finding was rechecked. `functional-spec` is explicitly N/A for the static packaging Unit, while `rules` and `requirements` are explicitly consumed and traced consistently across the three artifacts. | No further action; preserve the documented N/A/OK rationale and do not introduce runtime functional-spec or rules artifacts into U2. | Resolved |
-
-No new Critical, Major, or Minor findings. The `docs/glossary.md` absence and unfinished U1 baseline revision remain documented open issues and do not invalidate this NFR design because U2 keeps `review` status and does not claim verification.
+| R-01 | Major | `traceability.json` > `coverage.FR1.1`, `coverage.FR1.3`, `coverage.FR1.4`; `source_paths`; U1 `functional-spec.md` > 출력 | U1 canonical `sources/content-traceability.yaml`과 현재 기준선 행·파생 연결이 아직 실제 파일로 존재하지 않는데 U2가 관련 FR을 `OK`로 표현한다. | U1 manifest와 기준선 행이 확정되기 전까지 관련 U2 coverage를 `Deferred` 또는 `확인 필요`로 유지하고, 생성 후 `OK`로 승격한다. | Unresolved |
 
 ### Validation Tool Results
 
 | Tool | Result | Interpretation |
 |---|---|---|
-| `aidlc-sensor-required-sections.ts` on `security-requirements.md` | PASS; `h2_count=11`, `findings_count=0` | The artifact has one canonical review section and the required Markdown structure. |
-| `aidlc-sensor-upstream-coverage.ts` with `functional-spec,rules,requirements` and both NFR deliverables | PASS; `unreferenced=[]`, `findings_count=0` | All required upstream slugs are referenced across the NFR deliverables. |
-| `aidlc-sensor-traceability.ts` on `traceability.json` | PASS; `gaps=[]`, `orphans=[]`, `invalid_targets=[]`, `missing_from_table=[]`, `missing_from_upstream_ids=[]` | NFR/FR/AC/Unit/component traceability is complete and targets resolve. |
-| Strict UTF-8 and JSON parse | PASS; 6 reviewed files decoded as UTF-8 and `traceability.json` parsed | Static exchange formats and encoding are valid. |
-| Relative-link check | PASS; 13 relative Markdown links resolve | Document and upstream navigation links are implementable. |
-| Secret-value pattern scan | PASS; no credential/token secret-value patterns found | The static no-credentials/no-learner-data boundary is preserved. |
+| `aidlc-sensor-required-sections.ts` | PASS | U2 security/tech 문서의 필수 구조와 단일 Review 섹션이 유효하다. |
+| `aidlc-sensor-upstream-coverage.ts` | PASS; `unreferenced=[]` | `functional-spec`, `rules`, `requirements`가 문서에서 다뤄진다. |
+| `aidlc-sensor-traceability.ts` | PASS; `gaps=[]`, `orphans=[]`, `invalid_targets=[]` | JSON 내부 선언 구조는 유효하지만 외부 U1 canonical manifest 부재를 대체하지 않는다. |
+| UTF-8·JSON·상대 링크·민감정보 검사 | PASS | 정적 산출물 형식과 민감정보 경계가 유효하다. |
+| linter/type-check | N/A | TypeScript/JavaScript 코드가 없다. |
+| Unit applicability review | PASS with R-01 handoff | U2는 승인된 packaging/shared-static-package 경계를 유지한다. |
 
 ### Summary
 
-U2 remains architecturally ready for the `nfr-requirements` gate: the `LearningContent` Unit is a static packaging boundary with no runtime, API, database, AWS-account, credential, or learner-data behavior. The prior upstream-traceability finding remains resolved, all applicable validation checks pass, and no new findings block a READY verdict.
+U2의 보안·기술 결정은 승인된 초보자용 정적 Markdown 범위와 일치한다. U1 canonical baseline manifest가 확정되기 전까지 관련 추적성 판정은 조건부로 유지하고 후속 U1/source-baseline 단계에서 승격한다. Critical 0건이며 추가 범위는 없다.

@@ -37,19 +37,23 @@ U8은 Markdown·CSV·JSON과 저장소의 기존 정적 검사만 사용한다. 
 
 ## QualityCheckRecord 계약
 
-각 품질 검사 시도는 다음 필드를 반드시 갖는다.
+U8의 canonical 정적 직렬화 계약은 다음 필드를 사용한다. `check_id`는 검사 시도 ID이고 `check_type`은 검사 종류이며, `status`는 품질 판정이다.
 
 | 필드 | 규칙 |
 |---|---|
 | `target_type` | `DomainReadme`, `LearningDocument`, `GlossaryTerm`, `QuestionBankItem`, `ScoreSheet`, `Card`, `TermQuizItem`, `AnkiNote`, `SourceRecord`, `BaselineItem` 중 하나 |
 | `target_id` | 대상 유형의 안정 ID. 경로만으로 대상 식별을 대체하지 않는다. |
 | `target_path` | workspace-relative 파일 또는 anchor 경로 |
-| `check_id` | `BR8.1`~`BR8.12` 또는 명시된 품질 검사 ID |
+| `check_id` | `QC-<target-type>-<target-id>-<check-type>` 형식의 시도별 고유 ID |
+| `check_type` | `source-metadata`, `baseline-manifest`, `target-existence`, `traceability`, `baseline-traceability`, `scope-classification`, `internal-links`, `glossary-links`, `beginner-perspective`, `concept-unit`, `markdown-structure`, `encoding-and-format`, `utf8-csv`, `mermaid-fallback`, `accessibility`, `sensitive-data`, `question-bank-contract`, `question-quality`, `static-boundary` 중 하나 |
 | `status` | `통과`, `실패`, `보류` 중 하나 |
-| `evidence` | 검사 명령·도구, 검사 범위, 관찰 필드, findings, action, 재검사 조건을 포함하는 재현 가능한 근거 |
+| `evidence` | `tool`, `scope`, `observations`, `findings`, `action`, `owner`, `recheck_condition`을 포함하는 구조화된 객체 |
+| `findings` | 실패·보류의 요약 문자열 배열. 민감정보 실제 값은 포함하지 않는다. |
+| `action` | 실패·보류의 수정·제거·치환·출처 재확인 또는 재검사 조치 |
 | `checked_at` | `YYYY-MM-DD` 또는 ISO 8601 검사 시각 |
+| `recheck_of` | 최초 시도는 `null`, 재검사는 이전 `check_id`를 가리킨다. 이전 record는 수정·삭제하지 않는다. |
 
-`status`는 문서 상태 `draft|review|verified`나 출처 상태 `discovered|downloaded|summarized|reviewed|verified|blocked|확인 필요`를 대신하지 않는다.
+`status`는 문서 상태 `draft|review|verified`나 출처 상태 `discovered|downloaded|summarized|reviewed|verified|blocked|확인 필요`를 대신하지 않는다. `source_status_at_check`와 `document_status_at_check`가 필요하면 별도 필드로 보존한다.
 
 ## 품질 검사 요구사항
 
@@ -128,29 +132,23 @@ U8의 보안과 품질은 실행형 플랫폼을 만드는 데 있지 않다. �
 
 ## Review
 
+**Request Challenge:** review:1935424a01652ff564ac5539a651c7d2
 **Verdict:** READY
 **Reviewer:** aidlc-architecture-reviewer-agent
-**Date:** 2026-09-04T22:20:46Z
+**Date:** 2026-09-05T01:52:51Z
 **Iteration:** 1
 
 ### Findings
 
-| ID | Severity | Location | Finding | Required action | Status |
-|---|---|---|---|---|---|
-| R-01 | Major | `aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u8-quality-evidence/nfr-requirements/traceability.json` > `quality_check_records`의 `SCORE-<slug>` 항목 및 `security-requirements.md` > 검사 대상과 판정 경계 3 | 실제 `assessment/` 디렉터리와 `assessment/score-sheet.md`가 아직 없는데 ScoreSheet 검사 기록이 `통과`다. U8 자체 계약은 대상 파일이 없거나 canonical `sources/content-traceability.yaml`이 없으면 경로만으로 통과시키지 않고 `보류`로 남기도록 요구하므로, 현재 기록은 대상 미생성 상태를 완료처럼 표현한다. | `SCORE-<slug>` 기록을 실제 ScoreSheet가 생성될 때까지 `보류`로 변경하고, 현재 evidence에 대상 미생성·담당 Unit·재검사 조건을 명시한다. U7 생성 후 실제 안정 ID와 `assessment/score-sheet.md` 경로를 가진 새 immutable 검사 시도를 추가하고, 그때만 `통과`를 기록한다. | New |
-
-### Validation Tool Results
-
-| Tool | Result | Interpretation |
-|---|---|---|
-| `aidlc-sensor-required-sections.ts` | PASS; `h2_count: 12`, `findings_count: 0` | 보안 요구사항 문서의 필수 구조와 단일 Review 섹션이 유효하다. |
-| `aidlc-sensor-traceability.ts` | PASS; `gaps: []`, `orphans: []`, `invalid_targets: []` | `traceability.json`의 75개 coverage와 upstream ID 구조에 센서상 누락·고아·무효 대상이 없다. |
-| `aidlc-sensor-upstream-coverage.ts` | PASS; `unreferenced: []` | `functional-spec`, `rules`, `requirements`가 security/tech-stack 산출물에서 참조된다. |
-| 정적 QualityCheckRecord 검사 | PASS; 11 records, 필수 7개 필드 누락 0건, 허용 상태 위반 0건 | `통과|실패|보류`와 필수 필드 계약은 지켜진다. |
-| Requirements + User Stories ID 대조 | PASS; source IDs 75개, upstream IDs 75개, missing 0건, extra 0건, coverage 75개 | FR/NFR/US/AC 전체 upstream coverage가 완전하다. |
-| 실제 대상 존재 검사 | FAIL observation; `assessment` 없음, `sources/content-traceability.yaml` 없음, `SCORE-<slug>`의 `assessment/score-sheet.md` 대상 없음 | R-01을 확인한다. 나머지 미생성·canonical manifest 의존 검사는 `보류` 또는 `Deferred`로 유지되어야 한다. |
-| `aidlc-sensor-linter.ts` / `aidlc-sensor-type-check.ts` | NOT APPLICABLE; 각각 `no-eslint-config`, `no-tsconfig-found` | 대상이 정적 Markdown/JSON이고 프로젝트 ESLint/TypeScript 설정이 없어 코드형 검사는 적용되지 않는다. 이는 U8의 정적 경계와 일치한다. |
+| ID | Severity | Finding | Status |
+|---|---|---|---|
+| R-01 | Major | 실제 ScoreSheet와 canonical manifest가 생성되기 전까지 해당 QualityCheckRecord를 `보류` 또는 `Deferred`로 유지해야 한다. | Tracked |
 
 ### Summary
 
-U8은 QualityCheckRecord 필드·상태, 허용 대상 계약, 출처/문서 상태 분리, 72개 Deferred coverage, immutable 재검사와 정적 비수집 경계를 명확히 정의했으며, canonical manifest와 실제 콘텐츠가 없는 상태를 대부분 `보류`로 보존한다. 다만 존재하지 않는 ScoreSheet를 한 건 `통과`로 기록한 예외는 수정이 필요하며, 나머지 Critical finding이 없고 Major finding이 1건이므로 판정은 `READY`다. NFR Design으로의 handoff는 최종 보고서 위치·집계·README 링크를 다음 단계에서 구체화하도록 명시되어 있다.
+U8의 QualityCheckRecord 필드·상태·허용 대상·출처 상태 분리와 정적 비수집 경계는 승인된 계약에 일치한다. ScoreSheet 및 canonical manifest 의존성은 downstream 재검사 조건으로 보존하므로 READY다.
+
+
+| R-01 | Major | `aidlc/spaces/default/intents/260904-aif-c01-guide/construction/u8-quality-evidence/nfr-requirements/traceability.json` > `quality_check_records`의 `SCORE-<slug>` 항목 및 `security-requirements.md` > 검사 대상과 판정 경계 3 | 실제 `assessment/` 디렉터리와 `assessment/score-sheet.md`가 아직 없는데 ScoreSheet 검사 기록이 `통과`다. U8 자체 계약은 대상 파일이 없거나 canonical `sources/content-traceability.yaml`이 없으면 경로만으로 통과시키지 않고 `보류`로 남기도록 요구하므로, 현재 기록은 대상 미생성 상태를 완료처럼 표현한다. | `SCORE-<slug>` 기록을 실제 ScoreSheet가 생성될 때까지 `보류`로 변경하고, 현재 evidence에 대상 미생성·담당 Unit·재검사 조건을 명시한다. U7 생성 후 실제 안정 ID와 `assessment/score-sheet.md` 경로를 가진 새 immutable 검사 시도를 추가하고, 그때만 `통과`를 기록한다. | New |
+
+

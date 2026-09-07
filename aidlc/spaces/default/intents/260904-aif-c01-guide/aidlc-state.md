@@ -7,7 +7,7 @@
 - **Scope**: aif-c01-korean-guide-comprehensive
 - **Start Date**: 2026-09-04T01:07:58Z
 - **State Version**: 8
-- **Active Agent**: aidlc-architect-agent
+- **Active Agent**: aidlc-developer-agent
 - **Worktree Path**:
 - **Bolt Refs**:
 - **Practices Affirmed Timestamp**: 2026-09-04T06:04:00Z
@@ -17,7 +17,7 @@
 - **Stages to Skip**: 1.2 (market-research), 2.1 (reverse-engineering), 2.5 (refined-mockups), 2.8 (contract-design), 3.4 (infrastructure-design), 3.7 (ci-pipeline), 4.1 (deployment-pipeline), 4.2 (environment-provisioning), 4.3 (deployment-execution), 4.4 (observability-setup), 4.5 (incident-response), 4.6 (performance-validation), 4.7 (feedback-optimization)
 - **Depth**: Comprehensive
 - **Test Strategy**: Comprehensive
-- **Review Override**: 
+- **Review Override**: advisory
 
 ## Workspace State
 - **Project Root**: .
@@ -27,11 +27,11 @@
 
 ## Execution Plan Summary
 - **Total Stages**: 20
-- **Completed**: 16
-- **In Progress**: nfr-requirements
+- **Completed**: 18
+- **In Progress**: code-generation
 
 ## Runtime State
-- **Revision Count**: 3
+- **Revision Count**: 7
 
 - **Skeleton Stance**: on
 ## Phase Progress
@@ -74,10 +74,10 @@
 ### CONSTRUCTION PHASE
 Per unit: [TBD]
 - [x] functional-design — EXECUTE
-- [R] nfr-requirements — EXECUTE
-- [ ] nfr-design — EXECUTE
+- [x] nfr-requirements — EXECUTE
+- [x] nfr-design — EXECUTE
 - [ ] infrastructure-design — SKIP
-- [ ] code-generation — EXECUTE
+- [-] code-generation — EXECUTE
 - [ ] build-and-test — EXECUTE
 - [ ] ci-pipeline — SKIP
 
@@ -92,12 +92,12 @@ Per unit: [TBD]
 
 ## Current Status
 - **Lifecycle Phase**: CONSTRUCTION
-- **Current Stage**: nfr-requirements
-- **Next Stage**: nfr-design
+- **Current Stage**: code-generation
+- **Next Stage**: build-and-test
 - **Status**: Running
-- **Last Updated**: 2026-09-05T01:42:27Z
+- **Last Updated**: 2026-09-07T09:03:42Z
 
 ## Session Resume Point
-- **Last Completed Stage**: functional-design
-- **Next Action**: Execute NFR Requirements
+- **Last Completed Stage**: nfr-design
+- **Next Action**: Execute Code Generation
 - **Pending Artifacts**: none

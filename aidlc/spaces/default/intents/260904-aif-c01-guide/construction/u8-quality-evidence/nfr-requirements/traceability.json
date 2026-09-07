@@ -13,7 +13,7 @@
     "kind": "spec",
     "deployment_model": "shared static package",
     "owns": ["QualityCheckRecord", "quality evidence and recheck records"],
-    "record_required_fields": ["target_type", "target_id", "target_path", "check_id", "status", "evidence", "checked_at"],
+    "record_required_fields": ["target_type", "target_id", "target_path", "check_id", "check_type", "status", "evidence", "findings", "action", "checked_at", "recheck_of"],
     "allowed_statuses": ["통과", "실패", "보류"],
     "allowed_target_types": ["DomainReadme", "LearningDocument", "GlossaryTerm", "QuestionBankItem", "ScoreSheet", "Card", "TermQuizItem", "AnkiNote", "SourceRecord", "BaselineItem"],
     "non_goals": ["No API", "No database", "No AWS account or resource", "No deployment or hosting", "No paid lab", "No learner state or answer storage", "No automatic freshness monitoring", "No new dependency", "No content authoring on behalf of another Unit"]
@@ -23,7 +23,8 @@
       "target_type": "SourceRecord",
       "target_id": "SRC-aif-c01-main",
       "target_path": "sources/source-registry.yaml",
-      "check_id": "source-metadata",
+      "check_id": "QC-SourceRecord-SRC-aif-c01-main-source-metadata",
+      "check_type": "source-metadata",
       "status": "통과",
       "evidence": {
         "tool": "manual registry inspection",
@@ -33,13 +34,17 @@
         "action": "none",
         "recheck_condition": "recheck when the official guide revision changes"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "SourceRecord",
       "target_id": "SRC-aif-c01-main",
       "target_path": "sources/source-registry.yaml",
-      "check_id": "baseline-manifest",
+      "check_id": "QC-SourceRecord-SRC-aif-c01-main-baseline-manifest",
+      "check_type": "baseline-manifest",
       "status": "보류",
       "evidence": {
         "tool": "file existence and contract inspection",
@@ -50,13 +55,17 @@
         "owner": "u1-baseline-and-source-registry",
         "recheck_condition": "manifest exists, parses, and every confirmed row has required fields"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "DomainReadme",
       "target_id": "D1-README",
       "target_path": "docs/01-ai-ml-foundations/README.md",
-      "check_id": "beginner-perspective",
+      "check_id": "QC-DomainReadme-D1-README-beginner-perspective",
+      "check_type": "beginner-perspective",
       "status": "보류",
       "evidence": {
         "tool": "manual target inventory",
@@ -67,13 +76,17 @@
         "owner": "u2-d1-ai-ml-foundations",
         "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "DomainReadme",
       "target_id": "D2-README",
       "target_path": "docs/02-generative-ai/README.md",
-      "check_id": "beginner-perspective",
+      "check_id": "QC-DomainReadme-D2-README-beginner-perspective",
+      "check_type": "beginner-perspective",
       "status": "보류",
       "evidence": {
         "tool": "manual target inventory",
@@ -84,13 +97,17 @@
         "owner": "u3-d2-generative-ai",
         "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "DomainReadme",
       "target_id": "D3-README",
       "target_path": "docs/03-foundation-models/README.md",
-      "check_id": "beginner-perspective",
+      "check_id": "QC-DomainReadme-D3-README-beginner-perspective",
+      "check_type": "beginner-perspective",
       "status": "보류",
       "evidence": {
         "tool": "manual target inventory",
@@ -101,13 +118,17 @@
         "owner": "u4-d3-foundation-models",
         "recheck_condition": "stable IDs, required sections, links, and source metadata resolve"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "DomainReadme",
       "target_id": "D4-README",
       "target_path": "docs/04-responsible-ai/README.md",
-      "check_id": "target-existence",
+      "check_id": "QC-DomainReadme-D4-README-target-existence",
+      "check_type": "target-existence",
       "status": "보류",
       "evidence": {
         "tool": "workspace target inventory",
@@ -118,13 +139,17 @@
         "owner": "u5-d4-responsible-ai",
         "recheck_condition": "D4 README and stable document IDs exist"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "DomainReadme",
       "target_id": "D5-README",
       "target_path": "docs/05-security-compliance/README.md",
-      "check_id": "target-existence",
+      "check_id": "QC-DomainReadme-D5-README-target-existence",
+      "check_type": "target-existence",
       "status": "보류",
       "evidence": {
         "tool": "workspace target inventory",
@@ -135,13 +160,17 @@
         "owner": "u6-d5-security-compliance-governance",
         "recheck_condition": "D5 README and stable document IDs exist"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "QuestionBankItem",
       "target_id": "Q-<n>",
       "target_path": "assessment/question-bank.md",
-      "check_id": "question-bank-contract",
+      "check_id": "QC-QuestionBankItem-Q-n-question-bank-contract",
+      "check_type": "question-bank-contract",
       "status": "보류",
       "evidence": {
         "tool": "contract inspection",
@@ -152,14 +181,18 @@
         "owner": "u7-assessment-and-review",
         "recheck_condition": "question bank contains resolved stable IDs and source mappings"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "ScoreSheet",
       "target_id": "SCORE-<slug>",
       "target_path": "assessment/score-sheet.md",
-      "check_id": "static-boundary",
-      "status": "통과",
+      "check_id": "QC-ScoreSheet-SCORE-slug-static-boundary",
+      "check_type": "static-boundary",
+      "status": "보류",
       "evidence": {
         "tool": "contract inspection",
         "scope": "static score worksheet contract",
@@ -169,13 +202,17 @@
         "owner": "u7-assessment-and-review",
         "recheck_condition": "SCORE stable ID and worksheet path exist"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "AnkiNote",
       "target_id": "ANKI-<n>",
       "target_path": "assessment/anki.csv",
-      "check_id": "encoding-and-format",
+      "check_id": "QC-AnkiNote-ANKI-n-encoding-and-format",
+      "check_type": "encoding-and-format",
       "status": "보류",
       "evidence": {
         "tool": "contract inspection",
@@ -186,13 +223,17 @@
         "owner": "u7-assessment-and-review",
         "recheck_condition": "CSV exists, parses, and every row has a stable ID and source mapping"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     },
     {
       "target_type": "SourceRecord",
       "target_id": "SRC-aif-c01-main",
       "target_path": "sources/source-registry.yaml",
-      "check_id": "sensitive-data",
+      "check_id": "QC-SourceRecord-SRC-aif-c01-main-sensitive-data",
+      "check_type": "sensitive-data",
       "status": "통과",
       "evidence": {
         "tool": "manual metadata inspection",
@@ -202,7 +243,10 @@
         "action": "recheck changed files at each downstream quality gate",
         "recheck_condition": "any source metadata or generated learning artifact changes"
       },
-      "checked_at": "2026-09-04"
+      "findings": ["See evidence.findings; no sensitive value is duplicated."],
+      "action": "See evidence.action.",
+      "checked_at": "2026-09-04",
+      "recheck_of": null
     }
   ],
   "upstream_ids": [
@@ -235,7 +279,7 @@
   ],
   "validation_evidence": {
     "static_packaging": "PASS: U8 defines records only; no executable feature, API, DB, AWS resource, deployment, paid lab, learner state/data store, or new dependency",
-    "record_schema": "PASS: every quality_check_records entry contains the required seven fields",
+    "record_schema": "PASS: every quality_check_records entry contains canonical 11 fields (target_type, target_id, target_path, check_id, check_type, status, evidence, findings, action, checked_at, recheck_of); evidence is an object and top-level findings/action are present",
     "allowed_statuses": "PASS: records use only 통과, 실패, 보류",
     "source_state": "Deferred: canonical baseline manifest is absent and must be created by U1",
     "content_checks": "Deferred: actual U2~U7 content targets require stable IDs and generated files",

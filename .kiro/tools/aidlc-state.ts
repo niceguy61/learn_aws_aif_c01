@@ -85,6 +85,8 @@ import {
   parseRefsList,
   parseStateStageSuffixes,
   pipelineLinkEvidence,
+  preparePriorAttemptReuse,
+  priorAttemptReuseEvent,
   producesArtifactFile,
   readAllAuditShards,
   readApplicableTeamUnitScopeStamp,
@@ -6250,15 +6252,17 @@ function handlePracticesPromote(args: string[]): void {
 //   [--repo <repo>] [--single]
 function handleReuseArtifact(args: string[]): void {
   if (args.length < 1)
-    error("Usage: aidlc-state.ts reuse-artifact <slug> --decision <keep|modify|redo> --artifacts <csv> [--repo <repo>] [--single]");
+    error("Usage: aidlc-state.ts reuse-artifact <slug> --decision <keep|modify|redo> --artifacts <csv> [--repo <repo>] [--single] [--prior-attempt --unit <unit>]");
   const slug = args[0];
   const rest = args.slice(1);
   const decision = getFlagValue(rest, "--decision");
-  const artifacts = getFlagValue(rest, "--artifacts");
+  let artifacts = getFlagValue(rest, "--artifacts");
   const repo = getFlagValue(rest, "--repo");
+  const unit = getFlagValue(rest, "--unit");
   const singleRun = rest.includes("--single");
+  const priorAttempt = rest.includes("--prior-attempt");
   if (!decision) error("Missing --decision <keep|modify|redo>");
-  if (!artifacts) error("Missing --artifacts <csv>");
+  if (!artifacts && !priorAttempt) error("Missing --artifacts <csv>");
 
   if (!["keep", "modify", "redo"].includes(decision)) {
     error(`Invalid decision: ${decision}. Must be keep, modify, or redo.`);
@@ -6271,6 +6275,83 @@ function handleReuseArtifact(args: string[]): void {
   if (!stage) error(`Unknown stage: ${slug}`);
 
   const pd = resolveProjectDir(projectDir);
+  if (priorAttempt) {
+    if (slug !== "nfr-design" || stage!.phase !== "construction" || stage!.for_each !== "unit-of-work") {
+      error("--prior-attempt is currently restricted to the redo recovery of the nfr-design per-unit stage.");
+    }
+    if (decision !== "keep") error("--prior-attempt requires --decision keep.");
+    if (!unit) error("--prior-attempt requires --unit <unit>.");
+    const content = readStateFile(pd);
+    if (getField(content, "Current Stage") !== slug) {
+      error(`--prior-attempt requires the current stage to be "${slug}".`);
+    }
+    const resolution = resolveBoltDag(pd);
+    if (resolution.state !== "ok" || !resolution.units.includes(unit)) {
+      error(`--prior-attempt unit "${unit}" is not in the authoritative unit DAG.`);
+    }
+    if (readAuditShardEvents(pd).some(
+      (row) =>
+        priorAttemptReuseEvent(row) &&
+        auditBlockField(row.block, "Stage") === slug &&
+        auditBlockField(row.block, "Unit") === unit,
+    )) {
+      error(`A prior-attempt reuse receipt already exists for "${slug}"/${unit}.`);
+    }
+    const prepared = preparePriorAttemptReuse(pd, stage!, unit);
+    if (!prepared.ok || !prepared.evidence) {
+      error(prepared.message ?? `Cannot validate prior-attempt evidence for "${slug}"/${unit}.`);
+    }
+    const evidence = prepared.evidence;
+    const artifactPaths = (stage!.produces ?? [])
+      .filter((name) => !name.endsWith("-questions"))
+      .map((name) => join(pd, dirname(evidence.questionFile), artifactFilename(name)))
+      .filter((path) => existsSync(path))
+      .map((path) => relative(pd, path).replaceAll("\\\\", "/"));
+    artifacts = artifacts ?? artifactPaths.join(",");
+    if (!artifacts) error(`Cannot determine declared artifacts for "${slug}"/${unit}.`);
+    const fields: Record<string, string> = {
+      Stage: slug,
+      Decision: "keep",
+      Artifacts: artifacts,
+      Unit: unit,
+      Recovery: "prior-attempt",
+      "Questions File": evidence.questionFile,
+      "Questions SHA-256": evidence.questionsSha256,
+      "Artifact Fingerprint": evidence.artifactFingerprint,
+      "Prior Summary Timestamp": evidence.priorSummary.timestamp,
+      "Prior Summary Shard": basename(evidence.priorSummary.shard),
+      "Prior Summary Position": String(evidence.priorSummary.pos),
+      "Prior Review Request Timestamp": evidence.priorReviewRequest.timestamp,
+      "Prior Review Request Shard": basename(evidence.priorReviewRequest.shard),
+      "Prior Review Request Position": String(evidence.priorReviewRequest.pos),
+      "Prior Review Timestamp": evidence.priorReview.timestamp,
+      "Prior Review Shard": basename(evidence.priorReview.shard),
+      "Prior Review Position": String(evidence.priorReview.pos),
+      "Prior Unit Completion Timestamp": evidence.priorUnitCompletion.timestamp,
+      "Prior Unit Completion Shard": basename(evidence.priorUnitCompletion.shard),
+      "Prior Unit Completion Position": String(evidence.priorUnitCompletion.pos),
+    };
+    try {
+      emitAudit(pd, "ARTIFACT_REUSED", fields);
+    } catch (e) {
+      error(`Audit emission failed: ${errorMessage(e)}`);
+    }
+    console.log(JSON.stringify({
+      slug,
+      unit,
+      decision: "keep",
+      artifacts,
+      recovery: "prior-attempt",
+      prior_summary: evidence.priorSummary.timestamp,
+      prior_review: evidence.priorReview.timestamp,
+      prior_unit_completion: evidence.priorUnitCompletion.timestamp,
+      emitted: "ARTIFACT_REUSED",
+    }));
+    return;
+  }
+
+  if (!artifacts) error("Missing --artifacts <csv>");
+
   if (singleRun) {
     if (!singleStageAttemptIsOpen(pd, slug)) {
       error(

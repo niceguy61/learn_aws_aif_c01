@@ -45,7 +45,7 @@ entities:
         logical_type: enum
         required: true
         unique: false
-        allowed_values: [source-metadata, baseline-traceability, scope-classification, internal-links, glossary-links, beginner-perspective, concept-unit, markdown-structure, utf8-csv, mermaid-fallback, sensitive-data, question-quality]
+        allowed_values: [source-metadata, baseline-manifest, target-existence, traceability, baseline-traceability, scope-classification, internal-links, glossary-links, beginner-perspective, concept-unit, markdown-structure, encoding-and-format, utf8-csv, mermaid-fallback, accessibility, sensitive-data, question-bank-contract, question-quality, static-boundary]
       - name: baseline_ids
         logical_type: list<string>
         required: true
@@ -59,8 +59,8 @@ entities:
         unique: false
         default: []
         references: SourceRecord.source_id
-      - name: checked_date
-        logical_type: date
+      - name: checked_at
+        logical_type: datetime
         required: true
         unique: false
       - name: checker
@@ -68,16 +68,16 @@ entities:
         required: true
         unique: false
         constraints: 검사자 또는 정적 검사 도구의 이름을 기록하며 실제 계정 식별자를 포함하지 않는다.
-      - name: result
+      - name: status
         logical_type: enum
         required: true
         unique: false
         allowed_values: [통과, 실패, 보류]
       - name: evidence
-        logical_type: list<string>
+        logical_type: object
         required: true
         unique: false
-        constraints: 검사 명령, 확인한 필드·링크·행·섹션 또는 재현 가능한 관찰을 짧게 기록한다.
+        constraints: tool, scope, observations, findings, action, owner, recheck_condition을 포함한다.
       - name: findings
         logical_type: list<string>
         required: true
@@ -88,12 +88,13 @@ entities:
         required: true
         unique: false
         constraints: 실패·보류이면 수정, 제거·치환, 출처 재확인 또는 재검사 계획을 기록한다. 통과이면 none을 기록할 수 있다.
-      - name: recheck_result
-        logical_type: enum-or-null
+      - name: recheck_of
+        logical_type: reference-or-null
         required: true
         unique: false
-        allowed_values: [통과, 실패, 보류, null]
+        references: QualityCheckRecord.check_id
         default: null
+        constraints: 최초 시도는 null이며 재검사는 이전 record의 check_id를 가리킨다. 이전 record는 수정·삭제하지 않는다.
       - name: source_status_at_check
         logical_type: enum-or-null
         required: true
@@ -107,9 +108,9 @@ entities:
         allowed_values: [draft, review, verified, null]
         default: null
     entity_constraints:
-      - 같은 target_id와 check_type에 대해 현재 유효한 판정은 하나만 두고, 재검사는 이전 기록을 덮어쓰지 않고 새 시도 또는 명시적인 recheck_result로 연결한다.
-      - `result: 통과`는 evidence가 비어 있지 않아야 한다.
-      - `result: 실패` 또는 `result: 보류`는 findings와 action을 각각 기록해야 한다.
+      - 같은 target_id와 check_type에 대한 재검사는 이전 기록을 덮어쓰지 않고 새 시도 record를 추가하며, 새 record의 recheck_of가 이전 check_id를 가리킨다.
+      - `status: 통과`는 evidence가 비어 있지 않아야 한다.
+      - `status: 실패` 또는 `status: 보류`는 findings와 action을 각각 기록해야 한다.
       - source_status_at_check와 document_status_at_check는 서로 다른 상태 체계이며 하나를 다른 하나의 대체값으로 사용하지 않는다.
       - target_type과 target_id가 허용 대상 집합 밖이면 기록을 거부한다.
       - `verified` 승격에 영향을 주는 검사에서 원본 출처가 blocked 또는 확인 필요이면 통과만으로 승격을 허용하지 않는다.

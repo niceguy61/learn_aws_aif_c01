@@ -7126,8 +7126,8 @@ export function checkSummaryConfirmationEvidence(
     "ARTIFACT_CREATED",
     "ARTIFACT_UPDATED",
   ]);
-  const events = readAuditShardEvents(projectDir)
-    .filter((entry) => relevant.has(entry.event));
+  const allAuditRows = readAuditShardEvents(projectDir);
+  const events = allAuditRows.filter((entry) => relevant.has(entry.event));
   if (events.length === 0) {
     return {
       ok: false,
@@ -7273,6 +7273,28 @@ export function checkSummaryConfirmationEvidence(
       };
     }
 
+    const priorReuseRows = allAuditRows.filter(
+      (entry) =>
+        priorAttemptReuseEvent(entry) &&
+        auditBlockField(entry.block, "Stage") === stage.slug &&
+        auditBlockField(entry.block, "Unit") === question.unit &&
+        !auditBlockField(entry.block, "Workflow")?.startsWith("single-stage:"),
+    );
+    if (priorReuseRows.length > 0) {
+      const reuse = priorAttemptReuseEvidence(
+        projectDir,
+        stage as StageEntry,
+        question.unit ?? options.unit ?? "",
+      );
+      if (!reuse.ok) {
+        return {
+          ok: false,
+          message: `Refusing to complete "${stage.slug}"${question.unit ? ` for unit "${question.unit}"` : ""}: ${reuse.message ?? "prior-attempt reuse evidence is invalid"}`,
+        };
+      }
+      continue;
+    }
+
     const questionRelative = toPosix(relative(projectDir, question.path));
     const receiptCandidates = events.filter((entry) => {
       if (entry.event !== "SUMMARY_CONFIRMATION_RECORDED") return false;
@@ -7312,18 +7334,49 @@ export function checkSummaryConfirmationEvidence(
     const unorderedReceipts = receiptCandidates.filter(
       (entry) => afterFloor(entry) === null,
     );
-    if (
-      unorderedReceipts.some((entry) =>
-        receiptSelection.event === null ||
-        entry.timestamp >= receiptSelection.event.timestamp
-      )
-    ) {
+    const redoBoundaries = events.filter(
+      (entry) =>
+        workflow === undefined &&
+        entry.event === "STAGE_JUMPED" &&
+        auditBlockField(entry.block, "Direction") === "REDO" &&
+        auditBlockField(entry.block, "Target") === stage.slug,
+    );
+    const carriedReceipts = receiptCandidates.filter(
+      (entry) =>
+        afterFloor(entry) === false &&
+        redoBoundaries.some(
+          (boundary) =>
+            auditRowAfter(boundary, entry) &&
+            floors.some((floor) => auditRowBefore(boundary, floor)),
+        ),
+    );
+    const carriedSelection = latestEvent(carriedReceipts);
+    if (carriedSelection.ambiguousTimestamp !== undefined) {
+      return orderingFailure(
+        "redo boundary and carried summary receipts",
+        carriedSelection.ambiguousTimestamp,
+      );
+    }
+    const selectedReceipt = receiptSelection.event ?? carriedSelection.event;
+    const unorderedCompetes = unorderedReceipts.some((entry) =>
+      selectedReceipt === null ||
+      entry.timestamp > selectedReceipt.timestamp ||
+      (entry.timestamp === selectedReceipt.timestamp &&
+        (entry.shard !== selectedReceipt.shard ||
+          auditRowAfter(entry, selectedReceipt))),
+    );
+    if (unorderedCompetes) {
       return orderingFailure(
         "the current-attempt boundary and matching summary receipt",
         floors[0]?.timestamp ?? unorderedReceipts[0].timestamp,
       );
     }
-    const receipt = receiptSelection.event;
+    // A redo may begin immediately after a human-confirmed summary and its
+    // post-confirmation artifact saves. Carry that real receipt forward so the
+    // current attempt can perform a fresh reviewer pass without asking the same
+    // human question again. Current questions and artifact bytes remain checked
+    // below; no synthetic summary event is emitted.
+    const receipt = selectedReceipt;
     if (
       receipt === null ||
       auditBlockField(receipt.block, "Details") !== "Looks correct"
@@ -9165,6 +9218,350 @@ export function reviewCompletionMatchesRequest(
   return true;
 }
 
+export interface PriorAttemptReuseEvidence {
+  stage: string;
+  unit: string;
+  questionFile: string;
+  questionsSha256: string;
+  artifactFingerprint: string;
+  priorSummary: AuditShardEvent;
+  priorReviewRequest: AuditShardEvent;
+  priorReview: AuditShardEvent;
+  priorUnitCompletion: AuditShardEvent;
+  bridge?: AuditShardEvent;
+}
+
+export interface PriorAttemptReuseCheck {
+  ok: boolean;
+  evidence?: PriorAttemptReuseEvidence;
+  message?: string;
+}
+
+export const priorAttemptReuseEvent = (row: AuditShardEvent): boolean =>
+  row.event === "ARTIFACT_REUSED" &&
+  auditBlockField(row.block, "Decision") === "keep" &&
+  auditBlockField(row.block, "Recovery") === "prior-attempt";
+
+function auditRowsOrder(rows: readonly AuditShardEvent[]): AuditShardEvent[] {
+  return [...rows].sort((a, b) => {
+    if (a.timestamp !== b.timestamp) return a.timestamp < b.timestamp ? -1 : 1;
+    if (a.shardIndex !== b.shardIndex) return a.shardIndex - b.shardIndex;
+    return a.pos - b.pos;
+  });
+}
+
+function auditRowBefore(a: AuditShardEvent, b: AuditShardEvent): boolean {
+  if (a.timestamp !== b.timestamp) return a.timestamp < b.timestamp;
+  return a.shard === b.shard && a.pos < b.pos;
+}
+
+function auditRowAfter(a: AuditShardEvent, b: AuditShardEvent): boolean {
+  if (a.timestamp !== b.timestamp) return a.timestamp > b.timestamp;
+  return a.shard === b.shard && a.pos > b.pos;
+}
+
+function auditRowAfterBoundary(
+  row: AuditShardEvent,
+  boundary: AuditShardEvent,
+): boolean {
+  if (row.timestamp !== boundary.timestamp) return row.timestamp > boundary.timestamp;
+  return row.shard === boundary.shard && row.pos > boundary.pos;
+}
+
+function mainWorkflowBoundary(
+  rows: readonly AuditShardEvent[],
+  stage: string,
+  unit?: string,
+): AuditShardEvent | null {
+  const ordered = auditRowsOrder(rows);
+  const relevant = ordered.filter((row) => {
+    if (row.event === "WORKFLOW_STARTED" || row.event === "STAGE_JUMPED") {
+      return true;
+    }
+    if (row.event === "GATE_REJECTED") {
+      if (auditBlockField(row.block, "Stage") !== stage) return false;
+      if (unit === undefined) return true;
+      return auditBlockField(row.block, "Unit") === unit;
+    }
+    return (
+      row.event === "STAGE_STARTED" &&
+      auditBlockField(row.block, "Stage") === stage &&
+      !auditBlockField(row.block, "Workflow")?.startsWith("single-stage:")
+    );
+  });
+  return relevant.at(-1) ?? null;
+}
+
+function eventReferenceMatches(
+  row: AuditShardEvent,
+  block: string,
+  prefix: string,
+): boolean {
+  return (
+    auditBlockField(block, `${prefix} Timestamp`) === row.timestamp &&
+    auditBlockField(block, `${prefix} Shard`) === basename(row.shard) &&
+    auditBlockField(block, `${prefix} Position`) === String(row.pos)
+  );
+}
+
+function recoveryQuestionFile(
+  projectDir: string,
+  stage: StageEntry,
+  unit: string,
+): SummaryQuestionFile | null {
+  const expected = summaryQuestionFiles(projectDir, stage).filter(
+    (question) => question.unit === unit,
+  );
+  return expected.length === 1 ? expected[0] : null;
+}
+
+function validatePriorAttemptReuseCandidate(
+  projectDir: string,
+  stage: StageEntry,
+  unit: string,
+  rows: readonly AuditShardEvent[],
+  boundary: AuditShardEvent,
+  question: SummaryQuestionFile,
+  bridge: AuditShardEvent | undefined,
+): PriorAttemptReuseCheck {
+  const ordered = auditRowsOrder(rows);
+  const beforeBoundary = (row: AuditShardEvent): boolean =>
+    auditRowBefore(row, boundary) &&
+    !auditBlockField(row.block, "Workflow")?.startsWith("single-stage:");
+  const stageRows = ordered.filter(
+    (row) =>
+      beforeBoundary(row) &&
+      auditBlockField(row.block, "Stage") === stage.slug &&
+      auditBlockField(row.block, "Unit") === unit,
+  );
+  const questionFile = toPosix(relative(projectDir, question.path));
+  const currentQuestions = (() => {
+    try {
+      const content = readFileSync(question.path, "utf-8");
+      if (summaryAnswerFromFile(question.path) !== "Looks correct") return null;
+      const scope = summaryConfirmationContentHash(content);
+      return { content, sha256: scope };
+    } catch {
+      return null;
+    }
+  })();
+  if (currentQuestions === null) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} requires a readable questions file with [Answer]: Looks correct.`,
+    };
+  }
+
+  const summaryCandidates = stageRows
+    .filter(
+      (row) =>
+        row.event === "SUMMARY_CONFIRMATION_RECORDED" &&
+        auditBlockField(row.block, "Checkpoint") === SUMMARY_CONFIRMATION_CHECKPOINT &&
+        auditBlockField(row.block, "Details") === "Looks correct" &&
+        auditBlockField(row.block, "Questions File") === questionFile &&
+        auditBlockField(row.block, "Questions SHA-256") === currentQuestions.sha256,
+    )
+    .sort((a, b) => (auditRowBefore(a, b) ? 1 : -1));
+  const summary = summaryCandidates.at(0);
+  if (!summary) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} found no unchanged prior summary confirmation.`,
+    };
+  }
+
+  const currentFingerprint = reviewArtifactFingerprint(projectDir, stage, unit, {
+    requireRequiredArtifacts: true,
+  });
+  if (currentFingerprint === null) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} requires all declared artifacts and a stable fingerprint.`,
+    };
+  }
+
+  const reviewCandidates = stageRows
+    .filter(
+      (row) =>
+        row.event === "REVIEW_COMPLETED" &&
+        auditBlockField(row.block, "Reviewer") === stage.reviewer &&
+        auditBlockField(row.block, "Verdict") === "READY" &&
+        auditBlockField(row.block, "Artifact Fingerprint") === currentFingerprint,
+    )
+    .sort((a, b) => (auditRowBefore(a, b) ? 1 : -1));
+  let review: AuditShardEvent | undefined;
+  let reviewRequest: AuditShardEvent | undefined;
+  for (const candidate of reviewCandidates) {
+    const requests = stageRows
+      .filter(
+        (row) =>
+          row.event === "REVIEW_REQUESTED" &&
+          auditBlockField(row.block, "Reviewer") === stage.reviewer &&
+          auditBlockField(row.block, "Iteration") ===
+            auditBlockField(candidate.block, "Iteration") &&
+          auditRowBefore(row, candidate),
+      )
+      .sort((a, b) => (auditRowBefore(a, b) ? 1 : -1));
+    const request = requests.find((row) => {
+      const binding = reviewRequestBindingFromBlock(row.block);
+      return binding !== null && reviewCompletionMatchesRequest(binding, candidate.block);
+    });
+    if (request) {
+      review = candidate;
+      reviewRequest = request;
+      break;
+    }
+  }
+  if (!review || !reviewRequest) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} found no valid prior READY reviewer receipt bound to the current artifact bytes.`,
+    };
+  }
+  if (!auditRowBefore(summary, reviewRequest)) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} has no causal order from summary confirmation to review request.`,
+    };
+  }
+
+  const completionCandidates = stageRows
+    .filter(
+      (row) => row.event === "UNIT_COMPLETED" && auditRowAfter(row, review),
+    )
+    .sort((a, b) => (auditRowBefore(a, b) ? 1 : -1));
+  const completion = completionCandidates.at(0);
+  if (!completion) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} found no prior Unit completion after the valid review.`,
+    };
+  }
+  if (auditBlockField(completion.block, "Mode") === "wave") {
+    if (auditBlockField(completion.block, "Artifact Fingerprint") !== currentFingerprint) {
+      return {
+        ok: false,
+        message: `prior-attempt reuse for "${stage.slug}"/${unit} rejected a changed wave artifact fingerprint.`,
+      };
+    }
+  }
+
+  const recordedRepos = new Set(intentRepos(projectDir));
+  const artifactWrites = ordered.filter((row) => {
+    if (row.event !== "ARTIFACT_CREATED" && row.event !== "ARTIFACT_UPDATED") return false;
+    const file = auditBlockField(row.block, "File");
+    return file !== null && producesArtifactUnit(stage, file, recordedRepos) === unit;
+  });
+  const writeAfterReview = artifactWrites.some((row) => auditRowAfter(row, review!));
+  const writeAfterCompletion = artifactWrites.some((row) => auditRowAfter(row, completion!));
+  if (writeAfterReview || writeAfterCompletion) {
+    return {
+      ok: false,
+      message: `prior-attempt reuse for "${stage.slug}"/${unit} rejected because a declared artifact was written after the prior reviewer or Unit evidence.`,
+    };
+  }
+
+  const evidence: PriorAttemptReuseEvidence = {
+    stage: stage.slug,
+    unit,
+    questionFile,
+    questionsSha256: currentQuestions.sha256,
+    artifactFingerprint: currentFingerprint,
+    priorSummary: summary,
+    priorReviewRequest: reviewRequest,
+    priorReview: review,
+    priorUnitCompletion: completion,
+  };
+
+  if (bridge !== undefined) {
+    if (!auditRowAfterBoundary(bridge, boundary)) {
+      return { ok: false, message: `prior-attempt reuse for "${stage.slug}"/${unit} is not in the current redo attempt.` };
+    }
+    if (
+      auditBlockField(bridge.block, "Stage") !== stage.slug ||
+      auditBlockField(bridge.block, "Unit") !== unit ||
+      auditBlockField(bridge.block, "Questions File") !== questionFile ||
+      auditBlockField(bridge.block, "Questions SHA-256") !== currentQuestions.sha256 ||
+      auditBlockField(bridge.block, "Artifact Fingerprint") !== currentFingerprint ||
+      !eventReferenceMatches(summary, bridge.block, "Prior Summary") ||
+      !eventReferenceMatches(reviewRequest, bridge.block, "Prior Review Request") ||
+      !eventReferenceMatches(review, bridge.block, "Prior Review") ||
+      !eventReferenceMatches(completion, bridge.block, "Prior Unit Completion")
+    ) {
+      return {
+        ok: false,
+        message: `prior-attempt reuse for "${stage.slug}"/${unit} has invalid or mismatched prior-evidence references.`,
+      };
+    }
+    const bridgeWrites = ordered.some((row) => {
+      if (row.event !== "ARTIFACT_CREATED" && row.event !== "ARTIFACT_UPDATED") return false;
+      const file = auditBlockField(row.block, "File");
+      return (
+        file !== null &&
+        producesArtifactUnit(stage, file, recordedRepos) === unit &&
+        auditRowAfter(row, bridge)
+      );
+    });
+    const laterLifecycle = ordered.some(
+      (row) =>
+        ["UNIT_STARTED", "UNIT_PAUSED", "UNIT_RESUMED"].includes(row.event) &&
+        auditBlockField(row.block, "Stage") === stage.slug &&
+        auditBlockField(row.block, "Unit") === unit &&
+        auditRowAfter(row, bridge),
+    );
+    if (bridgeWrites || laterLifecycle) {
+      return {
+        ok: false,
+        message: `prior-attempt reuse for "${stage.slug}"/${unit} was invalidated by a later artifact or Unit lifecycle write.`,
+      };
+    }
+    evidence.bridge = bridge;
+  }
+  return { ok: true, evidence };
+}
+
+export function priorAttemptReuseEvidence(
+  projectDir: string,
+  stage: StageEntry,
+  unit: string,
+): PriorAttemptReuseCheck {
+  const rows = readAuditShardEvents(projectDir);
+  const boundary = mainWorkflowBoundary(rows, stage.slug, unit);
+  if (!boundary) return { ok: false, message: `No current workflow boundary is available for "${stage.slug}".` };
+  const question = recoveryQuestionFile(projectDir, stage, unit);
+  if (!question) return { ok: false, message: `No unique questions file is available for "${stage.slug}"/${unit}.` };
+  const bridge = auditRowsOrder(rows).find(
+    (row) =>
+      priorAttemptReuseEvent(row) &&
+      auditBlockField(row.block, "Stage") === stage.slug &&
+      auditBlockField(row.block, "Unit") === unit &&
+      auditRowAfterBoundary(row, boundary),
+  );
+  if (!bridge) return { ok: false, message: "No prior-attempt reuse receipt is recorded." };
+  return validatePriorAttemptReuseCandidate(projectDir, stage, unit, rows, boundary, question, bridge);
+}
+
+export function preparePriorAttemptReuse(
+  projectDir: string,
+  stage: StageEntry,
+  unit: string,
+): PriorAttemptReuseCheck {
+  const rows = readAuditShardEvents(projectDir);
+  const boundary = mainWorkflowBoundary(rows, stage.slug);
+  if (!boundary) return { ok: false, message: `No current workflow boundary is available for "${stage.slug}".` };
+  const question = recoveryQuestionFile(projectDir, stage, unit);
+  if (!question) return { ok: false, message: `No unique questions file is available for "${stage.slug}"/${unit}.` };
+  const redo = auditRowsOrder(rows).some(
+    (row) =>
+      row.event === "STAGE_JUMPED" &&
+      auditBlockField(row.block, "Direction") === "REDO" &&
+      auditBlockField(row.block, "Target") === stage.slug &&
+      auditRowBefore(row, boundary),
+  );
+  if (!redo) return { ok: false, message: `"${stage.slug}" has no prior REDO boundary eligible for explicit recovery.` };
+  return validatePriorAttemptReuseCandidate(projectDir, stage, unit, rows, boundary, question, undefined);
+}
+
 /**
  * Byte-capture snapshot of the declared artifact set, sharing the sorted
  * logical-path manifest fingerprint scheme review receipts record. Swarm
@@ -9510,8 +9907,13 @@ export function reviewAttemptWindow(
     let boundary =
       event.event === "WORKFLOW_STARTED" || event.event === "STAGE_JUMPED";
     if (!boundary && auditBlockField(event.block, "Stage") === stage.slug) {
+      const recoveredStageRejection =
+        event.event === "GATE_REJECTED" &&
+        artifactPerUnit &&
+        auditBlockField(event.block, "Recovered") === "true" &&
+        auditBlockField(event.block, "Unit") === null;
       boundary =
-        (event.event === "GATE_REJECTED" &&
+        (event.event === "GATE_REJECTED" && !recoveredStageRejection &&
           !(teamOwnership && auditBlockField(event.block, "Unit"))) ||
         (event.event === "STAGE_STARTED" &&
           !unitMajor &&
@@ -10218,6 +10620,32 @@ export function freshReviewReceipts(
       stageIteration = null;
       stagePending = pending;
     }
+  }
+
+  for (const bridge of allEvents) {
+    if (
+      !perUnit ||
+      bridge.event !== "ARTIFACT_REUSED" ||
+      auditBlockField(bridge.block, "Stage") !== stage.slug ||
+      auditBlockField(bridge.block, "Decision") !== "keep" ||
+      auditBlockField(bridge.block, "Recovery") !== "prior-attempt"
+    ) continue;
+    const unit = auditBlockField(bridge.block, "Unit");
+    if (!unit) continue;
+    const reuse = priorAttemptReuseEvidence(
+      projectDir,
+      stage as StageEntry,
+      unit,
+    );
+    if (!reuse.ok || !reuse.evidence) continue;
+    unitVerdicts.set(unit, "READY");
+    unitIterations.set(
+      unit,
+      Number(auditBlockField(reuse.evidence.priorReview.block, "Iteration") ?? "1"),
+    );
+    unitPending.delete(unit);
+    unitStale.delete(unit);
+    unitStaleProgress.delete(unit);
   }
 
   const sourceFreshnessApplies =
@@ -20423,6 +20851,25 @@ export function unitLifecycleSnapshot(
       receipts.delete(row.unit);
     }
   }
+  const recoveredUnits = new Set<string>();
+  if (stage !== undefined && stage.for_each === "unit-of-work") {
+    for (const row of auditRows) {
+      if (
+        row.event !== "ARTIFACT_REUSED" ||
+        auditBlockField(row.block, "Stage") !== slug ||
+        auditBlockField(row.block, "Decision") !== "keep" ||
+        auditBlockField(row.block, "Recovery") !== "prior-attempt"
+      ) continue;
+      const unit = auditBlockField(row.block, "Unit");
+      if (!unit) continue;
+      const reuse = priorAttemptReuseEvidence(projectDir, stage, unit);
+      if (reuse.ok) recoveredUnits.add(unit);
+    }
+  }
+  for (const unit of recoveredUnits) {
+    receipts.add(unit);
+    sawSerial = true;
+  }
   const latest = new Map<string, { event: string; block: string }>();
   for (const row of rows) {
     latest.set(row.unit, { event: row.event, block: row.block });
@@ -20430,7 +20877,7 @@ export function unitLifecycleSnapshot(
   let checkpoint: UnitLifecycleSnapshot["checkpoint"] = null;
   for (let i = rows.length - 1; i >= 0; i--) {
     const final = latest.get(rows[i].unit);
-    if (!final || final.event === "UNIT_COMPLETED") continue;
+    if (!final || final.event === "UNIT_COMPLETED" || recoveredUnits.has(rows[i].unit)) continue;
     checkpoint = {
       unit: rows[i].unit,
       state: final.event === "UNIT_PAUSED" ? "paused" : "in-progress",
@@ -20447,7 +20894,10 @@ export function unitLifecycleSnapshot(
   ]);
   const inUse = auditRows.some(
     (row) =>
-      unitEvents.has(row.event) &&
+      (
+        unitEvents.has(row.event) ||
+        priorAttemptReuseEvent(row)
+      ) &&
       auditBlockField(row.block, "Stage") === slug,
   );
   const mode: UnitLifecycleMode =
@@ -20494,6 +20944,20 @@ export function unitCompletedReceipts(
       done.add(row.unit);
     } else {
       done.delete(row.unit);
+    }
+  }
+  if (stage !== undefined && stage.for_each === "unit-of-work") {
+    for (const row of readAuditShardEvents(projectDir)) {
+      if (
+        row.event !== "ARTIFACT_REUSED" ||
+        auditBlockField(row.block, "Stage") !== slug ||
+        auditBlockField(row.block, "Decision") !== "keep" ||
+        auditBlockField(row.block, "Recovery") !== "prior-attempt"
+      ) continue;
+      const unit = auditBlockField(row.block, "Unit");
+      if (!unit || done.has(unit)) continue;
+      const reuse = priorAttemptReuseEvidence(projectDir, stage, unit);
+      if (reuse.ok) done.add(unit);
     }
   }
   return done;
