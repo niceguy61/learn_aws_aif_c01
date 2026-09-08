@@ -1,7 +1,19 @@
 # 📘 AWS Certified AI Practitioner (AIF-C01) 한국어 공부자료집
 
-[![AIF-C01](https://img.shields.io/badge/AWS-Certified%20AI%20Practitioner%20%28AIF--C01%29-232F3E?logo=amazonaws&logoColor=white)](https://aws.amazon.com/certification/certified-ai-practitioner/)
-[![Korean Guide](https://img.shields.io/badge/language-Korean-0A7E8C)](https://github.com/awskrug)
+<p align="center">
+  <a href="https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner">
+    <img src="./assets/aif-c01-badge.png" alt="AWS Certified AI Practitioner(AIF-C01) 배지" width="180">
+  </a>
+  <a href="https://kiro.dev/">
+    <img src="./assets/kiro.svg" alt="Kiro 아이콘" width="96">
+  </a>
+</p>
+
+<p align="center">
+  <strong>✅ AIF-C01 학습자료집</strong> · <strong>🤖 Kiro로 작업</strong>
+</p>
+
+아이콘 출처: [AWS Certified AI Practitioner 공식 배지](https://www.credly.com/org/amazon-web-services/badge/aws-certified-ai-practitioner) · [Kiro 아이콘 및 LobeHub Icons 라이선스](https://github.com/lobehub/lobe-icons) (MIT)
 
 **AWS Certified AI Practitioner(AIF-C01) 합격을 목표로 하는 입문자용 한국어 학습 자료집**입니다. AI·ML·생성형 AI의 핵심 개념을 이해하고, AWS 서비스와 사용 사례를 연결하며, 시험 시나리오에서 적절한 선택지를 판단하는 것을 목표로 합니다.
 
@@ -30,42 +42,37 @@
 
 ## 🗂️ Contents
 
-강의와 조사 내용을 정리한 원본 학습 콘텐츠는 아래 디렉터리에서 확인할 수 있습니다.
+강의와 조사 내용을 정리한 학습 콘텐츠는 아래 디렉터리에서 확인할 수 있습니다.
 
 - **[Contents 전체 보기](./Contents/)**
+- [D1 — AI 및 ML의 기초](./Contents/D1/README.md)
+- [D2 — GenAI의 기초](./Contents/D2/README.md)
+- [D3 — 파운데이션 모델의 적용](./Contents/D3/README.md)
+- [D4 — 책임 있는 AI에 대한 가이드라인](./Contents/D4/README.md)
+- [D5 — AI 솔루션의 보안, 규정 준수 및 거버넌스](./Contents/D5/README.md)
 
-`Contents/`에는 AIF-C01의 작업(Task)과 세부 주제(Part)별로 나눈 원본 Markdown 자료가 있습니다. 정리된 학습 문서는 `docs/`에서 개념 단위로 읽을 수 있습니다.
+`Contents/`에는 `D1`~`D5` 도메인, Task, Part/Intro/Ref 학습 문서가 있습니다. 각 학습 문서는 원본 `docs/Refs/` 링크와 Mermaid 복습 도식을 포함합니다. 기존 `docs/Refs` 57개 원본은 수정·삭제·이동하지 않습니다.
 
 ## 📚 학습 문서 바로가기
 
 | 순서 | 영역 | 내용 |
 |---|---|---|
-| 0 | [시작하기](./docs/00-start-here/README.md) | 대상, 학습 순서, 문서 읽는 방법, 기본 학습 루프 |
-| 1 | [D1 — AI 및 ML의 기초](./docs/01-ai-ml-foundations/README.md) | AI·ML·GenAI 관계, 데이터와 학습 유형, 사용 사례, ML 수명 주기 |
-| 2 | [D2 — GenAI의 기초](./docs/02-generative-ai/README.md) | GenAI 핵심 개념, 기능과 한계, AWS GenAI 인프라와 비용 |
-| 3 | [D3 — 파운데이션 모델의 적용](./docs/03-foundation-models/README.md) | FM 설계, 프롬프트·RAG, 사용자 지정, 성능 평가 |
-| 4 | [시험 전략과 문제은행](./docs/06-exam-strategy/README.md) | 자체 문제은행, 복습 카드, 용어 퀴즈, Anki 자료 |
-
-> 📌 현재 `docs/`에는 D1~D3와 시험 전략 문서가 정리되어 있습니다. D4(책임 있는 AI)와 D5(보안·규정 준수·거버넌스)는 공식 범위에 맞춰 계속 확장할 영역입니다.
+| 1 | [D1 — AI 및 ML의 기초](./Contents/D1/README.md) | AI·ML·딥러닝·GenAI 관계, 데이터와 학습 유형, ML 수명 주기 |
+| 2 | [D2 — GenAI의 기초](./Contents/D2/README.md) | GenAI 핵심 개념, 기능과 한계, AWS 인프라와 비용 |
+| 3 | [D3 — 파운데이션 모델의 적용](./Contents/D3/README.md) | FM 설계, 프롬프트·RAG, 사용자 지정, 성능 평가 |
+| 4 | [D4 — 책임 있는 AI에 대한 가이드라인](./Contents/D4/README.md) | 공정성, 위험 측정·완화, 투명성, 인간 검토 |
+| 5 | [D5 — AI 솔루션의 보안, 규정 준수 및 거버넌스](./Contents/D5/README.md) | IAM, 암호화, 네트워크, 감사, 거버넌스 |
 
 ### 추천 학습 순서
 
-1. [시작하기](./docs/00-start-here/README.md)에서 학습 방법과 전체 범위를 확인합니다.
-2. [D1](./docs/01-ai-ml-foundations/README.md)에서 AI·ML 기본 용어와 학습 유형을 익힙니다.
-3. [D2](./docs/02-generative-ai/README.md)에서 생성형 AI의 핵심 개념과 한계를 이해합니다.
-4. [D3](./docs/03-foundation-models/README.md)에서 파운데이션 모델 적용 방식을 비교합니다.
-5. [시험 전략과 문제은행](./docs/06-exam-strategy/README.md)으로 시나리오 판단과 복습을 반복합니다.
+1. [D1](./Contents/D1/README.md)에서 AI·ML 기본 용어와 학습 유형을 익힙니다.
+2. [D2](./Contents/D2/README.md)에서 생성형 AI의 핵심 개념과 한계를 이해합니다.
+3. [D3](./Contents/D3/README.md)에서 파운데이션 모델 적용 방식을 비교합니다.
+4. [D4](./Contents/D4/README.md)에서 책임 있는 AI와 인간 검토를 학습합니다.
+5. [D5](./Contents/D5/README.md)에서 보안·규정 준수·거버넌스 흐름을 정리합니다.
 6. 공식 시험 안내서와 AWS Skill Builder 강의에서 최신 범위와 표현을 최종 확인합니다.
 
-### 문서 읽는 방법
-
-각 도메인 문서는 다음 흐름으로 구성합니다.
-
-```text
-핵심 개념 → AWS 서비스 연결 → 비슷한 개념 비교 → 실무형 시나리오 → 시험 단서 → 확인 질문
-```
-
-문서의 `시험 핵심`과 `AWS 실무 확장`을 구분해서 읽으세요. AWS 서비스의 현재 기능을 이해하는 것과 AIF-C01 공식 출제 범위를 확인하는 것은 서로 다른 작업입니다.
+각 도메인 README에서 Task 인덱스를 선택하고, 각 문서의 이전·인덱스·다음 링크로 순서대로 학습하세요.
 
 ## 🧭 AIF-C01 공식 도메인
 
@@ -105,13 +112,14 @@
 
 ```text
 .
-├── Contents/                  # 작업·세부 주제별 원본 학습 콘텐츠
+├── Contents/
+│   ├── D1/                    # AI 및 ML의 기초
+│   ├── D2/                    # GenAI의 기초
+│   ├── D3/                    # 파운데이션 모델의 적용
+│   ├── D4/                    # 책임 있는 AI에 대한 가이드라인
+│   └── D5/                    # 보안·규정 준수·거버넌스
 ├── docs/
-│   ├── 00-start-here/         # 학습 시작 안내
-│   ├── 01-ai-ml-foundations/  # D1
-│   ├── 02-generative-ai/      # D2
-│   ├── 03-foundation-models/  # D3
-│   └── 06-exam-strategy/      # 복습·문제은행
+│   └── Refs/                  # 변경하지 않는 원본 57개
 ├── sources/                   # 공식 출처 링크와 추적 정보
 ├── plans/                     # 목차·질문·결정 사항
 └── aidlc/                     # AI-DLC 작업 상태와 산출물
