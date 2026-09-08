@@ -50,6 +50,7 @@
 - [D3 — 파운데이션 모델의 적용](./Contents/D3/README.md)
 - [D4 — 책임 있는 AI에 대한 가이드라인](./Contents/D4/README.md)
 - [D5 — AI 솔루션의 보안, 규정 준수 및 거버넌스](./Contents/D5/README.md)
+- [📖 핵심 용어집](./glossary.md)
 
 `Contents/`에는 `D1`~`D5` 도메인, Task, Part/Intro/Ref 학습 문서가 있습니다. 각 학습 문서는 원본 `docs/Refs/` 링크와 Mermaid 복습 도식을 포함합니다. 기존 `docs/Refs` 57개 원본은 수정·삭제·이동하지 않습니다.
 
