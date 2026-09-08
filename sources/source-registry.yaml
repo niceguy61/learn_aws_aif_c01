@@ -1,6 +1,6 @@
 version: 2
 project: AIF-C01 beginner guide
-last_checked: '2026-09-04'
+last_checked: '2026-09-08'
 status_values:
   - discovered
   - downloaded
@@ -747,3 +747,116 @@ sources:
     linked_quiz_ids: []
     linked_anki_ids: []
     notes: 실무 확장 자료이며 지표 세부사항은 재확인 대상.
+
+  - source_id: SRC-aws-certification-before-testing
+    url: https://aws.amazon.com/certification/policies/before-testing/
+    title: AWS Certification Before Testing
+    source_type: certification-policy
+    parent_topic: 시험 운영
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: reviewed
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-certification-before-testing]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: AWS Certification Account, Pearson VUE 예약, 온라인 감독, 취소·변경과 accommodation 사전 조정 안내를 확인했다.
+  - source_id: SRC-aws-certification-during-testing
+    url: https://aws.amazon.com/certification/policies/during-testing/
+    title: AWS Certification During Testing
+    source_type: certification-policy
+    parent_topic: 시험 운영
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: reviewed
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-certification-during-testing]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: 시험 당일 확인 절차, 신분증, 온라인 시험과 시험 센터 규칙, 시험 화면 기능을 확인했다.
+  - source_id: SRC-aws-certification-after-testing
+    url: https://aws.amazon.com/certification/policies/after-testing/
+    title: AWS Certification After Testing
+    source_type: certification-policy
+    parent_topic: 시험 채점과 결과
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: reviewed
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-certification-after-testing]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: scaled score, Foundational passing standard 700, 결과 게시와 재응시 정책을 확인했다.
+  - source_id: SRC-aws-certification-faq
+    url: https://aws.amazon.com/certification/faqs/
+    title: AWS Certification FAQs
+    source_type: certification-policy
+    parent_topic: 시험 운영
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: reviewed
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-certification-faq]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: 응시료 일반 원칙, ESL 추가 30분 accommodation, 시험 언어 선택과 정책 변경 주의사항을 확인했다.
+  - source_id: SRC-aws-certification-testing
+    url: https://aws.amazon.com/certification/certification-prep/testing/
+    title: Schedule an AWS Certification Exam
+    source_type: certification-policy
+    parent_topic: 시험 운영
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: reviewed
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-certification-testing]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: 온라인 감독 시험의 제공 방식과 감독관 언어·시간 안내를 확인했다.
+  - source_id: SRC-aif-c01-exam-guide
+    url: https://docs.aws.amazon.com/aws-certification/latest/examguides/ai-practitioner-01.html
+    title: AWS Certified AI Practitioner (AIF-C01) Exam Guide
+    source_type: certification-guide
+    parent_topic: AIF-C01 시험 안내서
+    domain_mappings: [FOUNDATION, EXAM]
+    checked_date: '2026-09-08'
+    access_status: blocked
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aif-c01-exam-guide]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: 공식 시험 안내서 URL은 확인했으나 동적 페이지 본문을 이번 도구에서 추출하지 못했다. 세부 범위·revision은 기존 blocked 상태를 유지한다.
+  - source_id: SRC-aws-skill-builder-aif-c01-overview
+    url: https://skillbuilder.aws/learn/ZWSD22MDDU/exam-prep-plan-overview-aws-certified-ai-practitioner-aifc01--/1NN2SR1536?parentId=7CBH25H7MX
+    title: AWS Skill Builder AIF-C01 Exam Prep Plan Overview
+    source_type: skill-builder
+    parent_topic: AWS Skill Builder
+    domain_mappings: [EXAM]
+    checked_date: '2026-09-08'
+    access_status: blocked
+    linked_baseline_ids: []
+    linked_sidebar_ids: [SIDE-aws-skill-builder-aif-c01-overview]
+    linked_document_ids: [guide.md]
+    linked_question_ids: []
+    linked_card_ids: []
+    linked_quiz_ids: []
+    linked_anki_ids: []
+    notes: 사용자가 제공한 링크다. 동적 콘텐츠로 본문 자동 추출이 되지 않아 링크와 접근 실패 사실만 기록한다.
