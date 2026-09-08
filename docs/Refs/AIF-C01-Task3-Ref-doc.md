@@ -1,0 +1,13 @@
+# Task 3 Ref Doc
+- https://aws.amazon.com/what-is/foundation-models/
+- https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html
+- https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
+- https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html
+- https://aws.amazon.com/ko/blogs/big-data/amazon-opensearch-services-vector-database-capabilities-explained/
+- https://aws.amazon.com/ko/blogs/database/the-role-of-vector-datastores-in-generative-ai-applications/
+- https://aws.amazon.com/opensearch-service/serverless-vector-engine/
+- https://aws.amazon.com/what-is/prompt-engineering/
+- https://aws.amazon.com/ko/blogs/machine-learning/domain-adaptation-fine-tuning-of-foundation-models-in-amazon-sagemaker-jumpstart-on-financial-data/
+- https://huggingface.co/spaces/evaluate-metric/bleu
+- https://huggingface.co/spaces/evaluate-metric/rouge
+- https://huggingface.co/papers/2404.03592
