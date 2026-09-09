@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+  <title id="title">생성형 AI 태스크와 입력·출력 모달리티 지도</title>
+  <desc id="desc">텍스트, 이미지, 오디오, 코드 등 입력 또는 출력 모달리티와 생성, 요약, 질의응답, 변환 등의 태스크를 연결한 학습용 개념도이다.</desc>
+  <rect width="960" height="500" rx="18" fill="#0F172A"/>
+  <text x="480" y="42" fill="#F8FAFC" font-size="23" font-weight="700" text-anchor="middle" font-family="sans-serif">생성형 AI: 태스크와 모달리티 지도</text>
+  <text x="480" y="66" fill="#94A3B8" font-size="13" text-anchor="middle" font-family="sans-serif">모델의 지원 입력·출력과 품질은 서비스·모델·리전별로 다르므로 공식 문서에서 확인합니다.</text>
+  <g font-family="sans-serif"><rect x="350" y="205" width="260" height="90" rx="18" fill="#7C2D12" stroke="#FB923C" stroke-width="3"/><text x="480" y="244" fill="#FFEDD5" font-size="22" font-weight="700" text-anchor="middle">생성형 AI</text><text x="480" y="270" fill="#FED7AA" font-size="13" text-anchor="middle">지시와 문맥을 바탕으로 결과 생성</text></g>
+  <g font-family="sans-serif" text-anchor="middle">
+    <g><rect x="55" y="110" width="205" height="105" rx="14" fill="#172554" stroke="#60A5FA" stroke-width="2"/><text x="157" y="146" fill="#BFDBFE" font-size="18" font-weight="700">텍스트</text><text x="157" y="174" fill="#E2E8F0" font-size="13">생성 · 요약 · 번역</text><text x="157" y="195" fill="#E2E8F0" font-size="13">질의응답 · 분류</text></g>
+    <g><rect x="55" y="300" width="205" height="105" rx="14" fill="#064E3B" stroke="#34D399" stroke-width="2"/><text x="157" y="336" fill="#A7F3D0" font-size="18" font-weight="700">이미지·영상</text><text x="157" y="364" fill="#E2E8F0" font-size="13">생성 · 편집 · 설명</text><text x="157" y="385" fill="#E2E8F0" font-size="13">시각 자료 이해</text></g>
+    <g><rect x="700" y="110" width="205" height="105" rx="14" fill="#581C87" stroke="#C084FC" stroke-width="2"/><text x="802" y="146" fill="#E9D5FF" font-size="18" font-weight="700">오디오</text><text x="802" y="174" fill="#E2E8F0" font-size="13">음성·음악 생성</text><text x="802" y="195" fill="#E2E8F0" font-size="13">전사·요약 보조</text></g>
+    <g><rect x="700" y="300" width="205" height="105" rx="14" fill="#78350F" stroke="#FCD34D" stroke-width="2"/><text x="802" y="336" fill="#FEF3C7" font-size="18" font-weight="700">코드·도구</text><text x="802" y="364" fill="#E2E8F0" font-size="13">코드 생성 · 설명</text><text x="802" y="385" fill="#E2E8F0" font-size="13">검토 · 자동화 보조</text></g>
+  </g>
+  <g stroke="#64748B" stroke-width="3" fill="none"><path d="M260 165L350 230"/><path d="M260 350L350 270"/><path d="M610 230L700 165"/><path d="M610 270L700 350"/></g>
+  <text x="480" y="455" fill="#CBD5E1" font-size="14" text-anchor="middle" font-family="sans-serif">시험 단서: 원하는 결과물, 입력 형태, 최신성·안전성·비용 제약을 함께 확인합니다.</text>
+</svg>

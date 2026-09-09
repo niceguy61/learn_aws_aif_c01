@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%" role="img" aria-labelledby="d1-ai-ml-dl-genai-title d1-ai-ml-dl-genai-desc">
+  <title id="d1-ai-ml-dl-genai-title">AI, 머신 러닝, 딥 러닝, 생성형 AI의 포함 관계</title>
+  <desc id="d1-ai-ml-dl-genai-desc">AI 안에 머신 러닝과 딥 러닝이 포함되고, 생성형 AI가 딥 러닝을 활용하는 관계를 설명하는 교육용 그림입니다.</desc>
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>

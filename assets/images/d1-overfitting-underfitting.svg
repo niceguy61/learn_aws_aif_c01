@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%" role="img" aria-labelledby="d1-overfitting-underfitting-title d1-overfitting-underfitting-desc">
+  <title id="d1-overfitting-underfitting-title">과소적합, 적절한 적합, 과대적합 비교</title>
+  <desc id="d1-overfitting-underfitting-desc">모델 복잡도에 따라 훈련 오차와 검증 오차가 달라지는 개념을 통해 과소적합과 과대적합의 차이를 설명하는 교육용 그래프입니다.</desc>
   <defs>
     <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>

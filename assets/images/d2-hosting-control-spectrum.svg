@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" role="img" aria-labelledby="title desc">
+  <title id="title">생성형 AI 운영 방식 선택 스펙트럼</title>
+  <desc id="desc">관리형 API, 관리형 모델 배포, 자체 호스팅을 운영 책임과 제어 수준의 절충으로 비교하는 개념도이다. 실제 가격이나 성능을 표현하지 않는다.</desc>
+  <rect width="960" height="430" rx="18" fill="#0F172A"/>
+  <text x="480" y="42" fill="#F8FAFC" font-size="23" font-weight="700" text-anchor="middle" font-family="sans-serif">생성형 AI 운영 방식: 제어와 운영 부담의 절충</text>
+  <text x="480" y="66" fill="#94A3B8" font-size="13" text-anchor="middle" font-family="sans-serif">개념 비교 — 실제 가격·성능·지원 기능은 선택한 서비스와 구성에 따라 달라집니다.</text>
+  <line x1="110" y1="330" x2="850" y2="330" stroke="#94A3B8" stroke-width="3"/>
+  <path d="M850 330l-14-8v16z" fill="#94A3B8"/><text x="480" y="372" fill="#CBD5E1" font-size="14" text-anchor="middle" font-family="sans-serif">운영 제어와 운영 책임 증가 →</text>
+  <g font-family="sans-serif" text-anchor="middle">
+    <g transform="translate(100 145)"><rect width="210" height="140" rx="16" fill="#172554" stroke="#60A5FA" stroke-width="2"/><text x="105" y="38" fill="#BFDBFE" font-size="19" font-weight="700">관리형 모델 API</text><text x="105" y="70" fill="#E2E8F0" font-size="13">빠른 실험과 통합</text><text x="105" y="96" fill="#94A3B8" font-size="12">인프라 운영 부담 감소</text><text x="105" y="117" fill="#94A3B8" font-size="12">사용량·한도·보안 구성 확인</text></g>
+    <g transform="translate(375 120)"><rect width="210" height="165" rx="16" fill="#064E3B" stroke="#34D399" stroke-width="2"/><text x="105" y="38" fill="#A7F3D0" font-size="19" font-weight="700">관리형 모델 배포</text><text x="105" y="70" fill="#E2E8F0" font-size="13">모델·엔드포인트 선택</text><text x="105" y="96" fill="#94A3B8" font-size="12">일부 사용자 지정과 운영</text><text x="105" y="117" fill="#94A3B8" font-size="12">용량·관찰·비용 관리</text><text x="105" y="140" fill="#94A3B8" font-size="12">필요</text></g>
+    <g transform="translate(650 95)"><rect width="210" height="190" rx="16" fill="#78350F" stroke="#FCD34D" stroke-width="2"/><text x="105" y="38" fill="#FEF3C7" font-size="19" font-weight="700">자체 호스팅</text><text x="105" y="70" fill="#E2E8F0" font-size="13">가장 큰 구성 자유도</text><text x="105" y="96" fill="#94A3B8" font-size="12">모델·인프라·패치</text><text x="105" y="117" fill="#94A3B8" font-size="12">확장·보안·관측을</text><text x="105" y="138" fill="#94A3B8" font-size="12">직접 책임</text></g>
+  </g>
+</svg>

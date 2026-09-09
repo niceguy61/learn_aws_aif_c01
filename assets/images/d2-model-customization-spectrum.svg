@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="100%" height="100%" role="img" aria-labelledby="d2-model-customization-spectrum-title d2-model-customization-spectrum-desc">
+  <title id="d2-model-customization-spectrum-title">파운데이션 모델 맞춤화 선택 스펙트럼</title>
+  <desc id="d2-model-customization-spectrum-desc">프롬프트, 검색 증강 생성, 미세 조정 등 맞춤화 접근법을 비용, 시간, 데이터 요구량의 절충 관점에서 비교하는 교육용 그림입니다.</desc>
   <defs>
     <linearGradient id="specBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0B1120"/>

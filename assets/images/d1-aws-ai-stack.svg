@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%" role="img" aria-labelledby="d1-aws-ai-stack-title d1-aws-ai-stack-desc">
+  <title id="d1-aws-ai-stack-title">AWS AI와 머신 러닝 서비스 선택 수준</title>
+  <desc id="d1-aws-ai-stack-desc">사전 구축 AI 서비스, 관리형 머신 러닝 도구, 인프라 기반 선택지를 비교하는 교육용 계층 그림입니다.</desc>
   <defs>
     <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>

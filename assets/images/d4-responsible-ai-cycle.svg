@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" role="img" aria-labelledby="title desc">
+  <title id="title">책임 있는 AI의 반복 검토 주기</title>
+  <desc id="desc">대표성 있는 데이터 검토, 모델과 위험 선택, 출력 보호와 인간 검토, 운영 모니터링, 개선을 순환하는 책임 있는 AI 학습용 개념도이다.</desc>
+  <rect width="960" height="460" rx="18" fill="#0F172A"/>
+  <text x="480" y="42" fill="#F8FAFC" font-size="23" font-weight="700" text-anchor="middle" font-family="sans-serif">책임 있는 AI: 설계부터 운영까지의 반복 검토</text>
+  <text x="480" y="66" fill="#94A3B8" font-size="13" text-anchor="middle" font-family="sans-serif">특정 도구가 아닌, 데이터·모델·사용자 영향과 책임을 함께 점검하는 프레임워크입니다.</text>
+  <g font-family="sans-serif" text-anchor="middle"><g stroke-width="3"><circle cx="245" cy="180" r="76" fill="#172554" stroke="#60A5FA"/><circle cx="480" cy="130" r="76" fill="#064E3B" stroke="#34D399"/><circle cx="715" cy="180" r="76" fill="#78350F" stroke="#FCD34D"/><circle cx="650" cy="350" r="76" fill="#581C87" stroke="#C084FC"/><circle cx="310" cy="350" r="76" fill="#7F1D1D" stroke="#F87171"/></g><g fill="#F8FAFC" font-size="16" font-weight="700"><text x="245" y="175">데이터 검토</text><text x="480" y="125">요구 사항·모델</text><text x="715" y="175">출력 보호</text><text x="650" y="345">운영 모니터링</text><text x="310" y="345">영향·개선</text></g><g fill="#CBD5E1" font-size="11"><text x="245" y="198">대표성·품질·동의</text><text x="480" y="148">목적·위험·제약</text><text x="715" y="198">안전·인간 검토</text><text x="650" y="368">드리프트·피드백</text><text x="310" y="368">완화·기록·재검토</text></g></g>
+  <path d="M310 155L390 135M550 135L640 155M750 245L705 300M560 375L405 375M260 300L215 245" stroke="#94A3B8" stroke-width="4" fill="none"/>
+</svg>

@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="100%" role="img" aria-labelledby="d2-rlhf-hhh-alignment-title d2-rlhf-hhh-alignment-desc">
+  <title id="d2-rlhf-hhh-alignment-title">인간 피드백 기반 강화 학습과 정렬</title>
+  <desc id="d2-rlhf-hhh-alignment-desc">사람의 선호도 평가를 바탕으로 모델 응답을 개선하는 RLHF와 유용성, 정직성, 무해성의 정렬 개념을 설명하는 교육용 그림입니다.</desc>
   <defs>
     <linearGradient id="rlhfBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0B1120"/>

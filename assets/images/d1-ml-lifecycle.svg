@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%" role="img" aria-labelledby="d1-ml-lifecycle-title d1-ml-lifecycle-desc">
+  <title id="d1-ml-lifecycle-title">머신 러닝 수명 주기</title>
+  <desc id="d1-ml-lifecycle-desc">문제 정의부터 데이터 준비, 훈련, 평가, 배포와 모니터링으로 이어지는 반복적 머신 러닝 과정을 보여 주는 교육용 그림입니다.</desc>
   <defs>
     <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>

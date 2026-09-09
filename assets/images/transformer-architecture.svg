@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" width="100%" height="100%" role="img" aria-labelledby="transformer-architecture-title transformer-architecture-desc">
+  <title id="transformer-architecture-title">트랜스포머 아키텍처 개념도</title>
+  <desc id="transformer-architecture-desc">입력 임베딩, 인코더, 셀프 어텐션, 디코더와 출력이 연결되는 트랜스포머의 높은 수준 구조를 보여 주는 교육용 그림입니다.</desc>
   <defs>
     <linearGradient id="tfBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>

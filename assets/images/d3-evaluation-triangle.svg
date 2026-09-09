@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" role="img" aria-labelledby="title desc">
+  <title id="title">파운데이션 모델 평가의 세 가지 관점</title>
+  <desc id="desc">파운데이션 모델 평가에서 자동 지표, 인간 평가, 업무 성과를 함께 검토하고 결과로 모델·프롬프트·검색 구성을 개선하는 과정을 보여 주는 개념도이다.</desc>
+  <rect width="960" height="470" rx="18" fill="#0F172A"/>
+  <text x="480" y="42" fill="#F8FAFC" font-size="23" font-weight="700" text-anchor="middle" font-family="sans-serif">FM 평가: 자동 지표 · 인간 검토 · 업무 성과</text>
+  <text x="480" y="66" fill="#94A3B8" font-size="13" text-anchor="middle" font-family="sans-serif">한 지표만으로 품질을 확정하지 않고, 사용 사례에 맞는 기준을 함께 사용합니다.</text>
+  <g font-family="sans-serif" text-anchor="middle"><path d="M480 115L205 355H755Z" fill="#1E293B" stroke="#64748B" stroke-width="2"/><circle cx="480" cy="145" r="78" fill="#172554" stroke="#60A5FA" stroke-width="3"/><text x="480" y="139" fill="#BFDBFE" font-size="18" font-weight="700">자동 지표</text><text x="480" y="164" fill="#E2E8F0" font-size="13">태스크별 정량 비교</text><circle cx="245" cy="345" r="78" fill="#064E3B" stroke="#34D399" stroke-width="3"/><text x="245" y="339" fill="#A7F3D0" font-size="18" font-weight="700">인간 평가</text><text x="245" y="364" fill="#E2E8F0" font-size="13">유용성·안전성·선호</text><circle cx="715" cy="345" r="78" fill="#78350F" stroke="#FCD34D" stroke-width="3"/><text x="715" y="339" fill="#FEF3C7" font-size="18" font-weight="700">업무 성과</text><text x="715" y="364" fill="#E2E8F0" font-size="13">KPI·비용·지연 시간</text><rect x="390" y="260" width="180" height="62" rx="14" fill="#581C87" stroke="#C084FC" stroke-width="2"/><text x="480" y="286" fill="#E9D5FF" font-size="16" font-weight="700">배포 판단</text><text x="480" y="308" fill="#E2E8F0" font-size="12">기준 충족 여부와 개선</text></g>
+  <text x="480" y="430" fill="#CBD5E1" font-size="13" text-anchor="middle" font-family="sans-serif">결과는 모델·프롬프트·검색 데이터·사용자 지정 방식의 다음 실험으로 연결됩니다.</text>
+</svg>
