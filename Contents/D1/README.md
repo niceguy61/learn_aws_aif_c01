@@ -8,6 +8,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # D1 — AI 및 ML의 기초
 
 - 공식 도메인: [AI 및 ML의 기초](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html)

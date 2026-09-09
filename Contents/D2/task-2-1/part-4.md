@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.1 Part 4 - 생성형 태스크와 사용 사례
 
 > LLM은 미세 조정 없이 다양한 문제 영역/태스크 적용 가능한 생성형 AI 유형

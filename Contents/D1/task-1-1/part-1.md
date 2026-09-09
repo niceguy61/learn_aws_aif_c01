@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.1 Part 1 - 기본 AI 개념과 용어
 
 > 기본 AI 개념과 용어를 설명하는 영역 1의 첫 번째 태스크 목표. 5개 강의 중 1번째.

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.4 Part 2 - 애플리케이션 통합/RAG 오래된 지식 해결/스택 구성/비즈니스 목표 (3.4 마무리)
 
 > 모델 애플리케이션 통합 두 번째 질문 세트, 2개 강의 중 2번째

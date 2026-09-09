@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.3 Part 1 - ML 파이프라인/수명 주기와 비즈니스 목표
 
 > 영역 1 세 번째 태스크 목표: ML 개발 수명 주기 설명. 7개 강의 중 1번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.2 Part 1 - 프롬프트 엔지니어링 기법 선택 / 개념/구조
 
 > 효과적인 프롬프트 엔지니어링 기법 선택, 2개 강의 중 1번째

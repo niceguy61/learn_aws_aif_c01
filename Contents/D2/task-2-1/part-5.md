@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.1 Part 5 - 생성형 AI 프로젝트/파운데이션 모델 수명 주기 (2.1 마무리)
 
 > 프로젝트 구상부터 시작까지 매핑하는 프레임워크, 시험 가이드 공식 수명 주기

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.1 Part 2 - 편향/가용성·호환성/사용자 지정/해석·설명 가능성
 
 > FM 애플리케이션 설계 고려 사항 계속, 4개 강의 중 2번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.2 Part 2 - 투명성·설명 가능성 목표 충족 도구 / 오픈 소스·서비스 카드·Model Cards·Shapley·PDP·인간 중심·A2I·RLHF (4.2 마무리)
 
 > 투명성·설명 가능성 목표 충족 모델 선택 도움 도구, 2개 강의 중 2번째

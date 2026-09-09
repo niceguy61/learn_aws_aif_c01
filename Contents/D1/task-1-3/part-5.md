@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.3 Part 5 - 모델 모니터링, MLOps, SageMaker Pipelines
 
 > 파이프라인 마지막 단계: 모니터링 + 자동화

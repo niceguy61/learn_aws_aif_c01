@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.3 Part 1 - FM 훈련/미세 조정 프로세스 / PEFT·LoRA·RLHF
 
 > FM 훈련 및 미세 조정 프로세스 설명, 2개 강의 중 1번째

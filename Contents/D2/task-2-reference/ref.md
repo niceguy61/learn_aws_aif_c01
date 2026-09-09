@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # Task 2 Ref Doc
 - https://aws.amazon.com/ko/blogs/startups/selecting-the-right-foundation-model-for-your-startup/
 - https://www.xenonstack.com/insights/generative-adversarial-networks

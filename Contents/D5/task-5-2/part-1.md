@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 1 - 거버넌스·규정 준수 규제 인식 / 규정 준수 표준·감사·공동 책임·Artifact·SOC 2·ISO 27001·고객 규정 준수 센터
 
 > AI 시스템 거버넌스/규정 준수 규제, 6개 강의 중 1번째

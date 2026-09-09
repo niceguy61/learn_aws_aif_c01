@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.1 Part 1 - FM 애플리케이션 설계 고려 사항 / 모델 선택 기준
 
 > FM 사용 애플리케이션 설계 고려 사항 이해, 4개 강의 중 1번째

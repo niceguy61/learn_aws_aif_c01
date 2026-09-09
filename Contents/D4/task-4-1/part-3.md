@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.1 Part 3 - 생성형 AI 과제/위험/할루시네이션/저작권/편향/유해/개인정보/Bedrock 가드레일/Clarify 평가 5차원 (4.1 마무리)
 
 > 생성형 AI 사용 과제/위험, 3개 강의 중 3번째

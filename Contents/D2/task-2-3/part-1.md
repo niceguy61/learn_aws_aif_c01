@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.3 Part 1 - 생성형 AI 애플리케이션 위한 AWS 인프라/기술
 
 > AWS 생성형 AI 서비스로 애플리케이션 빌드 장점, 2개 강의 중 1번째

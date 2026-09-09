@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.0 Overview - 영역 5 : AI 솔루션 보안/규정 준수/거버넌스
 
 > 보안/규정 준수/거버넌스, 2개 태스크 목표

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.1 Part 3 - ID 페더레이션·IAM Identity Center·CloudTrail·S3 퍼블릭 액세스 차단·SageMaker Role Manager 3페르소나
 
 > AI 시스템 보호, 6개 강의 중 3번째

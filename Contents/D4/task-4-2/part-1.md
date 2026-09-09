@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.2 Part 1 - 투명·설명 가능한 모델 중요도 / 투명성 vs 해석 vs 설명 / 절충 관계
 
 > 투명/설명 가능한 모델 중요도 인식, 2개 강의 중 1번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.3 Part 2 - 훈련 데이터 수집/처리
 
 > 파이프라인 다음 단계: 데이터 식별, 수집, 준비, 분할, 특성 결정

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.2 Part 1 - 생성형 AI 기능/제한 - 범용 기술과 장점
 
 > 비즈니스 문제 해결 위한 생성형 AI 기능/제한, 3개 강의 중 1번째

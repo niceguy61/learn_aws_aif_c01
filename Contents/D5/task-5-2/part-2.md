@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 2 - ISO 42001·23894 / EU AI Act 3위험 범주 금지·고위험·규제 없음 / GDPR 글로벌 표준 / NIST RMF 4기능 / 위험 행렬 가능성×심각도 / 잔존 위험 / Algorithmic Accountability Act / 설명 가능성 모델 독립 vs 해석 가능
 
 > AI 거버넌스/규정 준수 규제, 6개 강의 중 2번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.1 Part 3 - 모델 크기 확장/사전 훈련/유니모달-멀티모달/확산 모델
 
 > 모델 클수록 추가 학습 없이 작동 가능성 ↑, 파운데이션 모델 수명 주기 심화

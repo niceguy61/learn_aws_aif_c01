@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.2 Part 2 - 미세 조정/환각/HHH/해석 가능성/평가 지표
 
 > 생성형 AI 프로젝트 수명 주기 재방문, LLM 애플리케이션 사용법

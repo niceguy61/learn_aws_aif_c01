@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.1 Part 2 - 토크나이저/벡터/임베딩/트랜스포머 핵심
 
 > 생성형 AI 기본 개념, AI 프로젝트 시작/데이터 선택, JumpStart는 2.3에서 자세히

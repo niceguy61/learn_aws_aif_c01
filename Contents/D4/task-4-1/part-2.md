@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.1 Part 2 - 편향·신뢰성·진실성 측정/모니터링 AWS 서비스 / SageMaker Clarify / 지표
 
 > 편향/신뢰성/진실성 측정 모니터링 AWS 서비스/기능, 3개 강의 중 2번째

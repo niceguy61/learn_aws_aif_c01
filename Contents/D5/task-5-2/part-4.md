@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 4 - 데이터 거버넌스 정의·3부분 큐레이션·발견·이해·보호 / 역할 소유자·담당자·IT / 프로파일링·카탈로그·계보 / Glue DataBrew
 
 > 거버넌스/규정 준수 규제, 6개 강의 중 4번째

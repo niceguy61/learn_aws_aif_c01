@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3 Intro - 영역 3 개요 / 파운데이션 모델 적용 (4개 태스크 목표)
 
 > 파운데이션 모델 계속 설명, 영역 2에서는 FM/수명 주기 설명

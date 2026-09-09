@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.4 Part 1 - FM 성능 평가 / 배포 고려 / 지표 / 벤치마크
 
 > FM 성능 평가 방법 설명, 2개 강의 중 1번째

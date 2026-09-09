@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.1 Part 4 - RAG 2요소/벡터 DB 활용/임베딩 저장 AWS 서비스/에이전트 (3.1 마무리)
 
 > RAG 지식 기반 검색, 4개 강의 중 4번째

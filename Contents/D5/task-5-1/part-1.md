@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.1 Part 1 - AI 시스템 보호 / 공동 책임 모델 / 클라우드 자체 vs 클라우드 내 / IAM / 루트 / MFA / IAM 사용자
 
 > AI 시스템 보호 방법, 6개 강의 중 1번째

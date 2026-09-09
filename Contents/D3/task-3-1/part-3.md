@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.1 Part 3 - 추론 파라미터/프롬프트/RAG/벡터 DB
 
 > 무작위성/다양성/길이 등 추론 파라미터가 응답 미치는 영향, 4개 강의 중 3번째

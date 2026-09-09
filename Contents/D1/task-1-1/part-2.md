@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.1 Part 2 - 기계 학습과 데이터 유형
 
 > 태스크 1.1 계속, 특정 유형인 기계 학습에 집중

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 6 - AI 거버넌스 전략 구현 단계 / 책임 범위 식별·5범위 매트릭스·솔루션 찾기 왼쪽→오른쪽 Comprehend·Translate→Bedrock RAG→JumpStart 미세 조정 / 정책 문서화·교육·모니터링 메커니즘·검토 수정 (5.2 마무리)
 
 > 거버넌스/규정 준수 규제, 6개 강의 중 6번째 (마무리)

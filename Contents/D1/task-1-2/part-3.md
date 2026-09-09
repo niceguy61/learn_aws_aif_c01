@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.2 Part 3 - 사전 훈련된 AWS AI 서비스
 
 > 대부분의 일반적인 사용 사례에서는 자체 사용자 지정 모델 구축/훈련 불필요. AWS API로 접근 가능한 사전 훈련된 서비스 먼저 조사해야 함

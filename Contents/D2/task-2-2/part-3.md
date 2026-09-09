@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 2.2 Part 3 - 모델 선택 요소/비즈니스 지표/KPI (2.2 마무리)
 
 > 적절한 생성형 AI 모델 선택 고려 요소: 모델 유형/성능 요구 사항/기능/제약/규정 준수

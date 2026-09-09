@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.2 Part 2 - ML 문제 유형 파악 방법
 
 > 다양한 ML 문제 유형과 이를 파악하는 방법

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.2 Part 1 - AI를 고려해야 하는 경우 vs 아닌 경우
 
 > 영역 1 두 번째 태스크 목표: AI의 실제 사용 사례 파악. 5개 강의 중 1번째

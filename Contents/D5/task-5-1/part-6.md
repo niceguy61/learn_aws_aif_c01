@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.1 Part 6 - 아티팩트 추적·버전 관리·재생성 / CodeCommit·S3 접두사·ECR·훈련 작업 ID·Model Registry·Model Cards·계보 추적·Feature Store·Model Dashboard (5.1 마무리)
 
 > AI 시스템 보호, 6개 강의 중 6번째 (마무리)

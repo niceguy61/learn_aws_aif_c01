@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.1 Part 4 - 암호화 저장 시·전송 중·클라이언트 vs 서버 측·기본 암호화·KMS·TLS·분산 훈련 노드 간 암호화·Macie·VPC·PrivateLink
 
 > AI 시스템 보호, 6개 강의 중 4번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 3 - AWS 규정 준수 달성 서비스 / Audit Manager 증거 수집·프레임워크 / Bedrock Guardrails 유해 필터·주제 차단·PII 탐지 / Config·적합성 팩·Inspector·Trusted Advisor
 
 > 거버넌스/규정 준수 규제, 6개 강의 중 3번째

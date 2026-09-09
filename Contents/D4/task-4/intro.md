@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.0 Overview - 영역 4 : 책임감 있는 AI 가이드라인
 
 > 윤리/공정/투명/설명 가능, 2개 태스크 목표

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 4.1 Part 1 - 윤리적·공정한 AI 시스템 개발 / 책임감 있는 AI 차원/편향/데이터세트/모델 선택
 
 > 책임감 있는 AI 무엇이고 핵심 차원, 3개 강의 중 1번째

@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # Task 3 Ref Doc
 - https://aws.amazon.com/what-is/foundation-models/
 - https://docs.aws.amazon.com/bedrock/latest/userguide/inference-parameters.html

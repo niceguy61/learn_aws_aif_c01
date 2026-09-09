@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 5.2 Part 5 - 데이터 품질 관리·통합·기본 데이터 관리·Glue Data Catalog·Glue Data Quality·보안·규정 준수·수명 주기 관리·Lake Formation·S3 스토리지 등급·수명 주기 규칙
 
 > 거버넌스/규정 준수 규제, 6개 강의 중 5번째

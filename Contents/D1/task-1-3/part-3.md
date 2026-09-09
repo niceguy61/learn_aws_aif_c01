@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.3 Part 3 - 모델 훈련/조정/평가
 
 > 파이프라인 다음 단계: 훈련, 조정, 평가의 반복 프로세스

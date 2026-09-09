@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 3.2 Part 2 - 잠재 공간과 프롬프팅/할루시네이션/프롬프트 엔지니어링 기법/위험 (3.2 마무리)
 
 > 잠재 공간이 프롬프팅에서 LM 유도 관련, 2개 강의 중 2번째

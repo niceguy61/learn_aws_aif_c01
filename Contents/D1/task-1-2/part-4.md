@@ -9,6 +9,9 @@ source_urls:
 source_checked: '2026-09-04'
 ---
 
+<!-- metadata-badges -->
+<p><kbd>도메인 D1</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+
 # AIF-C01 Task 1.2 Part 4 - 사전 훈련된 AWS AI 서비스 (2) + SageMaker
 
 > Polly, Kendra, Personalize, Translate, Forecast, Fraud Detector, Bedrock, SageMaker
