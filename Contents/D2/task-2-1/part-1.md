@@ -38,6 +38,20 @@ source_checked: '2026-09-04'
 - 생성형 AI 여러 콘텐츠 태스크/사용 사례 사용 가능
 - 대규모 언어 모델 자연어/인간 작성 지시 받아 인간 수행처럼 태스크 수행 가능
 
+![트랜스포머 아키텍처 다이어그램](../../../assets/images/transformer-architecture.svg)
+
+```mermaid
+flowchart LR
+  subgraph TransformerFlow["트랜스포머 Self-Attention 동작 원리"]
+    direction TB
+    Input["입력 텍스트<br/>'AI 실무 자격증'"] --> Token["토크나이저 & 임베딩<br/>[토큰화 + 고차원 벡터 변환]"]
+    Token --> Pos["위치 인코딩 (Positional Encoding)<br/>단어 순서 정보 병렬 주입"]
+    Pos --> MHA["멀티 헤드 어텐션 (Multi-Head Attention)<br/>단어 간 의미적 연관도 동시 계산"]
+    MHA --> FFN["피드포워드 신경망 (FFN)<br/>특징 표현 추출"]
+    FFN --> Output["소프트맥스 (Softmax)<br/>다음 최적 확률 토큰 예측"]
+  end
+```
+
 ## 4. 시험 필수 개념 용어
 
 - **프롬프트 / 추론 / 완성(Completion) / 컨텍스트 창 / 토큰 / LLM 어휘 / 토크나이저 / 프롬프트 엔지니어링** 등 이해 필요

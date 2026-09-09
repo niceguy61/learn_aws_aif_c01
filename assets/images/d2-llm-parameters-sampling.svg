@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="paramBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="coldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="hotGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+    <linearGradient id="toppGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="940" height="560" rx="16" fill="url(#paramBg)"/>
+
+  <!-- Title -->
+  <text x="470" y="38" fill="#F8FAFC" font-size="22" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    LLM 추론 하이퍼파라미터: 온도(Temperature) &amp; Top-P / Top-K 샘플링
+  </text>
+  <text x="470" y="60" fill="#94A3B8" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    다음 토큰 예측 확률 분포(Softmax)를 조정하여 답변의 결정론적 정확성 vs 창의적 다양성을 제어하는 원리
+  </text>
+
+  <!-- Left: Temperature Comparison (Width: 440) -->
+  <g transform="translate(35, 85)">
+    <rect width="425" height="420" rx="12" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+    <rect width="425" height="38" rx="12" fill="#334155"/>
+    <rect y="26" width="425" height="12" fill="#334155"/>
+    <text x="212" y="25" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">
+      1. 온도 (Temperature): 확률 분포의 뾰족함 조정
+    </text>
+
+    <!-- Low Temp Box -->
+    <g transform="translate(20, 50)">
+      <rect width="385" height="165" rx="8" fill="#0F172A" stroke="#3B82F6"/>
+      <text x="15" y="24" fill="#60A5FA" font-size="13" font-weight="bold" font-family="sans-serif">❄️ 낮은 온도 (Temperature = 0.0 ~ 0.2)</text>
+      <text x="15" y="42" fill="#94A3B8" font-size="11" font-family="sans-serif">확률 분포가 최고 확률 토큰에 극단적으로 집중됨 (결정론적 성향)</text>
+
+      <!-- Low Temp Bar Chart -->
+      <g transform="translate(20, 55)">
+        <!-- Bar 1 (Dominant) -->
+        <rect x="0" y="20" width="130" height="22" rx="4" fill="url(#coldGrad)"/>
+        <text x="140" y="36" fill="#60A5FA" font-size="11" font-weight="bold" font-family="sans-serif">"AWS" (85%)</text>
+        <!-- Bar 2 -->
+        <rect x="0" y="48" width="20" height="20" rx="4" fill="#1E3A8A"/>
+        <text x="30" y="63" fill="#94A3B8" font-size="10" font-family="sans-serif">"클라우드" (10%)</text>
+        <!-- Bar 3 -->
+        <rect x="0" y="74" width="8" height="20" rx="4" fill="#1E3A8A"/>
+        <text x="18" y="89" fill="#64748B" font-size="10" font-family="sans-serif">"서버" (5%)</text>
+      </g>
+
+      <rect x="230" y="65" width="140" height="75" rx="6" fill="#1E293B"/>
+      <text x="300" y="85" fill="#34D399" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">추천 사용처:</text>
+      <text x="300" y="103" fill="#E2E8F0" font-size="10" text-anchor="middle" font-family="sans-serif">• 코딩, SQL 생성</text>
+      <text x="300" y="119" fill="#E2E8F0" font-size="10" text-anchor="middle" font-family="sans-serif">• 수리 계산, 사실 Q&amp;A</text>
+      <text x="300" y="134" fill="#FBBF24" font-size="9.5" text-anchor="middle" font-family="sans-serif">할루시네이션 최소화</text>
+    </g>
+
+    <!-- High Temp Box -->
+    <g transform="translate(20, 230)">
+      <rect width="385" height="165" rx="8" fill="#0F172A" stroke="#EF4444"/>
+      <text x="15" y="24" fill="#F87171" font-size="13" font-weight="bold" font-family="sans-serif">🔥 높은 온도 (Temperature = 0.8 ~ 1.2)</text>
+      <text x="15" y="42" fill="#94A3B8" font-size="11" font-family="sans-serif">확률 분포가 평평해져(Flattened) 순위 낮은 토큰도 선택 가능</text>
+
+      <!-- High Temp Bar Chart -->
+      <g transform="translate(20, 55)">
+        <!-- Bar 1 -->
+        <rect x="0" y="20" width="55" height="22" rx="4" fill="url(#hotGrad)"/>
+        <text x="65" y="36" fill="#FCA5A5" font-size="10" font-family="sans-serif">"AWS" (35%)</text>
+        <!-- Bar 2 -->
+        <rect x="0" y="48" width="45" height="20" rx="4" fill="#991B1B"/>
+        <text x="55" y="63" fill="#FCA5A5" font-size="10" font-family="sans-serif">"하늘" (28%)</text>
+        <!-- Bar 3 -->
+        <rect x="0" y="74" width="35" height="20" rx="4" fill="#991B1B"/>
+        <text x="45" y="89" fill="#FCA5A5" font-size="10" font-family="sans-serif">"미래" (22%)</text>
+      </g>
+
+      <rect x="230" y="65" width="140" height="75" rx="6" fill="#1E293B"/>
+      <text x="300" y="85" fill="#F87171" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">추천 사용처:</text>
+      <text x="300" y="103" fill="#E2E8F0" font-size="10" text-anchor="middle" font-family="sans-serif">• 창의적 소설, 시 작문</text>
+      <text x="300" y="119" fill="#E2E8F0" font-size="10" text-anchor="middle" font-family="sans-serif">• 브레인스토밍 아이디어</text>
+      <text x="300" y="134" fill="#FCA5A5" font-size="9.5" text-anchor="middle" font-family="sans-serif">할루시네이션 위험 증가</text>
+    </g>
+  </g>
+
+  <!-- Right: Top-P & Top-K Sampling (Width: 440) -->
+  <g transform="translate(480, 85)">
+    <rect width="425" height="420" rx="12" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+    <rect width="425" height="38" rx="12" fill="#334155"/>
+    <rect y="26" width="425" height="12" fill="#334155"/>
+    <text x="212" y="25" fill="#F8FAFC" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">
+      2. Top-P (핵 샘플링) &amp; Top-K (상위 개수 제한)
+    </text>
+
+    <!-- Top-P Box -->
+    <g transform="translate(20, 50)">
+      <rect width="385" height="165" rx="8" fill="#0F172A" stroke="#10B981"/>
+      <text x="15" y="24" fill="#34D399" font-size="13" font-weight="bold" font-family="sans-serif">🎯 Top-P (Nucleus Sampling, 예: 0.9)</text>
+      <text x="15" y="42" fill="#94A3B8" font-size="11" font-family="sans-serif">확률 높은 순서대로 누적 합계가 P(90%)에 도달할 때까지만 후보군 포함</text>
+
+      <g transform="translate(15, 60)">
+        <rect x="0" y="10" width="220" height="24" rx="4" fill="url(#toppGrad)"/>
+        <text x="110" y="27" fill="#064E3B" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">후보 풀: 누적 확률 90% (선택 가능)</text>
+
+        <rect x="230" y="10" width="120" height="24" rx="4" fill="#374151"/>
+        <text x="290" y="27" fill="#9CA3AF" font-size="10" text-anchor="middle" font-family="sans-serif">나머지 10% 제외 ✂️</text>
+
+        <text x="10" y="55" fill="#E2E8F0" font-size="10.5" font-family="sans-serif">• 토큰 확률이 고르면 <tspan fill="#34D399" font-weight="bold">후보군 자동 확대</tspan></text>
+        <text x="10" y="73" fill="#E2E8F0" font-size="10.5" font-family="sans-serif">• 한 토큰이 90% 넘으면 <tspan fill="#34D399" font-weight="bold">단 1개 토큰만</tspan> 후보로 유지</text>
+        <text x="10" y="91" fill="#FDE047" font-size="10.5" font-weight="bold" font-family="sans-serif">➔ 엉뚱한 꼬리(Long-tail) 토큰 발생 원천 차단</text>
+      </g>
+    </g>
+
+    <!-- Top-K Box -->
+    <g transform="translate(20, 230)">
+      <rect width="385" height="165" rx="8" fill="#0F172A" stroke="#F59E0B"/>
+      <text x="15" y="24" fill="#FBBF24" font-size="13" font-weight="bold" font-family="sans-serif">🔢 Top-K (상위 K개 토큰 샘플링, 예: K=3)</text>
+      <text x="15" y="42" fill="#94A3B8" font-size="11" font-family="sans-serif">확률값과 관계없이 무조건 확률 상위 K개 토큰만 후보로 강제 고정</text>
+
+      <g transform="translate(15, 60)">
+        <rect x="0" y="10" width="70" height="30" rx="4" fill="#D97706"/>
+        <text x="35" y="30" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">1위 (60%)</text>
+
+        <rect x="80" y="10" width="70" height="30" rx="4" fill="#D97706"/>
+        <text x="115" y="30" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">2위 (20%)</text>
+
+        <rect x="160" y="10" width="70" height="30" rx="4" fill="#D97706"/>
+        <text x="195" y="30" fill="#FFFFFF" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">3위 (10%)</text>
+
+        <rect x="245" y="10" width="105" height="30" rx="4" fill="#374151"/>
+        <text x="297" y="30" fill="#9CA3AF" font-size="10.5" text-anchor="middle" font-family="sans-serif">4위 이하 차단 ❌</text>
+
+        <text x="10" y="65" fill="#E2E8F0" font-size="10.5" font-family="sans-serif">• 단순하고 직관적이나 문맥별 유연성 부족</text>
+        <text x="10" y="83" fill="#FDE047" font-size="10.5" font-family="sans-serif">💡 보통 <tspan font-weight="bold">Temperature + Top-P</tspan> 조합을 우선적으로 미세 조정함</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Bar -->
+  <rect x="35" y="520" width="870" height="32" rx="6" fill="#1E293B" stroke="#475569"/>
+  <text x="470" y="541" fill="#CBD5E1" font-size="11.5" text-anchor="middle" font-family="sans-serif">
+    💡 <tspan fill="#FF9900" font-weight="bold">AIF-C01 시험 팁:</tspan> 사실성·일관성 요구 = <tspan fill="#60A5FA" font-weight="bold">Temp 낮춤 (0에 근접), Top-P 낮춤</tspan> | 창의적 아이디어 = <tspan fill="#F87171" font-weight="bold">Temp 높임 (1.0 근접)</tspan>
+  </text>
+</svg>

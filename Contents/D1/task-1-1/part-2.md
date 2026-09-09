@@ -26,6 +26,20 @@ source_checked: '2026-09-04'
 4. **파라미터 조정:** 예상 출력 안정적 생성까지 내부 파라미터 값 변경하며 조정
 5. **추론:** 훈련된 모델은 정확한 예측 가능, 훈련 중 보지 못한 새로운 데이터로 출력 생성 = 추론
 
+```mermaid
+flowchart LR
+  S1["1️⃣ 알고리즘 선택<br/>수학적 모델 정의"] --> S2["2️⃣ 특성(Feature) 주입<br/>열(Column) 또는 픽셀 데이터"]
+  S2 --> S3["3️⃣ 상관관계 탐색<br/>입력과 출력 간 관계 분석"]
+  S3 --> S4["4️⃣ 파라미터 조정<br/>오차 최소화 반복 학습"]
+  S4 --> S5["5️⃣ 추론 (Inference)<br/>새로운 데이터 예측"]
+
+  style S1 fill:#F0F4F8,stroke:#232F3E,color:#232F3E
+  style S2 fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style S3 fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style S4 fill:#FCE8E6,stroke:#D93025,color:#D93025
+  style S5 fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+```
+
 ## 2. 4가지 데이터 유형
 
 > ML 모델은 다양한 소스의 다양한 데이터 유형에서 훈련. 모든 유형은 최종적으로 Amazon S3로 내보내 훈련. S3는 모든 유형 저장 가능, 저렴, 거의 무제한 용량 -> 훈련 데이터 기본 소스
@@ -37,6 +51,28 @@ source_checked: '2026-09-04'
 | **비정형 데이터** | 특정 데이터 모델 따르지 않음, 테이블로 저장 불가 | **S3 같은 객체 스토리지**에 객체로 저장. 특성은 **토큰화** 같은 처리 기법으로 파생 (텍스트를 단어/문구 개별 단위로 나눔) | 이미지, 비디오, 텍스트 파일, 소셜미디어 게시물 |
 | **시계열 데이터** | 미래 추세 예측에 중요. 각 레코드는 타임스탬프로 레이블, 순차 저장 | 샘플링 속도에 따라 매우 커질 수 있음, S3 저장. 패턴 검색 후 부하 증가 전 인프라 사전 확장 | 마이크로서비스 성능 지표 (사용된 메모리, CPU %, 초당 트랜잭션 수) |
 
+```mermaid
+graph TD
+  Data["📦 훈련 데이터 4가지 유형"]
+
+  Data --> Struct["1. 정형 데이터 (Structured)<br/>• 표, CSV, 행/열 형태<br/>• 쿼리: SQL<br/>• 저장: <b>Amazon RDS, Redshift</b>"]
+  Data --> Semi["2. 반정형 데이터 (Semi-structured)<br/>• JSON, Key-Value 문서<br/>• 유연한 스키마<br/>• 저장: <b>Amazon DynamoDB, DocumentDB</b>"]
+  Data --> Unstruct["3. 비정형 데이터 (Unstructured)<br/>• 이미지, 영상, 오디오, 자유 텍스트<br/>• 전처리: 토큰화, 특징 추출<br/>• 저장: <b>Amazon S3 객체 스토리지</b>"]
+  Data --> TimeSeries["4. 시계열 데이터 (Time Series)<br/>• 타임스탬프 순차 데이터<br/>• 용도: 트렌드 및 지표 예측<br/>• 저장: <b>Amazon Timestream, S3</b>"]
+
+  Struct --> S3hub["🌟 Amazon S3 (훈련 데이터 통합 저장소)<br/>무제한 확장성, 저비용, 모든 형식 수용 가능 ➔ 모델 학습 기본 소스"]
+  Semi --> S3hub
+  Unstruct --> S3hub
+  TimeSeries --> S3hub
+
+  style Data fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Struct fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Semi fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Unstruct fill:#FCE8E6,stroke:#D93025,color:#D93025
+  style TimeSeries fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style S3hub fill:#FF9900,color:#232F3E,stroke:#232F3E,stroke-width:2px
+```
+
 ## 3. 모델 생성 - 선형 회귀 예시
 
 - **시작:** 출력과 입력 간 수학적 관계 정의하는 알고리즘
@@ -47,12 +83,53 @@ source_checked: '2026-09-04'
 - **최적 적합 결정:** **오차(Error) 최소화**하는 파라미터 찾기. 오차 = 데이터 포인트와 선 사이 거리
 - **훈련 완료 후:** 추론 시작 준비. 예) 몸무게에서 키 유추
 
+```mermaid
+flowchart LR
+  Input["입력 데이터 x<br/>(독립 변수: 체중)"] --> Model["수학 모델<br/><b>y = mx + b</b><br/>(m: 기울기, b: 절편)"]
+  Model --> Output["예측치 ŷ<br/>(종속 변수: 신장)"]
+  Output --> Loss{"오차(Error) 계산<br/>실제값 y - 예측값 ŷ"}
+  Loss -- "오차 최소화 피드백 (반복 조정)" --> Model
+  Loss -- "최적화 완료" --> Inference["✨ 추론(Inference) 단계<br/>새로운 체중 입력 시 신장 예측"]
+
+  style Model fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#1A73E8
+  style Loss fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px,color:#B06000
+  style Inference fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px,color:#1E8E3E
+```
+
 ## 4. 시험 체크포인트
 
 - 특성 = 열 또는 픽셀
 - 정형=SQL/RDS/Redshift, 반정형=JSON/DynamoDB/DocumentDB, 비정형=S3/토큰화, 시계열=타임스탬프/순차
 - S3가 훈련 데이터 기본 소스인 이유 3가지
 - 선형 회귀 파라미터 m,b는 훈련 중 조정, 오차 최소화
+
+```mermaid
+flowchart LR
+  subgraph Clue ["💡 문제 지문 단서"]
+    direction TB
+    C1["SQL / 관계형 데이터베이스"]
+    C2["JSON / Key-Value 문서"]
+    C3["이미지·동영상·토큰화 텍스트"]
+    C4["타임스탬프 순차 지표"]
+    C5["가장 경제적이고 무제한인 훈련 데이터 저장소"]
+  end
+  subgraph Target ["🎯 정답 매핑"]
+    direction TB
+    T1["➔ 정형 데이터 (RDS / Redshift)"]
+    T2["➔ 반정형 데이터 (DynamoDB / DocumentDB)"]
+    T3["➔ 비정형 데이터 (S3 객체 스토리지)"]
+    T4["➔ 시계열 데이터 (Timestream / S3)"]
+    T5["➔ Amazon S3"]
+  end
+  C1 --> T1
+  C2 --> T2
+  C3 --> T3
+  C4 --> T4
+  C5 --> T5
+
+  style Clue fill:#F8F9FA,stroke:#6C757D
+  style Target fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

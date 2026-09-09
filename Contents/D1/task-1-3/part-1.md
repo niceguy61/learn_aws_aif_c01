@@ -19,6 +19,27 @@ source_checked: '2026-09-04'
 - **단계:** 문제 정의 -> 훈련 데이터 수집/준비 -> 모델 훈련/배포 -> 모니터링
 - **특징:** 일부 단계는 특정 목표 달성까지 반복되는 **반복적 프로세스**. 모델 설계상 동적 -> 새 데이터로 재훈련, 성능/비즈니스 지표 기준 지속 평가, 드리프트/편향 모니터링, 필요시 조정/재구축. 따라서 많은 사람이 ML 파이프라인을 **수명 주기**로 봄. 배포 후에도 일부/전체 반복됨
 
+![AWS 머신러닝 개발 수명 주기](../../../assets/images/d1-ml-lifecycle.svg)
+
+```mermaid
+flowchart TD
+  subgraph Cycle ["🔄 머신러닝 개발 수명 주기 (ML Lifecycle)"]
+    P1["1️⃣ 비즈니스 목표 정의<br/>(해결할 문제, 성공 기준, 데이터 타당성)"] --> P2["2️⃣ 데이터 준비 및 처리<br/>(수집, 라벨링, 정제, 특성 공학)"]
+    P2 --> P3["3️⃣ 모델 개발 및 훈련<br/>(알고리즘 선택, 파라미터 최적화)"]
+    P3 --> P4["4️⃣ 모델 평가 및 검증<br/>(정확도 측정, 편향/공정성 감사)"]
+    P4 --> P5["5️⃣ 배포 및 호스팅<br/>(실시간 엔드포인트 / 배치 작업)"]
+    P5 --> P6["6️⃣ 모니터링 및 운영<br/>(데이터 및 모델 드리프트 지속 추적)"]
+    P6 -. "성능 저하 또는 데이터 변화 시 재학습" .-> P2
+  end
+
+  style P1 fill:#F0F4F8,stroke:#232F3E,color:#232F3E
+  style P2 fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style P3 fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style P4 fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style P5 fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style P6 fill:#FCE8E6,stroke:#D93025,color:#D93025
+```
+
 ## 2. 1단계: 비즈니스 목표 식별 - 항상 여기서 시작
 
 ### 목표 정의
@@ -42,6 +63,22 @@ source_checked: '2026-09-04'
 9. **비용 편익 분석** 수행해 프로젝트 다음 단계 진행 여부 확인
 
 ## 3. 접근 방식 3단계 - 쉬운 것부터 어려운 순서로
+
+```mermaid
+flowchart BT
+  subgraph Tiers ["🚀 ML 구현 접근 방식 3단계 (단순함 ➔ 고도화)"]
+    L1["1️⃣ 사전 훈련된 AI 서비스 (가장 권장 / 종량제)<br/>• <b>Amazon Rekognition, Comprehend, Polly, Translate 등</b><br/>• 자체 훈련 불필요, API 호출만으로 즉시 가치 실현"]
+    L2["2️⃣ 사전 훈련 모델 커스터마이징 (중간 난이도 / 전이 학습)<br/>• <b>Amazon Bedrock</b> (파운데이션 모델 Fine-tuning & RAG)<br/>• <b>SageMaker JumpStart</b> (오픈소스 FM 빠른 도입)"]
+    L3["3️⃣ 처음부터 자체 훈련 (Train from Scratch, 최고 난이도 & 비용)<br/>• <b>Amazon SageMaker 대규모 분산 클러스터</b><br/>• 방대한 독점 데이터셋 및 높은 인프라/규정 준수 책임 요구"]
+
+    L1 -->|커스텀 요구사항 증가 시| L2
+    L2 -->|독점 알고리즘 필요 시| L3
+  end
+
+  style L1 fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px,color:#1E8E3E
+  style L2 fill:#FEF7E0,stroke:#F9AB00,stroke-width:2px,color:#B06000
+  style L3 fill:#FCE8E6,stroke:#D93025,stroke-width:2px,color:#D93025
+```
 
 ### (1) 사전 훈련된 AI 서비스 (가장 쉬움)
 
@@ -72,6 +109,31 @@ source_checked: '2026-09-04'
 - 시작은 항상 비즈니스 목표 식별, 명확한 성공 기준 필요, 이해 관계자 합의, 달성 가능+프로덕션 경로, 가장 간단한 솔루션부터, 비용 편익 분석
 - 접근 방식 우선순위: (1) 사전 훈련 AI 서비스(종량제, 완전 호스팅, Comprehend 커스텀 분류자) -> (2) 기존 모델 시작+미세 조정(Bedrock 파운데이션+전이 학습, SageMaker 오픈 소스) -> (3) 처음부터 훈련(가장 어렵고 비쌈)
 - JumpStart = CV/NLP 파운데이션+태스크별 모델, 대규모 퍼블릭 데이터셋 사전 훈련, 증분 훈련=전이 학습, 비용/시간 절약
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 지문 단서"]
+    direction TB
+    K1["ML 프로젝트 착수 시 가장 먼저 수행해야 할 작업"]
+    K2["ML 솔루션 구현 시 기본 권장 접근 원칙"]
+    K3["CV/NLP 오픈소스 FM 사전 훈련 모델 빠른 시작 허브"]
+    K4["사전 훈련된 모델에 소규모 자체 데이터로 성능 미세 조정"]
+  end
+  subgraph Answers ["🎯 시험 정답 매핑"]
+    direction TB
+    A1["➔ 비즈니스 목표 및 측정 가능한 성공 지표 정의"]
+    A2["➔ 가장 간단한 사전 훈련된 솔루션부터 검토"]
+    A3["➔ SageMaker JumpStart"]
+    A4["➔ 전이 학습 (Transfer Learning) / Fine-tuning"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Answers fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

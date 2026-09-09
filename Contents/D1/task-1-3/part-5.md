@@ -31,6 +31,24 @@ source_checked: '2026-09-04'
 - **개념 드리프트:** **목표 변수 속성 변경**
 - 모든 종류 드리프트 = 모델 성능 저하 초래
 
+```mermaid
+flowchart TD
+  subgraph DriftTypes ["📉 드리프트(Drift)의 2대 유형 비교"]
+    direction LR
+    subgraph DD ["📊 데이터 드리프트 (Data Drift)"]
+      D1["• <b>입력 데이터의 통계적 분포 변화</b><br/>• 예: 계절 변화로 여름 의류 검색 급증<br/>• 입력 X의 특성 값 분포가 훈련 당시 기준선(Baseline)과 달라짐"]
+    end
+    subgraph CD ["🎯 개념 드리프트 (Concept Drift)"]
+      C1["• <b>입력과 목표 변수 간의 통계적 관계(의미) 변화</b><br/>• 예: 경기 침체로 동일 소득자의 대출 상환 성향 급변<br/>• X ➔ Y로의 매핑 논리 자체가 변화"]
+    end
+  end
+  DD & CD --> Loss["⚠️ 모델 예측 성능 저하 ➔ 재학습(Retraining) 트리거 발생"]
+
+  style DD fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style CD fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Loss fill:#FCE8E6,stroke:#D93025,stroke-width:1.5px,color:#D93025
+```
+
 ### Amazon SageMaker Model Monitor
 
 - SageMaker 기능, 프로덕션 모델 모니터링, 오류 탐지해 수정 작업 수행 가능
@@ -38,6 +56,21 @@ source_checked: '2026-09-04'
 - **분석:** 기본 제공 규칙 또는 사용자 정의 규칙에 따라 데이터 분석
 - **확인:** SageMaker Studio에서 결과 보고 어떤 규칙 위반했는지 확인
 - **연동:** 결과 **CloudWatch**에도 전송, 이를 통해 재훈련 프로세스 시작 등 수정 조치 위한 경보 구성 가능
+
+```mermaid
+flowchart LR
+  EP["1️⃣ 프로덕션 엔드포인트<br/>(실시간 서빙)"] -->|입력/추론 데이터 캡처| S3_Cap["S3 캡처 버킷"]
+  S3_Cap --> MM["2️⃣ SageMaker Model Monitor<br/>(기준선 Baseline과 지속 비교)"]
+  MM -->|드리프트 위반 감지| CW["3️⃣ Amazon CloudWatch 경보"]
+  CW -->|이벤트 기반 자동 트리거| SMP["4️⃣ SageMaker Pipelines<br/>(재훈련 워크플로 자동 실행)"]
+  SMP -->|새로운 검증 모델 롤아웃| EP
+
+  style EP fill:#F0F4F8,stroke:#232F3E
+  style S3_Cap fill:#FF9900,color:#232F3E
+  style MM fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px
+  style CW fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px
+  style SMP fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px
+```
 
 ## 2. 자동화와 MLOps
 
@@ -79,6 +112,22 @@ source_checked: '2026-09-04'
 - **확인:** SageMaker Studio에서 볼 수 있음
 - **예제:** 전복 크기 기반 나이 추론 모델 파이프라인
 
+```mermaid
+flowchart LR
+  P_Data["1️⃣ 전처리 작업<br/>(Data Wrangler/Glue)"] --> P_Train["2️⃣ 모델 훈련<br/>(SageMaker Training)"]
+  P_Train --> P_Eval["3️⃣ 성능 평가<br/>(Evaluation Step)"]
+  P_Eval --> P_Cond{"조건부 분기<br/>(정확도 ≥ 기준치?)"}
+  P_Cond -- "Yes (합격)" --> P_Reg["4️⃣ 모델 레지스트리 등록 & 엔드포인트 배포"]
+  P_Cond -- "No (불합격)" --> P_Stop["❌ 배포 중단 & 담당자 알림"]
+
+  style P_Data fill:#E8F0FE,stroke:#1A73E8
+  style P_Train fill:#E8F0FE,stroke:#1A73E8
+  style P_Eval fill:#FEF7E0,stroke:#F9AB00
+  style P_Cond fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style P_Reg fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px
+  style P_Stop fill:#FCE8E6,stroke:#D93025
+```
+
 ## 4. 시험 체크포인트
 
 - 모니터링 필수 기능: 캡처, 훈련 집합 비교, 규칙 정의, 알림 / 일정: 매일/매주/매월 재훈련 간단 예약
@@ -87,6 +136,31 @@ source_checked: '2026-09-04'
 - MLOps=소프트웨어 엔지니어링 모범 사례를 ML에 적용, 수동 태스크 자동화/코드 테스트/인시던트 자동 대응, 인프라 소프트웨어로 설명/반복 배포, 모든 것 버전 관리(훈련 데이터 포함), 배포 모니터링+자동 재훈련
 - MLOps 이점: 생산성/자동화, 반복성(빠른 배포+품질/일관성->안정성), 규정 준수/감사 가능성(소스부터 모델까지 버전 관리), 품질 향상(편향 방지/통계 속성 추적)
 - SageMaker Pipelines=오케스트레이션/재현 가능한 파이프라인, 실시간/배치/계보 추적, SDK Python 또는 JSON, 조건부 브랜치, Studio에서 보기, 전복 나이 예제
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 상황 단서"]
+    direction TB
+    K1["훈련 데이터와 실서비스 입력 데이터의 통계적 분포가 달라짐"]
+    K2["입력과 목표 변수 간의 통계적 상관관계 및 의미 자체가 바뀜"]
+    K3["프로덕션 엔드포인트 품질 저하를 탐지하고 CloudWatch 경보 연동"]
+    K4["조건부 분기를 지원하며 ML 전 단계를 오케스트레이션하는 CI/CD"]
+  end
+  subgraph Answers ["🎯 AWS 정답 서비스 / 개념"]
+    direction TB
+    A1["➔ 데이터 드리프트 (Data Drift)"]
+    A2["➔ 개념 드리프트 (Concept Drift)"]
+    A3["➔ SageMaker Model Monitor"]
+    A4["➔ SageMaker Pipelines"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Answers fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

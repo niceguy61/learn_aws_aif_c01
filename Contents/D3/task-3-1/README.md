@@ -28,8 +28,8 @@ flowchart TD
 
 ## 선택적 시각 자료와 추가 출처
 
-다음 이미지는 Transformer의 전체 구조를 보조적으로 보여 줍니다. 이미지를 볼 수 없는 환경에서도 위의 Mermaid 도식과 본문 설명으로 학습할 수 있습니다.
+![Transformer 전체 아키텍처](../../../assets/images/transformer-architecture.svg)
 
-![Transformer 전체 아키텍처 — dvgodoy](https://commons.wikimedia.org/wiki/Special:FilePath/Transformer%2C_full_architecture.png)
+> [!NOTE]
+> 위 아키텍처는 Vaswani et al.의 논문 [Attention Is All You Need](https://arxiv.org/abs/1706.03762)에 기초한 표준 인코더-디코더 트랜스포머 구조이며, 오프라인 환경에서도 깨짐 없이 렌더링되도록 `assets/images/` 로컬 벡터 그래픽으로 제공됩니다.
 
-이미지 출처: [Wikimedia Commons — Transformer, full architecture.png](https://commons.wikimedia.org/wiki/File:Transformer,_full_architecture.png), 저자 **dvgodoy**, 라이선스 **CC BY 4.0**. 구조의 원 논문은 [Attention Is All You Need](https://arxiv.org/abs/1706.03762)입니다. 이 링크들은 학습 보조 출처이며, AIF-C01 공식 시험 범위를 확정하는 근거가 아닙니다.

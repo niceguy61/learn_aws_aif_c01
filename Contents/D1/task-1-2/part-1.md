@@ -25,6 +25,28 @@ source_checked: '2026-09-04'
 
 ## 2. AI가 최선의 선택이 아닌 경우 - 시험 핵심
 
+```mermaid
+flowchart TD
+  Start{"새로운 비즈니스 과제 해결 방안 검토"}
+
+  Start --> C1{"비용 vs 이점<br/>솔루션 구축/운영 비용이<br/>예상 절감액보다 큰가?"}
+  C1 -- "Yes (비용 초과)" --> Rule1["❌ AI 도입 부적합<br/>비용 대비 효용 없음"]
+  
+  C1 -- "No" --> C2{"결정론적(Deterministic) 결과가 필수인가?<br/>(동일 입력에 반드시 100% 동일 출력 보장)"}
+  C2 -- "Yes (100% 일관성 필요)" --> Rule2["⚙️ 규칙 기반(Rule-based) 시스템 권장<br/>(예: if 신용점수 ≥ 750 then 대출 자동 승인)"]
+
+  C2 -- "No" --> C3{"100% 투명한 해석 가능성(Interpretability)이<br/>법적/규제 필수 요건인가?"}
+  C3 -- "Yes (블랙박스 불허)" --> Rule3["📋 단순 규칙 기반 or 단순 선형 모델<br/>(딥러닝의 복잡한 블랙박스 배제)"]
+
+  C3 -- "No" --> AI_OK["🤖 AI/ML 도입 최적 시나리오!<br/>• 대규모 비정형 데이터 패턴 분석<br/>• 확률적 예측 및 복잡한 최적화<br/>• 24/7 무중단 반복 작업 자동화"]
+
+  style Start fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Rule1 fill:#FCE8E6,stroke:#D93025,color:#D93025
+  style Rule2 fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Rule3 fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style AI_OK fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px,color:#1E8E3E
+```
+
 ### (1) 비용 vs 이점
 
 - **문제:** ML 훈련에 엄청난 리소스 소모, 처리 성능 비용 많이 듦, 자주 재훈련 필요
@@ -45,6 +67,24 @@ source_checked: '2026-09-04'
 - **확률적 (Probabilistic):** ML 모델은 무언가의 가능도 결정. 시간 지나며 학습/적응, 접근 방식에 무작위성 통합. 따라서 동일 입력 값 집합으로 일관되지 않은 다양한 결과 생성
 - **판단:** 결정성이 필요하면 규칙 기반 시스템이 더 나은 옵션
 
+```mermaid
+flowchart LR
+  subgraph Det ["⚙️ 규칙 기반 (Deterministic)"]
+    direction TB
+    In1["동일한 입력 X"] --> Rule["명시적 if-then 규칙"] --> Out1["항상 동일한 확정 출력 Y (100%)"]
+    NoteDet["적용: 회계/세무 계산, 법정 규제 검증"]
+  end
+
+  subgraph Prob ["🧠 머신러닝 (Probabilistic)"]
+    direction TB
+    In2["동일한 입력 X"] --> Model["가중치 기반 학습 모델"] --> Out2["확률적 예측치 Ŷ (가능도/점수)"]
+    NoteProb["적용: 상품 추천, 영상 인식, 사기 감지"]
+  end
+
+  style Det fill:#F0F4F8,stroke:#232F3E
+  style Prob fill:#E8F0FE,stroke:#1A73E8
+```
+
 ## 3. 시험 체크포인트
 
 - AI 고려해야 할 때 키워드: 24/7, 반복/지루, 방대 데이터 고속 분석, 패턴 인식/사기 탐지, 수요 예측/낭비 감소
@@ -54,6 +94,31 @@ source_checked: '2026-09-04'
   3. 결정론적 결과 필요 -> ML은 확률적
 - 규칙 기반 시스템 예시: 신용 점수 750 -> 대출 자동 승인
 - 결정론적 vs 확률적 구분
+
+```mermaid
+flowchart LR
+  subgraph Scenario ["📋 시험 문제 시나리오 단서"]
+    direction TB
+    S1["구축/유지 비용이 예상 비즈니스 절감액 초과"]
+    S2["동일 입력에 대해 항상 100% 동일한 결과 필요"]
+    S3["대출 심사 탈락 사유를 법적으로 완전히 소명해야 함"]
+    S4["대규모 센서 데이터의 이상 패턴 실시간 탐지"]
+  end
+  subgraph Choice ["🎯 올바른 판단"]
+    direction TB
+    C1["➔ AI 도입 중단 / 투자 재검토"]
+    C2["➔ 규칙 기반 시스템 (Rule-based)"]
+    C3["➔ 단순 규칙 또는 해석 가능한 선형 모델"]
+    C4["➔ 머신러닝 (비지도 이상 감지)"]
+  end
+  S1 --> C1
+  S2 --> C2
+  S3 --> C3
+  S4 --> C4
+
+  style Scenario fill:#F8F9FA,stroke:#6C757D
+  style Choice fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

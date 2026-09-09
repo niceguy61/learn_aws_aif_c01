@@ -64,6 +64,23 @@ source_checked: '2026-09-04'
 - **확산 모델 = 점진적 노이즈 프로세스 반전 방법 학습하는 생성형 모델 클래스**
 - 확산 기반 아키텍처는 생성된 이미지 품질/다양성에 대해 더 높은 수준 제어 제공
 
+![확산 모델 원리와 잠재 공간 아키텍처](../../../assets/images/d2-diffusion-multimodal.svg)
+
+```mermaid
+flowchart LR
+  subgraph ForwardProcess["순방향 확산 (Forward - 노이즈 주입)"]
+    direction LR
+    Img["선명한 원본 이미지 (x₀)"] --> Noise1["단계적 가우스 노이즈 주입"] --> Pure["완전한 랜덤 노이즈 (x_T)"]
+  end
+
+  subgraph ReverseProcess["역방향 확산 (Reverse - 디노이징 생성)"]
+    direction LR
+    Pure2["랜덤 노이즈 시작"] --> UNet["U-Net 디노이징 신경망<br/>+ CLIP 텍스트 프롬프트 조건"] --> GenImg["고품질 합성 이미지 완성"]
+  end
+
+  ForwardProcess -. 학습 과정 .-> ReverseProcess
+```
+
 ### 3가지 주요 구성 요소 (시험 필수)
 
 1. **순방향 확산 (Forward Diffusion):** 가우스 노이즈 사용해 이미지 인코딩
@@ -82,6 +99,7 @@ source_checked: '2026-09-04'
 - **GAN (Generative Adversarial Networks)** 및 **VAE (Variational Autoencoder)** 같은 다른 생성형 접근 방식 대비:
   - 더 다양하고 일관성 있는 고품질 출력 생성 경향
   - 더 안정적, 훈련하기 쉬움
+
 
 ### 확산 모델 예시
 

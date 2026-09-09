@@ -29,7 +29,46 @@ source_checked: '2026-09-04'
 | 예시 | 클라이언트가 입력 보내면 매우 빠르게 결과 반환 | 판매 기록 데이터로 카탈로그 각 제품 다음달 필요 재고 예측. 월별 일정으로 한꺼번에 처리해 보고서 생성 |
 | 핵심 차이 | 컴퓨팅 리소스 항상 실행, 요청 처리 가능 | 컴퓨팅 리소스가 배치 처리할 때만 실행 후 종료 |
 
+```mermaid
+flowchart TD
+  subgraph RealTime ["⚡ 실시간 추론 (Real-time)"]
+    direction TB
+    C1["클라이언트 애플리케이션"] -->|실시간 단일 요청| EP["영구 엔드포인트<br/>(24/7 가동 중)"]
+    EP -->|밀리초 수준 즉시 응답| C1
+    Note1["특징: 저지연, 온라인 지속 서비스, 항상 비용 발생"]
+  end
+
+  subgraph Batch ["📦 배치 추론 (Batch)"]
+    direction TB
+    S3In["S3 입력 데이터셋<br/>(대용량 일괄 축적)"] -->|일괄 작업 기동| BJ["배치 추론 잡 (Batch Job)<br/>(작업 완료 시 인스턴스 자동 종료)"]
+    BJ -->|추론 결과 파일 생성| S3Out["S3 결과 버킷<br/>(정기 리포트 생성)"]
+    Note2["특징: 대규모 오프라인, 최고 비용 효율성, 엔드포인트 유지 불필요"]
+  end
+
+  style RealTime fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px
+  style Batch fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px
+```
+
 ## 2. 기계 학습 유형 - 예상 출력과 입력 유형에 따라 구분
+
+```mermaid
+graph TD
+  ML["🧠 머신러닝의 3가지 학습 유형"]
+
+  ML --> SL["1️⃣ 지도 학습 (Supervised)"]
+  SL --> SL_Desc["• 데이터: <b>특성 + 정답 레이블</b><br/>• 목표: 입력 ➔ 정답 매핑 관계 학습<br/>• 주요 태스크: 분류, 회귀<br/>• AWS 도구: <b>SageMaker Ground Truth</b>"]
+
+  ML --> UL["2️⃣ 비지도 학습 (Unsupervised)"]
+  UL --> UL_Desc["• 데이터: <b>레이블 없는 특성 데이터</b><br/>• 목표: 숨겨진 패턴 및 군집(Cluster) 발견<br/>• 주요 태스크: 군집화, 이상 탐지<br/>• 예시: 고객 그룹화, 센서 이상 징후"]
+
+  ML --> RL["3️⃣ 강화 학습 (Reinforcement)"]
+  RL --> RL_Desc["• 에이전트와 환경의 상호작용<br/>• 목표: <b>시행착오를 통한 보상(Reward) 극대화</b><br/>• 학습 방식: 행동 ➔ 보상 ➔ 정책 최적화<br/>• AWS 도구: <b>AWS DeepRacer</b>"]
+
+  style ML fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style SL fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style UL fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style RL fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+```
 
 ### (1) 지도 학습 (Supervised Learning)
 
@@ -56,6 +95,15 @@ source_checked: '2026-09-04'
 - **교육용 서비스:** **AWS DeepRacer** 경주용 자동차 모델
   - 자동차=에이전트, 트랙=환경, 액션=트랙에서 앞으로 나아가는 자동차, 목표=트랙에 머물며 최대한 효율적 완주
 
+```mermaid
+flowchart LR
+  Agent["🏎️ 에이전트 (DeepRacer 차량)"] -->|행동 (Action): 조향 / 속도 조절| Env["🛣️ 환경 (경주 트랙)"]
+  Env -->|상태 변화 (State) & 보상 (Reward)| Agent
+  
+  style Agent fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px,color:#1E8E3E
+  style Env fill:#FEF7E0,stroke:#F9AB00,stroke-width:2px,color:#B06000
+```
+
 ### 비지도 vs 강화 학습 비교
 
 - **공통점:** 둘 다 레이블 지정 데이터 없이 작동
@@ -68,6 +116,34 @@ source_checked: '2026-09-04'
 - 지도 학습 = 레이블 필요, 확률 출력, 과제=레이블링, 해결=Ground Truth + Mechanical Turk
 - 비지도 = 레이블 없는 특성, 클러스터링/이상탐지
 - RL = 에이전트/환경/액션/보상/목표, DeepRacer
+
+```mermaid
+flowchart LR
+  subgraph Keyword ["📋 지문 핵심 단서"]
+    direction TB
+    K1["레이블 지정 필요 + 크라우드소싱 인력 풀"]
+    K2["레이블 없음 + 패턴 그룹화 / 이상 탐지"]
+    K3["에이전트 + 보상 함수 + 자율 주행 트랙 완주"]
+    K4["항상 활성 엔드포인트 + 실시간 응답"]
+    K5["대용량 데이터 일괄 처리 + 비용 절감"]
+  end
+  subgraph Match ["🎯 시험 정답 매핑"]
+    direction TB
+    M1["➔ Ground Truth + Mechanical Turk"]
+    M2["➔ 비지도 학습 (Clustering / Anomaly Detection)"]
+    M3["➔ 강화 학습 (AWS DeepRacer)"]
+    M4["➔ 실시간 추론 (Real-time Endpoint)"]
+    M5["➔ 배치 추론 (Batch Transform)"]
+  end
+  K1 --> M1
+  K2 --> M2
+  K3 --> M3
+  K4 --> M4
+  K5 --> M5
+
+  style Keyword fill:#F8F9FA,stroke:#6C757D
+  style Match fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

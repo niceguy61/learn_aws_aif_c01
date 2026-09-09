@@ -27,6 +27,20 @@ source_checked: '2026-09-04'
 - **흐름:** 웹 앱이 입력 데이터 + 엔드포인트 포함 **POST 요청** -> 엔드포인트가 모델 실행 컴퓨팅 리소스에 요청 전달 -> 결과 모델 출력이 응답으로 클라이언트에 다시 보내짐
 - **예시:** **Amazon API Gateway**가 클라이언트 인터페이스 역할, 모델 실행 **AWS Lambda** 함수에 요청 전달
 
+```mermaid
+flowchart LR
+  Client["📱 클라이언트 앱 (웹/모바일)"] -->|POST 요청 (입력 데이터)| APIGW["Amazon API Gateway"]
+  APIGW --> SMEP["SageMaker 실시간 엔드포인트<br/>(ML 인스턴스 클러스터)"]
+  SMEP --> Model["Docker 컨테이너 ➔ 모델 추론"]
+  Model --> SMEP
+  SMEP -->|밀리초 즉시 응답 (JSON)| Client
+
+  style Client fill:#F0F4F8,stroke:#232F3E
+  style APIGW fill:#FF9900,color:#232F3E
+  style SMEP fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px
+  style Model fill:#E6F4EA,stroke:#1E8E3E
+```
+
 ## 3. 배포 공통: Docker 컨테이너
 
 - 추론 코드 + 모델 아티팩트는 일반적으로 **Docker 컨테이너**로 배포
@@ -48,6 +62,27 @@ source_checked: '2026-09-04'
 
 > 엔드포인트 또는 엔드포인트 구성 생성 시 추론 옵션 선택. 4가지 모두 **완전관리형 + Auto Scaling 지원**. 비즈니스 요구사항에 따라 선택
 
+![SageMaker 4가지 모델 추론 옵션 비교](../../../assets/images/d1-sagemaker-inference-options.svg)
+
+```mermaid
+flowchart TD
+  Req{"추론 요청의 특성과 요구 지연 시간은?"}
+
+  Req -->|대용량 데이터 일괄 처리 / 지연 허용| Batch["📦 <b>배치 변환 (Batch Transform)</b><br/>• 영구 엔드포인트 없음<br/>• GB 단위 대규모 오프라인 작업<br/>• 작업 완료 시 컴퓨팅 자동 종료"]
+  
+  Req -->|대용량 페이로드 / 긴 처리 시간 (최대 1시간)| Async["⏳ <b>비동기 추론 (Asynchronous)</b><br/>• 내부 S3 대기열(Queue) 기반 처리<br/>• 트래픽 없을 시 <b>인스턴스 0개로 축소</b> 가능 (비용 0원)"]
+
+  Req -->|간헐적/불규칙 트래픽 / 밀리초 지연| Serverless["⚡ <b>서버리스 추론 (Serverless)</b><br/>• 인스턴스 관리 없이 자동 확장<br/>• 트래픽 없을 시 <b>0으로 축소</b><br/>• 실제 추론 실행 시간(ms)만 과금"]
+
+  Req -->|지속적이고 일정한 트래픽 / 초저지연 필수| RealTime["🚀 <b>실시간 추론 (Real-time)</b><br/>• 24/7 가동되는 영구 REST 엔드포인트<br/>• 대화형 챗봇, 생성형 AI 서비스<br/>• Auto Scaling 지원"]
+
+  style Req fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Batch fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Async fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Serverless fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style RealTime fill:#FCE8E6,stroke:#D93025,stroke-width:2px,color:#D93025
+```
+
 | 옵션 | 설명 | 적합한 경우 | 비용 특징 |
 | :--- | :--- | :--- | :--- |
 | **배치 변환 (Batch Transform)** | 대규모 데이터세트에 대한 **오프라인 추론**. 영구 엔드포인트 불필요, 결과 기다릴 수 있을 때 | 기가바이트 크기 대규모 데이터세트 지원 | - |
@@ -67,6 +102,31 @@ source_checked: '2026-09-04'
   - Async=대기열/대용량 페이로드/긴 처리/0으로 축소->요금 없음
   - Serverless=프로비저닝 없이 실시간/Lambda/요청 없을 때 좋은 선택/실행 중에만 비용
   - Real-time=대화형/지속적 엔드포인트 REST API/지속 트래픽/계속 사용 가능
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 상황 단서"]
+    direction TB
+    K1["매일 밤 수백만 건의 대규모 판매 데이터를 일괄 처리"]
+    K2["1GB 이상의 대용량 의료 영상 / 15분 이상 긴 처리 시간 / 대기열"]
+    K3["트래픽이 불규칙하고 며칠간 요청이 없을 때도 있음 / 관리 최소화"]
+    K4["24/7 지속 트래픽 / 밀리초 수준 대화형 생성형 AI 서비스"]
+  end
+  subgraph Options ["🎯 SageMaker 정답 옵션"]
+    direction TB
+    O1["➔ 배치 변환 (Batch Transform)"]
+    O2["➔ 비동기식 추론 (Asynchronous Inference)"]
+    O3["➔ 서버리스 추론 (Serverless Inference)"]
+    O4["➔ 실시간 추론 (Real-time Inference)"]
+  end
+  K1 --> O1
+  K2 --> O2
+  K3 --> O3
+  K4 --> O4
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Options fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

@@ -37,6 +37,30 @@ source_checked: '2026-09-04'
 | 원인 | 다양한 데이터 부족, 너무 오래 훈련해 노이즈 강조 | 훈련 시간 부족, 데이터셋 크기 부족 |
 | 해결 | 더 다양한 데이터 | 더 오래, 더 큰 데이터셋 |
 
+![과소적합 vs 최적 균형 vs 과대적합 곡선 그래프](../../../assets/images/d1-overfitting-underfitting.svg)
+
+```mermaid
+flowchart TD
+  subgraph Underfit ["❌ 과소적합 (Underfitting)"]
+    U1["학습 부족 / 모델 너무 단순<br/>훈련 오차: <b>높음 ⬆️</b><br/>새 데이터 오차: <b>높음 ⬆️</b><br/>원인: 훈련 시간/데이터셋 부족<br/>해결: <b>더 많은 데이터, 더 긴 훈련</b>"]
+  end
+
+  subgraph Balanced ["✅ 최적 균형 (Optimal Fit)"]
+    B1["적절한 일반화(Generalization) 달성<br/>훈련 오차: <b>낮음 ⬇️</b><br/>새 데이터 오차: <b>낮음 ⬇️</b><br/>특징: <b>새로운 환경에서도 안정적 예측</b>"]
+  end
+
+  subgraph Overfit ["❌ 과대적합 (Overfitting)"]
+    O1["과도한 학습 / 노이즈(Noise) 암기<br/>훈련 오차: <b>극히 낮음 ⬇️</b><br/>새 데이터 오차: <b>매우 높음 ⬆️</b><br/>원인: 물속 물고기만 학습 (일반화 실패)<br/>해결: <b>더 다양한 데이터셋 확보</b>"]
+  end
+
+  Underfit -->|훈련 시간 및 데이터 증가| Balanced
+  Balanced -->|지나친 훈련 및 노이즈 과적합| Overfit
+
+  style Underfit fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Balanced fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style Overfit fill:#FCE8E6,stroke:#D93025,color:#D93025
+```
+
 ## 3. 편향 (Bias)
 
 - **정의:** 여러 그룹에 걸쳐 모델 성능 차이 있는 경우. 결과가 특정 클래스에 유리/불리하게 왜곡
@@ -52,6 +76,16 @@ source_checked: '2026-09-04'
   2. 훈련 전: 훈련 데이터 검사, 잠재적 편향 평가
   3. 배포 후: 결과 공정성 검사해 지속 평가
 
+```mermaid
+flowchart LR
+  P1["1️⃣ 모델 생성 전<br/><b>공정성 제약 조건 식별</b><br/>(법적/윤리적 차별 요건 선제 정의)"] --> P2["2️⃣ 모델 훈련 전<br/><b>훈련 데이터 편향 평가</b><br/>(데이터 분포 및 모집단 대표성 검토)"]
+  P2 --> P3["3️⃣ 모델 배포 후<br/><b>결과 공정성 지속 모니터링</b><br/>(실제 서비스 결과 왜곡 상시 추적)"]
+
+  style P1 fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px,color:#1A73E8
+  style P2 fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px,color:#B06000
+  style P3 fill:#E6F4EA,stroke:#1E8E3E,stroke-width:1.5px,color:#1E8E3E
+```
+
 ## 4. 시험 체크포인트
 
 - 과대적합 키워드: 훈련>새 데이터, 일반화 실패, 노이즈, 물 밖 물고기 인식 실패, 해결=다양한 데이터
@@ -59,6 +93,34 @@ source_checked: '2026-09-04'
 - 최적 훈련 시간: 과소와 과대 사이 균형
 - 편향: 그룹별 성능 차이, 왜곡, 커버리지 부족, 품질 의존
 - 공정성: 처음부터 제약 식별 + 데이터 검사 + 지속 평가
+
+```mermaid
+flowchart LR
+  subgraph Q ["📋 문제 시나리오 단서"]
+    direction TB
+    K1["훈련엔 높은 정확도이나 새 데이터에선 오답 속출"]
+    K2["훈련 데이터에서도 성능 저조 + 관계 학습 실패"]
+    K3["어류 모델이 물 밖 물고기를 인식하지 못함"]
+    K4["특정 그룹(연령/성별 등)에 성능 왜곡 발생"]
+    K5["공정성 보장 3단계 프로세스 순서"]
+  end
+  subgraph A ["🎯 정답 판단 단서"]
+    direction TB
+    A1["➔ 과대적합 (Overfitting) / 일반화 실패"]
+    A2["➔ 과소적합 (Underfitting) / 훈련·데이터 부족"]
+    A3["➔ 과대적합 해결: '더 다양한 데이터' 수집"]
+    A4["➔ 편향 (Bias) / 훈련 데이터 다양성 결여"]
+    A5["➔ 사전 제약 식별 ➔ 데이터 평가 ➔ 배포 후 모니터링"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+  K5 --> A5
+
+  style Q fill:#F8F9FA,stroke:#6C757D
+  style A fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

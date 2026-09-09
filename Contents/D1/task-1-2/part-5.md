@@ -13,6 +13,28 @@ source_checked: '2026-09-04'
 
 > 실제 AI 애플리케이션 논의
 
+![AWS 실제 엔터프라이즈 AI 혁신 사례](../../../assets/images/d1-enterprise-usecases.svg)
+
+```mermaid
+graph TD
+  Cases["🏢 AWS 실제 엔터프라이즈 AI 혁신 사례"]
+
+  Cases --> MC["💳 <b>MasterCard</b><br/>• 용도: 실시간 부정 결제(Fraud) 차단<br/>• 도구: <b>Amazon SageMaker + GenAI</b><br/>• 성과: 탐지 3배↑, 오탐(False Positive) 10배↓"]
+  Cases --> DD["🍔 <b>DoorDash</b><br/>• 용도: 터치식 ARS ➔ 자연어 대화형 IVR 교체<br/>• 도구: <b>Amazon Lex</b><br/>• 성과: 대기 시간 단축, 셀프서비스 전환율 증대"]
+  Cases --> LP["🛢️ <b>Laredo Petroleum</b><br/>• 용도: 1,300개 유정 센서 실시간 예지보전<br/>• 도구: <b>Amazon SageMaker</b><br/>• 성과: 가스 누출 방지, 설비 고장 선제 차단"]
+  Cases --> BK["🏨 <b>Booking.com</b><br/>• 용도: 개인화 여행 플래너 (AI Trip Planner)<br/>• 도구: <b>SageMaker + RAG (검색 증강 생성)</b><br/>• 성과: 실시간 예약 API + 리뷰 데이터 결합 맞춤 추천"]
+  Cases --> PI["📌 <b>Pinterest</b><br/>• 용도: 사진 촬영 유사 상품 검색 (Lens)<br/>• 도구: <b>S3 + Ground Truth + MTurk</b><br/>• 성과: 방대한 이미지 대규모 레이블링 및 시각 검색"]
+  Cases --> AT["✈️ <b>AffordableTours</b><br/>• 용도: 콜센터 상담 통화량 시계열 수요 예측<br/>• 도구: <b>Amazon Forecast</b><br/>• 성과: 부재중 통화 20% 감소, 최적 상담원 배치"]
+
+  style Cases fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style MC fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style DD fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style LP fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style BK fill:#FCE8E6,stroke:#D93025,color:#D93025
+  style PI fill:#F0F4F8,stroke:#232F3E,color:#232F3E
+  style AT fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+```
+
 ## 1. MasterCard - 사기 탐지
 
 - **회사:** 구매량 기준 두 번째로 큰 신용카드 네트워크. 각 거래 즉시 AI로 사기 가능성 점수 부여
@@ -47,6 +69,23 @@ source_checked: '2026-09-04'
   - 고객이 찾는 것 파악 즉시 -> **예약 추천 API 호출 + 고객 리뷰 검색 -> 추천**
   - **검색 증강 생성(RAG)** 한 예, 더 정확/최신 응답 제공 이유
 
+```mermaid
+flowchart LR
+  User["👤 여행자 질문<br/>'로마에서 조식 맛있고 조용한 호텔 추천해줘'"] --> App["Booking.com AI Trip Planner"]
+  App --> Search["1️⃣ 실시간 예약 API 호출<br/>(가용 객실 및 가격)"]
+  App --> DB["2️⃣ 고객 실제 리뷰 데이터 검색<br/>(비정형 리뷰 RAG 검색)"]
+  Search --> Prompt["3️⃣ 컨텍스트 결합 프롬프트 생성"]
+  DB --> Prompt
+  Prompt --> FM["4️⃣ 파운데이션 모델 (LLM)<br/>신뢰할 수 있는 맞춤형 일정/호텔 추천 답변"]
+  FM --> User
+
+  style User fill:#F0F4F8,stroke:#232F3E
+  style App fill:#E8F0FE,stroke:#1A73E8
+  style Search fill:#FEF7E0,stroke:#F9AB00
+  style DB fill:#FEF7E0,stroke:#F9AB00
+  style FM fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px
+```
+
 ## 5. Pinterest - 시각적 검색
 
 - **회사:** 4억 5천만+ 사용자 개인화된 디지털 영감 보드 탐색/저장/핀. 수십억 이미지 호스팅하는 시각적 검색 엔진
@@ -73,6 +112,39 @@ source_checked: '2026-09-04'
 - Booking.com = SageMaker 추천 + AI Trip Planner RAG (API 호출 + 리뷰 검색)
 - Pinterest = Lens 시각적 검색, S3 이미지, 재훈련, MTurk+Ground Truth 레이블
 - AffordableTours = Forecast 시계열 예측, 통화량 예측, 부재중 호출률 20% 향상, 신경망+통계 알고리즘
+
+```mermaid
+flowchart LR
+  subgraph CustomerCase ["📋 시험 지문 사례"]
+    direction TB
+    C1["신용카드 사기 탐지 3배↑, 오탐 10배↓"]
+    C2["구형 터치톤 ARS를 음성 대화형 시스템으로 교체"]
+    C3["유정 센서(압력/온도) 실시간 모니터링 및 누출 감지"]
+    C4["예약 추천 API + 고객 리뷰 검색 결합 (RAG 플래너)"]
+    C5["사진 속 유사 제품 시각적 검색 및 MTurk 레이블링"]
+    C6["콜센터 통화량 예측으로 부재중 전화 20% 감소"]
+  end
+
+  subgraph Solution ["🎯 고객사 및 AWS 솔루션"]
+    direction TB
+    S1["➔ MasterCard (SageMaker)"]
+    S2["➔ DoorDash (Amazon Lex)"]
+    S3["➔ Laredo Petroleum (SageMaker)"]
+    S4["➔ Booking.com (SageMaker + RAG)"]
+    S5["➔ Pinterest (Ground Truth + MTurk)"]
+    S6["➔ AffordableTours (Amazon Forecast)"]
+  end
+
+  C1 --> S1
+  C2 --> S2
+  C3 --> S3
+  C4 --> S4
+  C5 --> S5
+  C6 --> S6
+
+  style CustomerCase fill:#F8F9FA,stroke:#6C757D
+  style Solution fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

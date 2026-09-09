@@ -37,6 +37,19 @@ source_checked: '2026-09-04'
 - 일반적으로 3개 데이터세트 생성
 - **일반 권장:** 80% 모델 훈련, 10% 모델 평가, 나머지 10% 프로덕션 배포 전 최종 테스트
 
+```mermaid
+flowchart LR
+  RawData["📦 전체 정제 데이터셋 (100%)"] --> Split{"데이터 분할 (Data Splitting)"}
+  Split --> Train["🏋️ 훈련 세트 (Training Set) 80%<br/>모델 파라미터(가중치) 학습"]
+  Split --> Val["⚖️ 검증 세트 (Validation Set) 10%<br/>하이퍼파라미터 튜닝 및 모델 평가"]
+  Split --> Test["🏁 테스트 세트 (Test Set) 10%<br/>배포 전 최종 미학습 데이터 성능 검증"]
+
+  style RawData fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Train fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Val fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Test fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+```
+
 ### 특성 결정
 
 - 모델 훈련 위해 특성으로 사용해야 할 데이터세트 특성 결정
@@ -46,6 +59,27 @@ source_checked: '2026-09-04'
 - 특성 수 줄이면 훈련 필요 메모리/컴퓨팅 성능 양 줄어듦
 
 ## 4. AWS 서비스 - 데이터 수집/준비
+
+```mermaid
+graph TD
+  Sources["🌐 다양한 소스 (RDS, S3, Kinesis, 외부 소스)"] --> Ingest["1️⃣ 수집 & 카탈로그화"]
+  Ingest --> Glue["<b>AWS Glue & Data Catalog</b><br/>• 크롤러로 스키마 자동 탐색<br/>• 메타데이터만 카탈로그에 기록<br/>• 완전관리형 ETL 파이프라인"]
+
+  Glue --> Prep["2️⃣ 정제 & 특성 공학 (No-Code / Low-Code)"]
+  Prep --> DataBrew["<b>AWS Glue DataBrew</b><br/>• 시각적 데이터 정리 (250+ 변환)<br/>• 재사용 가능한 '레시피(Recipe)'"]
+  Prep --> Canvas["<b>SageMaker Canvas & Data Wrangler</b><br/>• 클릭 기반 데이터 분석 및 변환 (300+ 변환)<br/>• 결측치 처리 및 특성 선택"]
+
+  Prep --> LabelStore["3️⃣ 라벨링 & 특성 관리"]
+  LabelStore --> GT["<b>SageMaker Ground Truth</b><br/>• 액티브 러닝(자동 라벨링)<br/>• Mechanical Turk / 내부 인력 풀"]
+  LabelStore --> FS["<b>SageMaker Feature Store</b><br/>• 특성(Feature) 중앙 저장 및 재사용<br/>• 훈련(오프라인) 및 실시간 추론(온라인) 일관성 보장"]
+
+  style Sources fill:#F0F4F8,stroke:#232F3E
+  style Glue fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px
+  style DataBrew fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px
+  style Canvas fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px
+  style GT fill:#E6F4EA,stroke:#1E8E3E,stroke-width:1.5px
+  style FS fill:#FCE8E6,stroke:#D93025,stroke-width:1.5px
+```
 
 ### AWS Glue - 완전관리형 ETL
 
@@ -107,6 +141,34 @@ source_checked: '2026-09-04'
 - Ground Truth=고품질 레이블, 활성 학습(자동+인간), MTurk 50만+ / 내부 인력
 - Canvas=시각적 인터페이스, Data Wrangler 원클릭 가져오기, 300+ 변환
 - Feature Store=특성 중앙 저장소, 검색/재사용, 워크플로 파이프라인->특성 그룹
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 핵심 단서"]
+    direction TB
+    K1["원천 데이터가 아닌 스키마·위치 메타데이터만 보관하는 카탈로그"]
+    K2["코드 없이 시각적으로 정제하고 재사용 가능한 '레시피' 저장"]
+    K3["ML 자동 라벨링(활성 학습)과 50만 명 이상의 크라우드소싱 풀"]
+    K4["훈련과 실시간 추론 간 특성 일관성을 유지하는 중앙 저장소"]
+    K5["표준 데이터 분할 비율"]
+  end
+  subgraph Answers ["🎯 AWS 정답 서비스 / 개념"]
+    direction TB
+    A1["➔ AWS Glue Data Catalog"]
+    A2["➔ AWS Glue DataBrew"]
+    A3["➔ SageMaker Ground Truth + MTurk"]
+    A4["➔ SageMaker Feature Store"]
+    A5["➔ 80% 훈련 / 10% 검증 / 10% 테스트"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+  K5 --> A5
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Answers fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

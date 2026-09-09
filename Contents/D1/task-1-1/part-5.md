@@ -25,6 +25,36 @@ source_checked: '2026-09-04'
   3. 훈련 중 예측 출력과 실제 출력 차이 계산
   4. 가중치는 오차 최소화 위해 반복 조정
 
+```mermaid
+flowchart LR
+  subgraph InLayer ["📥 입력 계층 (Input Layer)"]
+    x1["입력 노드 x1<br/>(픽셀/특성)"]
+    x2["입력 노드 x2"]
+    x3["입력 노드 x3"]
+  end
+
+  subgraph HiddenLayer ["🧠 은닉 계층 (Hidden Layers)"]
+    h1["은닉 노드 h1<br/>가중치(w) 연산"]
+    h2["은닉 노드 h2<br/>활성화 함수 적용"]
+    h3["은닉 노드 h3<br/>특징 자율 추출"]
+  end
+
+  subgraph OutLayer ["📤 출력 계층 (Output Layer)"]
+    y1["예측 출력 ŷ<br/>(어류일 확률: 95%)"]
+  end
+
+  x1 --> h1 & h2 & h3
+  x2 --> h1 & h2 & h3
+  x3 --> h1 & h2 & h3
+  h1 & h2 & h3 --> y1
+
+  y1 -. "오차(Loss) 역전파 및 가중치 반복 조정" .-> HiddenLayer
+
+  style InLayer fill:#F0F4F8,stroke:#232F3E
+  style HiddenLayer fill:#E8F0FE,stroke:#1A73E8
+  style OutLayer fill:#E6F4EA,stroke:#1E8E3E
+```
+
 ## 2. 딥러닝이 표준이 된 이유
 
 - **과거:** 어류 예제 - 이미지 분류/객체 감지 등 컴퓨터 비전에서 전통적 방식 = 수천 개 이미지 레이블 지정, 인간 노력 많이 필요
@@ -45,6 +75,22 @@ source_checked: '2026-09-04'
 | 비용 | 상대적 저렴 | 인프라 비용 훨씬 높음 |
 | 예시 | 휴대폰 회사가 이전 고객 이탈 데이터 기반 고객 통신사 변경 시기 예측 | 소셜미디어 멘션이나 제품 피드백 분석해 사용자 감정 파악 |
 
+```mermaid
+flowchart TD
+  Start{"데이터 유형 및 비즈니스 요건"}
+
+  Start -->|정형 데이터 / 테이블 / CSV| Trad["📊 전통적 ML (Traditional ML)"]
+  Start -->|비정형 데이터 / 이미지 / 텍스트 / 음성| Deep["🧠 딥러닝 (Deep Learning)"]
+
+  Trad --> Trad_Char["• 특성 추출: 사람의 도메인 지식 개입<br/>• 컴퓨팅 인프라 비용: <b>상대적 저렴</b><br/>• 대표 업무: 고객 이탈 예측, 정형 분류, 추천"]
+  
+  Deep --> Deep_Char["• 특성 추출: <b>신경망이 스스로 자율 학습</b><br/>• 컴퓨팅 인프라 비용: <b>고성능 GPU/클라우드 필요</b><br/>• 대표 업무: 비전 인식, NLP, 감정 분석"]
+
+  style Start fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Trad fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Deep fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+```
+
 ## 4. 생성형 AI 심화
 
 - **정의:** 텍스트 문자열 또는 AI 용어로 **시퀀스** 포함된 매우 큰 데이터셋에서 사전 훈련된 딥러닝 모델로 구현
@@ -63,6 +109,25 @@ source_checked: '2026-09-04'
   - **Amazon Bedrock**에 LLM 설명 요청 예시
   - 무료 체험: **partyrock.aws**에서 자신만의 AI 앱 구축 가능
 
+```mermaid
+flowchart LR
+  subgraph Legacy ["과거 시퀀스 모델 (순차 처리)"]
+    direction LR
+    W1["단어 1"] --> W2["단어 2"] --> W3["단어 3"]
+    NL["순차 처리로 인한 학습 병목 및 장기 문맥 소실"]
+  end
+
+  subgraph Modern ["✨ 트랜스포머 아키텍처 (병렬 처리)"]
+    direction TB
+    BatchWords["전체 토큰 시퀀스 동시 입력"] --> Attention["Self-Attention 메커니즘<br/>(모든 단어 간 연관성 동시 계산)"]
+    Attention --> OutGen["다음 토큰 예측 및 고속 병렬 생성"]
+    NM["<b>초고속 대규모 병렬 학습 ➔ 파운데이션 모델 탄생</b>"]
+  end
+
+  style Legacy fill:#F8F9FA,stroke:#6C757D
+  style Modern fill:#FCE8E6,stroke:#D93025,stroke-width:1.5px
+```
+
 ## 5. 시험 체크포인트
 
 - 딥러닝 = 노드/입력/은닉/출력 계층, 가중치 자율 할당, 순방향, 오차 최소화
@@ -70,6 +135,34 @@ source_checked: '2026-09-04'
 - 전통 ML = 정형/레이블/분류/추천/효율, 딥러닝 = 비정형/이미지/NLP/감정분석/스스로 학습
 - 생성형 AI = 시퀀스/트랜스포머/병렬 처리/프롬프트/LLM 수십억 특성/Bedrock
 - 다음 강의 = 태스크 1.2 시작
+
+```mermaid
+flowchart LR
+  subgraph Q ["📋 시험 지문 핵심 단서"]
+    direction TB
+    K1["입력/은닉/출력 계층 + 특징 자율 학습"]
+    K2["정형 데이터셋 + 비용 효율적 분류/추천"]
+    K3["비정형(이미지/자연어) 복잡한 관계 모델링"]
+    K4["시퀀스 대규모 병렬 처리 + Self-Attention"]
+    K5["AWS 대표 생성형 AI 완전관리형 서비스"]
+  end
+  subgraph A ["🎯 정답 매핑"]
+    direction TB
+    A1["➔ 심층 신경망 (Deep Learning)"]
+    A2["➔ 전통적 기계 학습 (ML)"]
+    A3["➔ 딥러닝 (Deep Learning)"]
+    A4["➔ 트랜스포머 (Transformer)"]
+    A5["➔ Amazon Bedrock"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+  K5 --> A5
+
+  style Q fill:#F8F9FA,stroke:#6C757D
+  style A fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

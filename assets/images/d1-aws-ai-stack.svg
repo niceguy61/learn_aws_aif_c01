@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="tier1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="tier2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="tier3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="540" rx="16" fill="url(#bg3)"/>
+  
+  <text x="480" y="42" fill="#F8FAFC" font-size="24" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    AWS AI / ML 서비스 스택 (3-Tier Portfolio)
+  </text>
+  <text x="480" y="66" fill="#94A3B8" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    코드 및 인프라 관리 부담에 따른 3단계 접근 방식 (시험 핵심 분류)
+  </text>
+
+  <!-- Tier 1: Pre-trained AI Services -->
+  <g transform="translate(50, 90)">
+    <rect width="860" height="135" rx="14" fill="#1E293B" stroke="#3B82F6" stroke-width="2"/>
+    <rect width="860" height="32" rx="14" fill="url(#tier1Grad)"/>
+    <text x="20" y="22" fill="#FFFFFF" font-size="14" font-weight="bold" font-family="sans-serif">
+      1️⃣ 사전 훈련된 AI 서비스 (Pre-trained AI Services) — 전문 지식 없이 즉시 API 호출 (종량제)
+    </text>
+    
+    <!-- Badges -->
+    <g transform="translate(20, 46)">
+      <!-- Vision -->
+      <rect x="0" y="0" width="150" height="70" rx="8" fill="#0F172A" stroke="#3B82F6"/>
+      <text x="75" y="24" fill="#60A5FA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">👁️ 시각 (Vision)</text>
+      <text x="75" y="44" fill="#F8FAFC" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Rekognition</text>
+      <text x="75" y="60" fill="#94A3B8" font-size="10" text-anchor="middle" font-family="sans-serif">영상/얼굴/유해콘텐츠</text>
+
+      <!-- Text & Docs -->
+      <rect x="165" y="0" width="200" height="70" rx="8" fill="#0F172A" stroke="#06B6D4"/>
+      <text x="265" y="24" fill="#22D3EE" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">📄 문서 &amp; 텍스트 (NLP)</text>
+      <text x="265" y="44" fill="#F8FAFC" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Textract · Comprehend</text>
+      <text x="265" y="60" fill="#94A3B8" font-size="10" text-anchor="middle" font-family="sans-serif">OCR/표 추출 · 감정/PII 마스킹</text>
+
+      <!-- Speech & Conv -->
+      <rect x="380" y="0" width="190" height="70" rx="8" fill="#0F172A" stroke="#10B981"/>
+      <text x="475" y="24" fill="#34D399" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🗣️ 음성 &amp; 대화 (Speech)</text>
+      <text x="475" y="44" fill="#F8FAFC" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Polly · Transcribe · Lex</text>
+      <text x="475" y="60" fill="#94A3B8" font-size="10" text-anchor="middle" font-family="sans-serif">TTS · STT 자막 · 챗봇/IVR</text>
+
+      <!-- Specialized -->
+      <rect x="585" y="0" width="235" height="70" rx="8" fill="#0F172A" stroke="#F59E0B"/>
+      <text x="702" y="24" fill="#FBBF24" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🎯 검색 · 추천 · 예측 · 보안</text>
+      <text x="702" y="44" fill="#F8FAFC" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">Kendra · Personalize · Forecast</text>
+      <text x="702" y="60" fill="#94A3B8" font-size="10" text-anchor="middle" font-family="sans-serif">지능형검색 · 맞춤추천 · 부정결제(Fraud)</text>
+    </g>
+  </g>
+
+  <!-- Tier 2: Amazon Bedrock -->
+  <g transform="translate(50, 245)">
+    <rect width="860" height="125" rx="14" fill="#1E293B" stroke="#EC4899" stroke-width="2"/>
+    <rect width="860" height="32" rx="14" fill="url(#tier2Grad)"/>
+    <text x="20" y="22" fill="#FFFFFF" font-size="14" font-weight="bold" font-family="sans-serif">
+      2️⃣ 생성형 AI 파운데이션 모델 플랫폼 — Amazon Bedrock (완전관리형 API)
+    </text>
+    
+    <g transform="translate(20, 44)">
+      <rect x="0" y="0" width="260" height="65" rx="8" fill="#0F172A" stroke="#EC4899"/>
+      <text x="130" y="25" fill="#F472B6" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🌟 고성능 파운데이션 모델(FM)</text>
+      <text x="130" y="48" fill="#E2E8F0" font-size="11" text-anchor="middle" font-family="sans-serif">Amazon Titan, Claude, Llama 등 선택</text>
+
+      <rect x="280" y="0" width="260" height="65" rx="8" fill="#0F172A" stroke="#F59E0B"/>
+      <text x="410" y="25" fill="#FBBF24" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">📚 RAG 지식 기반 (Knowledge Bases)</text>
+      <text x="410" y="48" fill="#E2E8F0" font-size="11" text-anchor="middle" font-family="sans-serif">기업 비정형 데이터 연동 최신 정보 답변</text>
+
+      <rect x="560" y="0" width="260" height="65" rx="8" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="690" y="25" fill="#A78BFA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🛡️ 보안 가드레일 &amp; 에이전트</text>
+      <text x="690" y="48" fill="#E2E8F0" font-size="11" text-anchor="middle" font-family="sans-serif">PII 마스킹, 프롬프트 주입 차단, 자율 실행</text>
+    </g>
+  </g>
+
+  <!-- Tier 3: Amazon SageMaker -->
+  <g transform="translate(50, 390)">
+    <rect width="860" height="125" rx="14" fill="#1E293B" stroke="#8B5CF6" stroke-width="2"/>
+    <rect width="860" height="32" rx="14" fill="url(#tier3Grad)"/>
+    <text x="20" y="22" fill="#FFFFFF" font-size="14" font-weight="bold" font-family="sans-serif">
+      3️⃣ 엔드투엔드 맞춤형 머신러닝 플랫폼 — Amazon SageMaker (전주기 제어)
+    </text>
+    
+    <g transform="translate(20, 44)">
+      <rect x="0" y="0" width="190" height="65" rx="8" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="95" y="25" fill="#A78BFA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🛠️ 준비 (Prepare)</text>
+      <text x="95" y="48" fill="#CBD5E1" font-size="11" text-anchor="middle" font-family="sans-serif">Data Wrangler · Feature Store</text>
+
+      <rect x="210" y="0" width="190" height="65" rx="8" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="305" y="25" fill="#A78BFA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">⚡ 구축 &amp; 훈련 (Build/Train)</text>
+      <text x="305" y="48" fill="#CBD5E1" font-size="11" text-anchor="middle" font-family="sans-serif">Studio · JumpStart · AMT</text>
+
+      <rect x="420" y="0" width="190" height="65" rx="8" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="515" y="25" fill="#A78BFA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🚀 배포 (Deploy)</text>
+      <text x="515" y="48" fill="#CBD5E1" font-size="11" text-anchor="middle" font-family="sans-serif">실시간 · 서버리스 · 비동기 · 배치</text>
+
+      <rect x="630" y="0" width="190" height="65" rx="8" fill="#0F172A" stroke="#8B5CF6"/>
+      <text x="725" y="25" fill="#A78BFA" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">🔄 MLOps &amp; 모니터링</text>
+      <text x="725" y="48" fill="#CBD5E1" font-size="11" text-anchor="middle" font-family="sans-serif">Model Monitor · Pipelines</text>
+    </g>
+  </g>
+</svg>

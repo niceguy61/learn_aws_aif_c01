@@ -22,12 +22,41 @@ source_checked: '2026-09-04'
 
 ## 2. 실험과 하이퍼파라미터
 
+```mermaid
+flowchart TD
+  subgraph Comparison ["⚙️ 모델 파라미터 vs 하이퍼파라미터 비교"]
+    direction LR
+    subgraph Params ["🧠 모델 파라미터 (Internal Parameters)"]
+      P1["• 모델 <b>내부에서 학습</b>되는 가중치(Weights)<br/>• 예: 뉴런 연결 가중치, 편향(Bias), 절편(b)<br/>• 훈련을 거치며 오차를 줄이는 방향으로 자동 갱신"]
+    end
+    subgraph HyperParams ["🛠️ 하이퍼파라미터 (External Hyperparameters)"]
+      H1["• 데이터 과학자가 <b>훈련 시작 전 외부에서 지정</b><br/>• 예: 학습률(Learning Rate), 에포크, 레이어/노드 수<br/>• 최적값을 찾기 위해 반복적인 실험과 튜닝(AMT) 필요"]
+    end
+  end
+  style Params fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style HyperParams fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+```
+
 - **여러 알고리즘 고려 필요:** 모범 사례는 다양한 알고리즘/설정 사용해 많은 훈련 작업 **병렬 실행** = **실행 실험**, 성능 가장 좋은 솔루션 찾기
 - **하이퍼파라미터:** 성능에 영향 미치는 외부 파라미터 세트, 데이터 과학자가 모델 훈련 전 설정
   - 예) 딥러닝 모델 신경 계층/노드 수 조정
   - 최적 값은 서로 다른 설정으로 여러 실험 실행해야만 결정 가능
 
 ## 3. SageMaker로 모델 훈련
+
+```mermaid
+flowchart LR
+  S3_In["1️⃣ Amazon S3<br/>(학습 데이터셋)"] --> SM_Train["2️⃣ SageMaker 학습 작업 (Training Job)<br/>• 완전관리형 ML 인스턴스 클러스터 시작<br/>• 훈련 완료 즉시 인스턴스 자동 반환 (비용 절감)"]
+  ECR["2️⃣ Amazon ECR<br/>(알고리즘 Docker 이미지)"] --> SM_Train
+  Config["2️⃣ 작업 설정<br/>(하이퍼파라미터, 인스턴스 타입)"] --> SM_Train
+  SM_Train --> S3_Out["3️⃣ Amazon S3<br/>(결과 아티팩트 `model.tar.gz`)"]
+
+  style S3_In fill:#FF9900,color:#232F3E,stroke:#232F3E
+  style ECR fill:#FF9900,color:#232F3E,stroke:#232F3E
+  style Config fill:#F0F4F8,stroke:#232F3E
+  style SM_Train fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px
+  style S3_Out fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px
+```
 
 ### 훈련 작업 생성 과정
 
@@ -63,6 +92,19 @@ source_checked: '2026-09-04'
 - **사용 방법:** 루프 내 여러 훈련 작업 실행하는 **튜닝 작업** 알아내야 함
 - **완료 기준 지정:** 더 이상 지표 개선 안하는 작업 수 같은 기준, 완료 기준 충족까지 작업 실행
 
+```mermaid
+flowchart TD
+  UserRange["사용자 지정: 하이퍼파라미터 탐색 범위 & 목표 최적화 지표 (예: AUC 최대화)"] --> AMT["SageMaker AMT (자동 모델 튜닝)"]
+  AMT --> J1["학습 작업 1 (Learning Rate=0.01) ➔ AUC: 0.82"]
+  AMT --> J2["학습 작업 2 (Learning Rate=0.05) ➔ AUC: 0.89"]
+  AMT --> J3["학습 작업 N (베이지안 최적화 탐색) ➔ ..."]
+  J1 & J2 & J3 --> Best["🏆 최적의 하이퍼파라미터 조합 도출 (AUC: 0.95 최고 모델 아티팩트 생성)"]
+
+  style UserRange fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style AMT fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px
+  style Best fill:#E6F4EA,stroke:#1E8E3E,stroke-width:2px
+```
+
 ## 5. 시험 체크포인트
 
 - 훈련=파라미터/가중치 업데이트, 오류 낮추는 방향으로 이동, 반복 횟수 또는 오류 변화 목표 미만 시 중지
@@ -71,6 +113,34 @@ source_checked: '2026-09-04'
 - SageMaker 훈련 작업: S3 URL 입력, 컴퓨팅 리소스+출력 버킷 지정, Docker 컨테이너 이미지 경로 (ECR에서 SageMaker 제공 또는 커스텀), 하이퍼파라미터 설정, 인스턴스 시작->훈련->S3에 아티팩트 저장, 수천 개 실행/버전 생성 가능
 - Experiments=입력/파라미터/구성 다른 훈련 실행 그룹, 시각적 인터페이스 비교
 - AMT=하이퍼파라미터 튜닝, 많은 훈련 작업 실행, 성능 가장 좋은 값 선택, 예) AUC 최대화, 완료 기준 지정 (더 이상 개선 안하는 작업 수)
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 지문 핵심 단서"]
+    direction TB
+    K1["훈련 전 외부에서 설정하는 학습률, 계층 수 등"]
+    K2["SageMaker 훈련 알고리즘이 위치하는 레지스트리"]
+    K3["훈련 완료 후 생성된 모델 아티팩트 저장소"]
+    K4["목표 지표(AUC 등)를 최대화하는 하이퍼파라미터 자동 탐색"]
+    K5["여러 훈련 실행의 파라미터와 결과를 시각적으로 추적·비교"]
+  end
+  subgraph Answers ["🎯 AWS 정답 서비스 / 개념"]
+    direction TB
+    A1["➔ 하이퍼파라미터 (Hyperparameters)"]
+    A2["➔ Amazon ECR (Docker 이미지)"]
+    A3["➔ Amazon S3 버킷"]
+    A4["➔ SageMaker AMT (자동 모델 튜닝)"]
+    A5["➔ SageMaker Experiments"]
+  end
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+  K5 --> A5
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Answers fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

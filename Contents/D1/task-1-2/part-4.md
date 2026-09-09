@@ -13,6 +13,35 @@ source_checked: '2026-09-04'
 
 > Polly, Kendra, Personalize, Translate, Forecast, Fraud Detector, Bedrock, SageMaker
 
+![AWS AI 서비스 3단계 스택](../../../assets/images/d1-aws-ai-stack.svg)
+
+```mermaid
+graph TD
+  subgraph Level1 ["1️⃣ 사전 훈련된 전문 AI 서비스 (Pre-trained AI Services - 관리 부담 최소화)"]
+    direction LR
+    Polly["🗣️ Amazon Polly<br/>(TTS 음성 합성)"]
+    Translate["🌐 Amazon Translate<br/>(다국어 번역)"]
+    Kendra["🔍 Amazon Kendra<br/>(지능형 검색)"]
+    Personalize["🎯 Amazon Personalize<br/>(개인화 맞춤 추천)"]
+    Forecast["📈 Amazon Forecast<br/>(시계열 수요 예측)"]
+    Fraud["🛡️ Amazon Fraud Detector<br/>(부정 결제 차단)"]
+  end
+
+  subgraph Level2 ["2️⃣ 생성형 AI 파운데이션 모델 플랫폼 (Generative AI Platform)"]
+    direction LR
+    Bedrock["✨ <b>Amazon Bedrock</b><br/>• 완전관리형 API로 선도적 FM 제공 (Titan, Claude, Llama 등)<br/>• 지식 기반(Knowledge Bases)을 통한 RAG 구축<br/>• 기업 데이터 비학습 보장 및 보안 가드레일"]
+  end
+
+  subgraph Level3 ["3️⃣ 엔드투엔드 맞춤형 머신러닝 플랫폼 (Custom ML Platform)"]
+    direction LR
+    SageMaker["🛠️ <b>Amazon SageMaker</b><br/>• <b>준비(Prepare)</b> ➔ <b>구축(Build)</b> ➔ <b>훈련(Train)</b> ➔ <b>배포(Deploy)</b> 전주기 제어<br/>• 대규모 GPU 분산 학습 및 실시간 추론 엔드포인트 호스팅"]
+  end
+
+  style Level1 fill:#F0F4F8,stroke:#232F3E
+  style Level2 fill:#FEF7E0,stroke:#F9AB00,stroke-width:2px
+  style Level3 fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px
+```
+
 ## 1. 음성/검색/추천/번역/예측/사기 탐지 서비스
 
 | 서비스 | 정의/핵심 기술 | 사용 사례/특징 | 시험 키워드 |
@@ -34,6 +63,20 @@ source_checked: '2026-09-04'
 
 ## 3. 사용자 지정 ML 필요시 - Amazon SageMaker 제품군
 
+```mermaid
+flowchart TD
+  Start{"어떤 AI 솔루션 레벨이 필요한가?"}
+
+  Start -->|특정 단일 기능: 번역/추천/검색/음성/수요예측| Pre["✅ 사전 훈련된 AI 서비스<br/>(Polly, Kendra, Personalize, Forecast 등)"]
+  Start -->|생성형 AI: 텍스트/이미지 생성, 챗봇, RAG| Gen["✨ Amazon Bedrock<br/>(완전관리형 FM 활용 및 커스터마이징)"]
+  Start -->|완전 자체 구축 모델, 파이프라인 전체 제어| Custom["🛠️ Amazon SageMaker<br/>(데이터 준비부터 분산 훈련, 커스텀 엔드포인트)"]
+
+  style Start fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Pre fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style Gen fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Custom fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+```
+
 - **언제 사용:** 핵심 AI 서비스 사전 구축 기능 이상으로 더 세밀하게 사용자 지정된 ML 모델/워크플로 필요할 때
 - **정의:** 데이터 과학자/개발자가 고품질 ML 모델 효율적으로 **준비, 구축, 훈련, 배포**할 수 있는 ML 기능 제공
 - **구성:** 사용자 지정 ML 모델 구축/훈련에 최적화된 여러 서비스로 구성
@@ -52,6 +95,42 @@ source_checked: '2026-09-04'
 - Fraud Detector = 사기 탐지, 사전 훈련 모델 (거래/리뷰/결제/신규계좌/계좌인수)
 - Bedrock = 완전관리형 생성형 AI, 파운데이션 모델 선택(Amazon, Meta, 스타트업), RAG=외부 지식 검색, Titan Image Generator
 - SageMaker = 세밀한 사용자 지정 필요시, 준비/구축/훈련/배포, 대규모 병렬 학습, 실시간 엔드포인트, 사전 훈련 모델 제공
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 요구 시나리오"]
+    direction TB
+    K1["텍스트 기사를 자연스러운 사람 음성으로 읽어주기"]
+    K2["기업 사내 문서 자연어 지능형 검색 포털"]
+    K3["쇼핑몰 '당신을 위한 맞춤 추천 상품' 목록"]
+    K4["과거 판매량 기반 다음 분기 재고 수요 예측"]
+    K5["사기 결제 및 가짜 계정 생성 실시간 차단"]
+    K6["완전관리형 파운데이션 모델 선택 및 RAG 연동"]
+    K7["데이터 전처리부터 GPU 분산 학습, 커스텀 모델 배포"]
+  end
+
+  subgraph Services ["🎯 AWS 정답 서비스"]
+    direction TB
+    S1["➔ Amazon Polly"]
+    S2["➔ Amazon Kendra"]
+    S3["➔ Amazon Personalize"]
+    S4["➔ Amazon Forecast"]
+    S5["➔ Amazon Fraud Detector"]
+    S6["➔ Amazon Bedrock"]
+    S7["➔ Amazon SageMaker"]
+  end
+
+  K1 --> S1
+  K2 --> S2
+  K3 --> S3
+  K4 --> S4
+  K5 --> S5
+  K6 --> S6
+  K7 --> S7
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Services fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

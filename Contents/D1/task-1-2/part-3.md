@@ -13,6 +13,27 @@ source_checked: '2026-09-04'
 
 > 대부분의 일반적인 사용 사례에서는 자체 사용자 지정 모델 구축/훈련 불필요. AWS API로 접근 가능한 사전 훈련된 서비스 먼저 조사해야 함
 
+```mermaid
+graph TD
+  AI_Services["☁️ AWS 사전 훈련된 완전관리형 AI 서비스<br/>(자체 모델 훈련 없이 API 호출만으로 즉시 사용)"]
+
+  AI_Services --> Vision["👁️ 시각 (Vision)"]
+  Vision --> Rekog["<b>Amazon Rekognition</b><br/>• 이미지/영상 분석<br/>• 얼굴 인식 & 신원 확인<br/>• 유해 콘텐츠 검열 (Moderation)"]
+
+  AI_Services --> DocText["📄 문서 & 텍스트 (Text & NLP)"]
+  DocText --> Textract["<b>Amazon Textract</b><br/>• 지능형 문서 추출 (OCR 초월)<br/>• 표, 양식(Key-Value), 필기체 추출"]
+  DocText --> Comprehend["<b>Amazon Comprehend</b><br/>• 자연어 처리 (NLP) & 감정 분석<br/>• <b>PII (개인식별정보) 탐지 & 마스킹</b>"]
+
+  AI_Services --> VoiceConv["🗣️ 음성 & 대화 (Speech & Chat)"]
+  VoiceConv --> Transcribe["<b>Amazon Transcribe</b><br/>• 음성 ➔ 텍스트 변환 (STT)<br/>• 실시간 자막 & 통화 녹음 스크립트"]
+  VoiceConv --> Lex["<b>Amazon Lex</b><br/>• 대화형 챗봇 & 음성 봇 (IVR)<br/>• Alexa와 동일한 대화 엔진 탑재"]
+
+  style AI_Services fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Vision fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style DocText fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style VoiceConv fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+```
+
 ## 1. 컴퓨터 비전 - Amazon Rekognition
 
 - **정의:** 컴퓨터 비전용 사전 훈련된 딥러닝 서비스. 고객 자체 모델 훈련 없이 일반적인 컴퓨터 비전 요구 충족. 이미지/비디오 모두 작동 (스트리밍 비디오 포함)
@@ -49,6 +70,19 @@ source_checked: '2026-09-04'
 - **기능:** PII 찾도록 사전 훈련됨. 이메일에서 이름, 주소, 이메일, 전화, 신용카드 번호 찾고 **신뢰도 점수** 반환
 - **활용:** 데이터에서 PII 제거 작업 시 최소 신뢰 수준 임계값 설정해 연결된 엔터티 자동 제거
 
+```mermaid
+flowchart LR
+  Doc["📑 스캔 서류 / 영수증 PDF<br/>(양식, 손글씨, 표)"] --> Textract["Amazon Textract<br/>(구조화된 텍스트 & 테이블 추출)"]
+  Textract --> RawText["추출된 텍스트"]
+  RawText --> Comprehend["Amazon Comprehend<br/>(NLP 감정 분석 & PII 마스킹)"]
+  Comprehend --> SafeData["✅ 안전한 데이터<br/>(이름, 신용카드 등 마스킹 완료)"]
+
+  style Doc fill:#F0F4F8,stroke:#232F3E
+  style Textract fill:#E8F0FE,stroke:#1A73E8,stroke-width:1.5px
+  style Comprehend fill:#FEF7E0,stroke:#F9AB00,stroke-width:1.5px
+  style SafeData fill:#E6F4EA,stroke:#1E8E3E,stroke-width:1.5px
+```
+
 ## 3. 대화형/음성 서비스
 
 ### Amazon Lex
@@ -70,6 +104,34 @@ source_checked: '2026-09-04'
 - Comprehend = NLP/감정 분류/ PII 탐지(이름,주소,이메일,전화,신용카드) + 신뢰도 점수 + Textract와 함께 사용
 - Lex = 음성/텍스트 인터페이스, Alexa 동일 기술, 챗봇/IVR/콜 라우팅
 - Transcribe = 100+ 언어 음성 인식, 라이브/녹음 오디오/비디오 -> 트랜스크립트, 실시간 자막
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 시험 문제 요구사항"]
+    direction TB
+    K1["영상/사진 속 얼굴 확인 및 부적절 콘텐츠 필터링"]
+    K2["스캔 서류/영수증에서 표(Table) 및 키-값 추출"]
+    K3["고객 리뷰 감정 분석 및 PII(개인정보) 마스킹"]
+    K4["대화형 음성/텍스트 챗봇 및 콜센터 라우팅 (IVR)"]
+    K5["회의 녹음 음성을 텍스트로 변환 및 실시간 자막"]
+  end
+  subgraph Services ["🎯 AWS 정답 서비스"]
+    direction TB
+    S1["➔ Amazon Rekognition"]
+    S2["➔ Amazon Textract"]
+    S3["➔ Amazon Comprehend"]
+    S4["➔ Amazon Lex"]
+    S5["➔ Amazon Transcribe"]
+  end
+  K1 --> S1
+  K2 --> S2
+  K3 --> S3
+  K4 --> S4
+  K5 --> S5
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Services fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

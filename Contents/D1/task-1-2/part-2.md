@@ -22,6 +22,33 @@ source_checked: '2026-09-04'
 
 ## 2. 지도 학습 2대 유형: 분류 vs 회귀
 
+```mermaid
+flowchart TD
+  Data{"훈련 데이터에 정답 레이블(Label)이 존재하는가?"}
+
+  Data -- "Yes (레이블 있음)" --> Supervised["🎯 지도 학습 (Supervised)"]
+  Data -- "No (레이블 없음)" --> Unsupervised["🔍 비지도 학습 (Unsupervised)"]
+
+  Supervised --> Target{"예측 대상(Target) 값의 형태는?"}
+  Target -- "범주형 (이산적/카테고리)" --> Classification["🏷️ 분류 (Classification)"]
+  Target -- "연속형 (숫자/수치)" --> Regression["📈 회귀 (Regression)"]
+
+  Classification --> C_Binary["• 이진 분류: 2개 중 택1 (정상/스팸, 질병 유/무)<br/>• 다중 분류: N개 중 택1 (문서 주제, 생물 분류)"]
+  Regression --> R_Types["• 단순 선형: 1개 독립변수 ➔ 수치 예측<br/>• 다중 선형: 여러 특성 ➔ 주택 가격 예측<br/>• 로지스틱 회귀: 사건 발생 확률(0~1) 산출"]
+
+  Unsupervised --> Un_Goal{"비지도 학습의 주요 목적은?"}
+  Un_Goal -- "데이터 그룹화" --> Clustering["👥 클러스터링 (Clustering)<br/>• 거리 함수 기반 유사 그룹 묶기<br/>• 고객 세그먼트 분석"]
+  Un_Goal -- "특이값 식별" --> Anomaly["🚨 이상 탐지 (Anomaly Detection)<br/>• 정상 패턴에서 이탈한 희귀치 포착<br/>• 고장 센서, 부정 결제 감지"]
+
+  style Data fill:#232F3E,color:#FFFFFF,stroke:#232F3E
+  style Supervised fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Unsupervised fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Classification fill:#E6F4EA,stroke:#1E8E3E,color:#1E8E3E
+  style Regression fill:#E8F0FE,stroke:#1A73E8,color:#1A73E8
+  style Clustering fill:#FEF7E0,stroke:#F9AB00,color:#B06000
+  style Anomaly fill:#FCE8E6,stroke:#D93025,color:#D93025
+```
+
 - **대상 값이 범주형** = 하나 이상 불연속적 값 = **분류 문제**
 - **대상 값이 연속형** = 수학적으로 연속 = **회귀 문제**
 
@@ -77,6 +104,39 @@ source_checked: '2026-09-04'
 - 로지스틱 회귀 = 확률 0~1, 로그 함수, 예) BMI+흡연+유전 -> 심장병, 사기 거래 예측. 선형/로지스틱 모두 레이블 많이 필요
 - 클러스터링 = 그룹 내 유사 최대, 그룹 간 차이 최대, 거리 함수, 그룹 수 지정 필요, 예) 구매 내역 고객 분할
 - 이상 탐지 = 희귀/의심 항목 식별
+
+```mermaid
+flowchart LR
+  subgraph Clues ["📋 문제 지문 키워드"]
+    direction TB
+    K1["스팸 메일 여부 (Yes/No)"]
+    K2["문서를 금융/정치/스포츠 중 하나로 분류"]
+    K3["방 개수, 평수 기반 주택 매매가 예측"]
+    K4["환자 지표로 심장병 발병 확률(0~1) 산출"]
+    K5["구매 이력 기반 유사 고객 그룹 자동 분할"]
+    K6["정상 범위를 벗어나는 희귀 센서 오류 감지"]
+  end
+
+  subgraph Answers ["🎯 문제 유형 정답"]
+    direction TB
+    A1["➔ 이진 분류 (Binary Classification)"]
+    A2["➔ 다중 분류 (Multi-class Classification)"]
+    A3["➔ 다중 선형 회귀 (Multiple Linear Regression)"]
+    A4["➔ 로지스틱 회귀 (Logistic Regression)"]
+    A5["➔ 클러스터 분석 (Clustering)"]
+    A6["➔ 이상 탐지 (Anomaly Detection)"]
+  end
+
+  K1 --> A1
+  K2 --> A2
+  K3 --> A3
+  K4 --> A4
+  K5 --> A5
+  K6 --> A6
+
+  style Clues fill:#F8F9FA,stroke:#6C757D
+  style Answers fill:#E8F0FE,stroke:#1A73E8
+```
 
 ## 학습 문서 메타데이터
 

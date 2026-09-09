@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="peBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="cardZero" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="headerGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="headerGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="headerGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#FBBF24"/>
+    </linearGradient>
+    <linearGradient id="headerGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="940" height="600" rx="16" fill="url(#peBg)"/>
+
+  <!-- Title -->
+  <text x="470" y="38" fill="#F8FAFC" font-size="22" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    주요 프롬프트 엔지니어링 기법 비교 (Prompt Engineering Techniques)
+  </text>
+  <text x="470" y="60" fill="#94A3B8" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    모델 가중치 수정 없이 입력 구조화만으로 LLM의 추론 성능과 정확도를 극대화하는 핵심 방법론
+  </text>
+
+  <!-- Card 1: Zero-shot -->
+  <g transform="translate(30, 85)">
+    <rect width="205" height="430" rx="12" fill="url(#cardZero)" stroke="#3B82F6" stroke-width="1.5"/>
+    <rect width="205" height="38" rx="12" fill="url(#headerGrad1)"/>
+    <rect y="26" width="205" height="12" fill="url(#headerGrad1)"/>
+    <text x="102" y="24" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Zero-shot Prompting</text>
+
+    <text x="15" y="62" fill="#93C5FD" font-size="12" font-weight="bold" font-family="sans-serif">📌 개념: 예시 없는 직접 요청</text>
+    <text x="15" y="80" fill="#CBD5E1" font-size="11" font-family="sans-serif">사전 훈련된 지식만을 활용하여</text>
+    <text x="15" y="96" fill="#CBD5E1" font-size="11" font-family="sans-serif">추가 예시 없이 즉시 작업 수행</text>
+
+    <!-- Code Mockup -->
+    <rect x="12" y="112" width="181" height="175" rx="8" fill="#090D16" stroke="#334155"/>
+    <text x="20" y="132" fill="#64748B" font-size="10" font-family="monospace"># Prompt:</text>
+    <text x="20" y="152" fill="#F1F5F9" font-size="10.5" font-family="monospace">"다음 문장의 감정을</text>
+    <text x="20" y="170" fill="#F1F5F9" font-size="10.5" font-family="monospace"> 분류하시오:</text>
+    <text x="20" y="190" fill="#93C5FD" font-size="10" font-family="monospace"> '배송이 매우 빠르고</text>
+    <text x="20" y="208" fill="#93C5FD" font-size="10" font-family="monospace">  품질이 좋습니다.'"</text>
+    <line x1="20" y1="225" x2="185" y2="225" stroke="#1E293B"/>
+    <text x="20" y="245" fill="#64748B" font-size="10" font-family="monospace"># Response:</text>
+    <text x="20" y="265" fill="#34D399" font-size="11" font-weight="bold" font-family="monospace">긍정 (Positive)</text>
+
+    <text x="15" y="310" fill="#94A3B8" font-size="11" font-weight="bold" font-family="sans-serif">적합한 상황:</text>
+    <text x="15" y="328" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 표준적 번역, 요약, 분류</text>
+    <text x="15" y="346" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 단순 질의응답</text>
+    <text x="15" y="364" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 최신 고성능 LLM 활용 시</text>
+
+    <rect x="15" y="388" width="175" height="26" rx="6" fill="#1E293B"/>
+    <text x="102" y="405" fill="#60A5FA" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">토큰 비용: 최저 (★☆☆)</text>
+  </g>
+
+  <!-- Card 2: Few-shot -->
+  <g transform="translate(255, 85)">
+    <rect width="205" height="430" rx="12" fill="url(#cardZero)" stroke="#10B981" stroke-width="1.5"/>
+    <rect width="205" height="38" rx="12" fill="url(#headerGrad2)"/>
+    <rect y="26" width="205" height="12" fill="url(#headerGrad2)"/>
+    <text x="102" y="24" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Few-shot Prompting</text>
+
+    <text x="15" y="62" fill="#6EE7B7" font-size="12" font-weight="bold" font-family="sans-serif">📌 개념: 입출력 예시 제공</text>
+    <text x="15" y="80" fill="#CBD5E1" font-size="11" font-family="sans-serif">원하는 서식, 톤, 기준을</text>
+    <text x="15" y="96" fill="#CBD5E1" font-size="11" font-family="sans-serif">1개(One-shot)~수개의 예시로 제시</text>
+
+    <!-- Code Mockup -->
+    <rect x="12" y="112" width="181" height="175" rx="8" fill="#090D16" stroke="#334155"/>
+    <text x="20" y="130" fill="#64748B" font-size="9.5" font-family="monospace"># Examples:</text>
+    <text x="20" y="146" fill="#CBD5E1" font-size="9.5" font-family="monospace">입력: 환불해주세요</text>
+    <text x="20" y="160" fill="#34D399" font-size="9.5" font-family="monospace">분류: 고객지원_환불</text>
+    <text x="20" y="176" fill="#CBD5E1" font-size="9.5" font-family="monospace">입력: 로그인 오류</text>
+    <text x="20" y="190" fill="#34D399" font-size="9.5" font-family="monospace">분류: 기술지원_계정</text>
+    <line x1="20" y1="202" x2="185" y2="202" stroke="#1E293B"/>
+    <text x="20" y="218" fill="#F59E0B" font-size="9.5" font-family="monospace">입력: 비밀번호 재설정</text>
+    <text x="20" y="234" fill="#64748B" font-size="9.5" font-family="monospace"># Response:</text>
+    <text x="20" y="250" fill="#34D399" font-size="10.5" font-weight="bold" font-family="monospace">분류: 기술지원_계정</text>
+
+    <text x="15" y="310" fill="#94A3B8" font-size="11" font-weight="bold" font-family="sans-serif">적합한 상황:</text>
+    <text x="15" y="328" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 엄격한 JSON/특정 출력 형식</text>
+    <text x="15" y="346" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 도메인 전용 분류 라벨 준수</text>
+    <text x="15" y="364" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 미세 조정 전 단계 프로토타이핑</text>
+
+    <rect x="15" y="388" width="175" height="26" rx="6" fill="#1E293B"/>
+    <text x="102" y="405" fill="#34D399" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">출력 일관성: 높음 (★★☆)</text>
+  </g>
+
+  <!-- Card 3: Chain-of-Thought (CoT) -->
+  <g transform="translate(480, 85)">
+    <rect width="205" height="430" rx="12" fill="url(#cardZero)" stroke="#F59E0B" stroke-width="1.5"/>
+    <rect width="205" height="38" rx="12" fill="url(#headerGrad3)"/>
+    <rect y="26" width="205" height="12" fill="url(#headerGrad3)"/>
+    <text x="102" y="24" fill="#FFFFFF" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Chain-of-Thought (CoT)</text>
+
+    <text x="15" y="62" fill="#FCD34D" font-size="12" font-weight="bold" font-family="sans-serif">📌 개념: 단계별 사고 유도</text>
+    <text x="15" y="80" fill="#CBD5E1" font-size="11" font-family="sans-serif">"단계별로 생각해보자" 문구로</text>
+    <text x="15" y="96" fill="#CBD5E1" font-size="11" font-family="sans-serif">중간 추론 과정을 명시적 생성</text>
+
+    <!-- Code Mockup -->
+    <rect x="12" y="112" width="181" height="175" rx="8" fill="#090D16" stroke="#334155"/>
+    <text x="20" y="130" fill="#64748B" font-size="9.5" font-family="monospace"># Prompt:</text>
+    <text x="20" y="146" fill="#F1F5F9" font-size="9.5" font-family="monospace">"사과 10개 중 3개를</text>
+    <text x="20" y="160" fill="#F1F5F9" font-size="9.5" font-family="monospace"> 먹고 2개를 더 샀다.</text>
+    <text x="20" y="176" fill="#FCD34D" font-size="9.5" font-weight="bold" font-family="monospace"> 단계별로 계산하라."</text>
+    <line x1="20" y1="188" x2="185" y2="188" stroke="#1E293B"/>
+    <text x="20" y="204" fill="#64748B" font-size="9.5" font-family="monospace"># Response:</text>
+    <text x="20" y="218" fill="#CBD5E1" font-size="9" font-family="monospace">1. 10 - 3 = 7개 남음</text>
+    <text x="20" y="232" fill="#CBD5E1" font-size="9" font-family="monospace">2. 7 + 2 = 9개 됨</text>
+    <text x="20" y="248" fill="#34D399" font-size="10" font-weight="bold" font-family="monospace">최종 정답: 9개</text>
+
+    <text x="15" y="310" fill="#94A3B8" font-size="11" font-weight="bold" font-family="sans-serif">적합한 상황:</text>
+    <text x="15" y="328" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 복잡한 수리/산술 계산</text>
+    <text x="15" y="346" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 다단계 논리적 추론 문제</text>
+    <text x="15" y="364" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 환각(Hallucination) 방지</text>
+
+    <rect x="15" y="388" width="175" height="26" rx="6" fill="#1E293B"/>
+    <text x="102" y="405" fill="#FBBF24" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">추론 정확도: 최고 (★★★)</text>
+  </g>
+
+  <!-- Card 4: Directional / Contextual (RAG) -->
+  <g transform="translate(705, 85)">
+    <rect width="205" height="430" rx="12" fill="url(#cardZero)" stroke="#8B5CF6" stroke-width="1.5"/>
+    <rect width="205" height="38" rx="12" fill="url(#headerGrad4)"/>
+    <rect y="26" width="205" height="12" fill="url(#headerGrad4)"/>
+    <text x="102" y="24" fill="#FFFFFF" font-size="13.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">Role &amp; Context / RAG</text>
+
+    <text x="15" y="62" fill="#C4B5FD" font-size="12" font-weight="bold" font-family="sans-serif">📌 개념: 역할 부여 &amp; 지식 주입</text>
+    <text x="15" y="80" fill="#CBD5E1" font-size="11" font-family="sans-serif">페르소나 정의 + 외부 검색</text>
+    <text x="15" y="96" fill="#CBD5E1" font-size="11" font-family="sans-serif">문서(Context)를 프롬프트에 결합</text>
+
+    <!-- Code Mockup -->
+    <rect x="12" y="112" width="181" height="175" rx="8" fill="#090D16" stroke="#334155"/>
+    <text x="20" y="130" fill="#64748B" font-size="9.5" font-family="monospace"># System Role:</text>
+    <text x="20" y="146" fill="#C4B5FD" font-size="9" font-family="monospace">"당신은 AWS 공인 SA다"</text>
+    <text x="20" y="162" fill="#64748B" font-size="9.5" font-family="monospace"># Context (RAG):</text>
+    <text x="20" y="176" fill="#94A3B8" font-size="9" font-family="monospace">[사내 보안 규정 문서]</text>
+    <line x1="20" y1="188" x2="185" y2="188" stroke="#1E293B"/>
+    <text x="20" y="204" fill="#64748B" font-size="9.5" font-family="monospace"># User Prompt:</text>
+    <text x="20" y="218" fill="#F1F5F9" font-size="9" font-family="monospace">"S3 버킷 암호화 방법?"</text>
+    <text x="20" y="234" fill="#64748B" font-size="9.5" font-family="monospace"># Response:</text>
+    <text x="20" y="248" fill="#34D399" font-size="9" font-family="monospace">KMS CMK 기반 암호화 권고</text>
+
+    <text x="15" y="310" fill="#94A3B8" font-size="11" font-weight="bold" font-family="sans-serif">적합한 상황:</text>
+    <text x="15" y="328" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 기업 사내 챗봇 / 전문 상담</text>
+    <text x="15" y="346" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 최신 실시간 정보 반영 필요</text>
+    <text x="15" y="364" fill="#E2E8F0" font-size="11" font-family="sans-serif">• 모델 파라미터 지식 한계 극복</text>
+
+    <rect x="15" y="388" width="175" height="26" rx="6" fill="#1E293B"/>
+    <text x="102" y="405" fill="#A78BFA" font-size="10.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">사실 근거성: 완벽 (Grounding)</text>
+  </g>
+
+  <!-- Bottom Comparison Banner -->
+  <rect x="30" y="530" width="880" height="48" rx="10" fill="#1E293B" stroke="#475569"/>
+  <text x="50" y="560" fill="#FF9900" font-size="13" font-weight="bold" font-family="sans-serif">💡 AIF-C01 핵심 원칙:</text>
+  <text x="195" y="560" fill="#E2E8F0" font-size="12" font-family="sans-serif">
+    가장 저렴하고 단순한 <tspan fill="#60A5FA" font-weight="bold">Zero-shot</tspan>부터 시작 ➔ 성능 부족 시 <tspan fill="#34D399" font-weight="bold">Few-shot / CoT</tspan> 적용 ➔ 사내 최신 지식 필요 시 <tspan fill="#A78BFA" font-weight="bold">RAG</tspan> 연계 순으로 확장!
+  </text>
+</svg>

@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="100%" height="100%">
+  <defs>
+    <linearGradient id="specBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1120"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="35%" stop-color="#3B82F6"/>
+      <stop offset="70%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="580" rx="16" fill="url(#specBg)"/>
+
+  <!-- Title -->
+  <text x="480" y="38" fill="#F8FAFC" font-size="22" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    파운데이션 모델 커스터마이징 스펙트럼 (Customization Spectrum)
+  </text>
+  <text x="480" y="60" fill="#94A3B8" font-size="13" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">
+    비즈니스 요구사항에 따른 맞춤화 수준 vs 비용, 시간, 데이터, 연산 자원의 트레이드오프
+  </text>
+
+  <!-- Spectrum Arrow Bar -->
+  <g transform="translate(60, 95)">
+    <rect width="840" height="18" rx="9" fill="url(#arrowGrad)"/>
+    <!-- Left label -->
+    <text x="0" y="-12" fill="#10B981" font-size="13" font-weight="bold" font-family="sans-serif">◀ 비용·노력 최소화 / 가중치 불변</text>
+    <!-- Right label -->
+    <text x="840" y="-12" fill="#EF4444" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="end">최대 맞춤화 / 고비용·가중치 수정 ▶</text>
+  </g>
+
+  <!-- 4 Cards -->
+  <!-- 1. Prompt Engineering -->
+  <g transform="translate(40, 130)">
+    <rect width="205" height="375" rx="12" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+    <rect width="205" height="40" rx="12" fill="#064E3B"/>
+    <rect y="28" width="205" height="12" fill="#064E3B"/>
+    <text x="102" y="26" fill="#34D399" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">1. 프롬프트 엔지니어링</text>
+
+    <text x="15" y="65" fill="#94A3B8" font-size="11" font-family="sans-serif">가중치 변경: <tspan fill="#34D399" font-weight="bold">없음 (0%)</tspan></text>
+    <text x="15" y="85" fill="#94A3B8" font-size="11" font-family="sans-serif">데이터 준비: <tspan fill="#34D399" font-weight="bold">없음 / 프롬프트 작성</tspan></text>
+    <text x="15" y="105" fill="#94A3B8" font-size="11" font-family="sans-serif">도입 시간: <tspan fill="#34D399" font-weight="bold">수 분 ~ 수 시간</tspan></text>
+    <text x="15" y="125" fill="#94A3B8" font-size="11" font-family="sans-serif">컴퓨팅 자원: <tspan fill="#34D399" font-weight="bold">추론 비용만 소요</tspan></text>
+
+    <line x1="15" y1="140" x2="190" y2="140" stroke="#334155"/>
+
+    <text x="15" y="162" fill="#F8FAFC" font-size="12" font-weight="bold" font-family="sans-serif">📌 핵심 원리 &amp; 기법:</text>
+    <text x="15" y="182" fill="#CBD5E1" font-size="11" font-family="sans-serif">• Zero-shot / Few-shot</text>
+    <text x="15" y="200" fill="#CBD5E1" font-size="11" font-family="sans-serif">• Chain-of-Thought (CoT)</text>
+    <text x="15" y="218" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 역할 부여 및 출력 제약</text>
+
+    <text x="15" y="246" fill="#F87171" font-size="11" font-weight="bold" font-family="sans-serif">⚠️ 한계:</text>
+    <text x="15" y="264" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 사내 비공개 데이터 무지</text>
+    <text x="15" y="280" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 컨텍스트 창(Window) 한계</text>
+
+    <rect x="15" y="325" width="175" height="32" rx="8" fill="#064E3B"/>
+    <text x="102" y="346" fill="#A7F3D0" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">비용: $ | 난이도: 매우 낮음</text>
+  </g>
+
+  <!-- 2. RAG -->
+  <g transform="translate(265, 130)">
+    <rect width="205" height="375" rx="12" fill="#1E293B" stroke="#3B82F6" stroke-width="2"/>
+    <rect width="205" height="40" rx="12" fill="#1E3A8A"/>
+    <rect y="28" width="205" height="12" fill="#1E3A8A"/>
+    <text x="102" y="26" fill="#60A5FA" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">2. RAG (검색 증강 생성)</text>
+
+    <text x="15" y="65" fill="#94A3B8" font-size="11" font-family="sans-serif">가중치 변경: <tspan fill="#60A5FA" font-weight="bold">없음 (0%)</tspan></text>
+    <text x="15" y="85" fill="#94A3B8" font-size="11" font-family="sans-serif">데이터 준비: <tspan fill="#60A5FA" font-weight="bold">사내 문서 청킹 &amp; 벡터화</tspan></text>
+    <text x="15" y="105" fill="#94A3B8" font-size="11" font-family="sans-serif">도입 시간: <tspan fill="#60A5FA" font-weight="bold">수 일 ~ 수 주</tspan></text>
+    <text x="15" y="125" fill="#94A3B8" font-size="11" font-family="sans-serif">컴퓨팅 자원: <tspan fill="#60A5FA" font-weight="bold">임베딩 + 벡터DB 검색</tspan></text>
+
+    <line x1="15" y1="140" x2="190" y2="140" stroke="#334155"/>
+
+    <text x="15" y="162" fill="#F8FAFC" font-size="12" font-weight="bold" font-family="sans-serif">📌 핵심 장점 (AWS Bedrock):</text>
+    <text x="15" y="182" fill="#CBD5E1" font-size="11" font-family="sans-serif">• <tspan fill="#34D399" font-weight="bold">최신 사내 지식 실시간</tspan> 반영</text>
+    <text x="15" y="200" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 정확한 출처 문서 인용(Grounding)</text>
+    <text x="15" y="218" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 환각(Hallucination) 최소화</text>
+    <text x="15" y="236" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 재훈련 없이 데이터 즉시 갱신</text>
+
+    <text x="15" y="264" fill="#93C5FD" font-size="11" font-weight="bold" font-family="sans-serif">AWS 스택:</text>
+    <text x="15" y="282" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• Knowledge Bases for Bedrock</text>
+    <text x="15" y="298" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• OpenSearch Serverless / Kendra</text>
+
+    <rect x="15" y="325" width="175" height="32" rx="8" fill="#1E3A8A"/>
+    <text x="102" y="346" fill="#93C5FD" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">비용: $$ | 난이도: 보통</text>
+  </g>
+
+  <!-- 3. Fine-Tuning -->
+  <g transform="translate(490, 130)">
+    <rect width="205" height="375" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+    <rect width="205" height="40" rx="12" fill="#78350F"/>
+    <rect y="28" width="205" height="12" fill="#78350F"/>
+    <text x="102" y="26" fill="#FBBF24" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">3. 미세 조정 (Fine-Tuning)</text>
+
+    <text x="15" y="65" fill="#94A3B8" font-size="11" font-family="sans-serif">가중치 변경: <tspan fill="#FBBF24" font-weight="bold">일부/전체 업데이트</tspan></text>
+    <text x="15" y="85" fill="#94A3B8" font-size="11" font-family="sans-serif">데이터 준비: <tspan fill="#FBBF24" font-weight="bold">수백~수만 쌍 라벨링</tspan></text>
+    <text x="15" y="105" fill="#94A3B8" font-size="11" font-family="sans-serif">도입 시간: <tspan fill="#FBBF24" font-weight="bold">수 일 ~ 수 주</tspan></text>
+    <text x="15" y="125" fill="#94A3B8" font-size="11" font-family="sans-serif">컴퓨팅 자원: <tspan fill="#FBBF24" font-weight="bold">GPU 훈련 잡 인스턴스</tspan></text>
+
+    <line x1="15" y1="140" x2="190" y2="140" stroke="#334155"/>
+
+    <text x="15" y="162" fill="#F8FAFC" font-size="12" font-weight="bold" font-family="sans-serif">📌 적합한 목적:</text>
+    <text x="15" y="182" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 특정 어투, 전문 용어 체득</text>
+    <text x="15" y="200" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 특수 구조(JSON/SQL) 강제</text>
+    <text x="15" y="218" fill="#CBD5E1" font-size="11" font-family="sans-serif">• PEFT / LoRA (경량 미세조정)</text>
+
+    <text x="15" y="246" fill="#FCA5A5" font-size="11" font-weight="bold" font-family="sans-serif">⚠️ 주의점:</text>
+    <text x="15" y="264" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 최신 정보 지속 업데이트 불가</text>
+    <text x="15" y="280" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 망각(Catastrophic Forgetting)</text>
+    <text x="15" y="296" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 라벨 데이터 구축 고비용</text>
+
+    <rect x="15" y="325" width="175" height="32" rx="8" fill="#78350F"/>
+    <text x="102" y="346" fill="#FDE68A" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">비용: $$$ | 난이도: 높음</text>
+  </g>
+
+  <!-- 4. Pre-training from Scratch -->
+  <g transform="translate(715, 130)">
+    <rect width="205" height="375" rx="12" fill="#1E293B" stroke="#EF4444" stroke-width="2"/>
+    <rect width="205" height="40" rx="12" fill="#7F1D1D"/>
+    <rect y="28" width="205" height="12" fill="#7F1D1D"/>
+    <text x="102" y="26" fill="#F87171" font-size="13.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">4. 사전 훈련 (Pre-training)</text>
+
+    <text x="15" y="65" fill="#94A3B8" font-size="11" font-family="sans-serif">가중치 변경: <tspan fill="#F87171" font-weight="bold">처음부터 무작위 초기화</tspan></text>
+    <text x="15" y="85" fill="#94A3B8" font-size="11" font-family="sans-serif">데이터 준비: <tspan fill="#F87171" font-weight="bold">수십억~수조 토큰</tspan></text>
+    <text x="15" y="105" fill="#94A3B8" font-size="11" font-family="sans-serif">도입 시간: <tspan fill="#F87171" font-weight="bold">수 개월 ~ 1년 이상</tspan></text>
+    <text x="15" y="125" fill="#94A3B8" font-size="11" font-family="sans-serif">컴퓨팅 자원: <tspan fill="#F87171" font-weight="bold">수백~수천 GPU/Trainium</tspan></text>
+
+    <line x1="15" y1="140" x2="190" y2="140" stroke="#334155"/>
+
+    <text x="15" y="162" fill="#F8FAFC" font-size="12" font-weight="bold" font-family="sans-serif">📌 적용 분야 (극히 한정):</text>
+    <text x="15" y="182" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 금융, 바이오, 법률 특화 파운데이션 모델 독자 개발</text>
+    <text x="15" y="210" fill="#CBD5E1" font-size="11" font-family="sans-serif">• 기존 공개 FM으로 해결 불가능한 특수 언어/기호 체계</text>
+
+    <text x="15" y="246" fill="#FCA5A5" font-size="11" font-weight="bold" font-family="sans-serif">⚠️ 비용/위험:</text>
+    <text x="15" y="264" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 수십억~수백억 원 인프라 비용</text>
+    <text x="15" y="280" fill="#CBD5E1" font-size="10.5" font-family="sans-serif">• 최고 수준 분산 학습 ML 엔지니어링 역량 필수</text>
+
+    <rect x="15" y="325" width="175" height="32" rx="8" fill="#7F1D1D"/>
+    <text x="102" y="346" fill="#FECACA" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">비용: $$$$$ | 난이도: 극한</text>
+  </g>
+
+  <!-- Bottom Recommendation Bar -->
+  <rect x="40" y="520" width="880" height="42" rx="8" fill="#0F172A" stroke="#475569"/>
+  <text x="480" y="546" fill="#E2E8F0" font-size="12" text-anchor="middle" font-family="sans-serif">
+    💡 <tspan fill="#FF9900" font-weight="bold">AWS 권장 실무 가이드:</tspan> 대다수 비즈니스 문제는 <tspan fill="#34D399" font-weight="bold">프롬프트 엔지니어링</tspan>과 <tspan fill="#60A5FA" font-weight="bold">RAG (Bedrock Knowledge Bases)</tspan>의 조합만으로 충분히 완벽하게 해결됩니다.
+  </text>
+</svg>
