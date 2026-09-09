@@ -120,17 +120,16 @@ flowchart LR
 이 사분면 차트는 AI를 선택할 때 비용·이점과 요구되는 결정성·해석 가능성의 두 축 절충을 개념적으로 보여 줍니다. 점은 정량 평가가 아닌 판단 기준의 예시입니다.
 
 ```mermaid
-quadrantChart
-  title AI 선택 판단의 개념 비교
-  x-axis 낮은 비용 부담 --> 높은 비용 부담
-  y-axis 낮은 설명 요구 --> 높은 설명 요구
-  quadrant-1 높은 비용과 높은 설명 요구
-  quadrant-2 낮은 비용과 높은 설명 요구
-  quadrant-3 낮은 비용과 낮은 설명 요구
-  quadrant-4 높은 비용과 낮은 설명 요구
-  rules: [0.25, 0.8]
-  simple_ml: [0.45, 0.65]
-  complex_ai: [0.8, 0.35]
+flowchart TB
+  Start[AI 도입 후보] --> Cost{"구축·운영 비용이<br/>기대 이점보다 큰가?"}
+  Cost -- 예 --> Stop["투자 재검토 또는<br/>규칙 기반 대안 검토"]
+  Cost -- 아니오 --> Explain{"설명 가능성 또는<br/>결정론적 결과가 필수인가?"}
+  Explain -- 예 --> Simple["단순 규칙 또는<br/>해석 가능한 모델 검토"]
+  Explain -- 아니오 --> ML["AI·ML 적용 후보<br/>평가·모니터링 설계"]
+
+  style Stop fill:#FCE8E6,stroke:#D93025,color:#7F1D1D
+  style Simple fill:#FEF7E0,stroke:#F9AB00,color:#92400E
+  style ML fill:#E6F4EA,stroke:#1E8E3E,color:#166534
 ```
 
 ---
