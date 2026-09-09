@@ -1,13 +1,4 @@
----
-title: 'AIF-C01 Task 2.1 Part 1 - 생성형 AI 기본 개념과 프롬프트'
-source_urls:
-  - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html'
-  - 'docs/Refs/AIF-C01-Task2-1-Part1.md'
-source_checked: '2026-09-04'
----
-
-<!-- metadata-badges -->
-<p><img src="../../../assets/badges/d2-metadata.svg" alt="도메인 D2 · 입문 · 초안" height="28" /></p>
+![도메인 D2](https://img.shields.io/badge/%F0%9F%A7%AD%20Domain-D2-7C3AED?style=flat-square&labelColor=0F172A) ![난이도 입문](https://img.shields.io/badge/%F0%9F%8C%B1%20Level-Beginner-2EA44F?style=flat-square&labelColor=0F172A) ![문서 상태 초안](https://img.shields.io/badge/%F0%9F%8F%97%EF%B8%8F%20Status-Draft-F59E0B?style=flat-square&labelColor=0F172A)
 
 # AIF-C01 Task 2.1 Part 1 - 생성형 AI 기본 개념 / 딥 러닝 하위 집합 독창적 새 콘텐츠 생성 / 파운데이션 모델 수십억 파라미터 메모리 / 모델 구축 신경망·리소스·데이터·프롬프트 / 트랜스포머 Attention Is All You Need 2017 / LLM 사전 훈련 미세 조정 / 프롬프트·추론·완성·컨텍스트 창·토큰·어휘·토크나이저·프롬프트 엔지니어링 / 통계·선형 대수 확률·손실·행렬 곱 / 컨텍스트 내 학습 퓨샷·제로샷·원샷
 

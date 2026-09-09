@@ -1,13 +1,4 @@
----
-title: 'AIF-C01 Task 1.3 Part 2 - 훈련 데이터 수집/처리'
-source_urls:
-  - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html'
-  - 'docs/Refs/AIF-C01-Task1-3-Part2.md'
-source_checked: '2026-09-04'
----
-
-<!-- metadata-badges -->
-<p><img src="../../../assets/badges/d1-metadata.svg" alt="도메인 D1 · 입문 · 초안" height="28" /></p>
+![도메인 D1](https://img.shields.io/badge/%F0%9F%A7%AD%20Domain-D1-232F3E?style=flat-square&labelColor=0F172A) ![난이도 입문](https://img.shields.io/badge/%F0%9F%8C%B1%20Level-Beginner-2EA44F?style=flat-square&labelColor=0F172A) ![문서 상태 초안](https://img.shields.io/badge/%F0%9F%8F%97%EF%B8%8F%20Status-Draft-F59E0B?style=flat-square&labelColor=0F172A)
 
 # AIF-C01 Task 1.3 Part 2 - 훈련 데이터 수집/처리
 

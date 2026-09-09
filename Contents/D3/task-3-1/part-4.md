@@ -1,13 +1,4 @@
----
-title: 'AIF-C01 Task 3.1 Part 4 - RAG 2요소/벡터 DB 활용/임베딩 저장 AWS 서비스/에이전트 (3.1 마무리)'
-source_urls:
-  - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html'
-  - 'docs/Refs/AIF-C01-Task3-1-Part4.md'
-source_checked: '2026-09-04'
----
-
-<!-- metadata-badges -->
-<p><img src="../../../assets/badges/d3-metadata.svg" alt="도메인 D3 · 입문 · 초안" height="28" /></p>
+![도메인 D3](https://img.shields.io/badge/%F0%9F%A7%AD%20Domain-D3-2563EB?style=flat-square&labelColor=0F172A) ![난이도 입문](https://img.shields.io/badge/%F0%9F%8C%B1%20Level-Beginner-2EA44F?style=flat-square&labelColor=0F172A) ![문서 상태 초안](https://img.shields.io/badge/%F0%9F%8F%97%EF%B8%8F%20Status-Draft-F59E0B?style=flat-square&labelColor=0F172A)
 
 # AIF-C01 Task 3.1 Part 4 - RAG 2요소/벡터 DB 활용/임베딩 저장 AWS 서비스/에이전트 (3.1 마무리)
 

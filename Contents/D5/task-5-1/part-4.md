@@ -1,13 +1,4 @@
----
-title: 'AIF-C01 Task 5.1 Part 4 - 암호화 저장 시·전송 중·클라이언트 vs 서버 측·기본 암호화·KMS·TLS·분산 훈련 노드 간 암호화·Macie·VPC·PrivateLink'
-source_urls:
-  - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
-  - 'docs/Refs/AIF-C01-Task5-1-Part4.md'
-source_checked: '2026-09-04'
----
-
-<!-- metadata-badges -->
-<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
+![도메인 D5](https://img.shields.io/badge/%F0%9F%A7%AD%20Domain-D5-B45309?style=flat-square&labelColor=0F172A) ![난이도 입문](https://img.shields.io/badge/%F0%9F%8C%B1%20Level-Beginner-2EA44F?style=flat-square&labelColor=0F172A) ![문서 상태 초안](https://img.shields.io/badge/%F0%9F%8F%97%EF%B8%8F%20Status-Draft-F59E0B?style=flat-square&labelColor=0F172A)
 
 # AIF-C01 Task 5.1 Part 4 - 암호화 저장 시·전송 중·클라이언트 vs 서버 측·기본 암호화·KMS·TLS·분산 훈련 노드 간 암호화·Macie·VPC·PrivateLink
 

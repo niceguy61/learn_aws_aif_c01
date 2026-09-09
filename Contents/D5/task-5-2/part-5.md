@@ -1,13 +1,4 @@
----
-title: 'AIF-C01 Task 5.2 Part 5 - 데이터 품질 관리·통합·기본 데이터 관리·Glue Data Catalog·Glue Data Quality·보안·규정 준수·수명 주기 관리·Lake Formation·S3 스토리지 등급·수명 주기 규칙'
-source_urls:
-  - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
-  - 'docs/Refs/AIF-C01-Task5-2-Part5.md'
-source_checked: '2026-09-04'
----
-
-<!-- metadata-badges -->
-<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
+![도메인 D5](https://img.shields.io/badge/%F0%9F%A7%AD%20Domain-D5-B45309?style=flat-square&labelColor=0F172A) ![난이도 입문](https://img.shields.io/badge/%F0%9F%8C%B1%20Level-Beginner-2EA44F?style=flat-square&labelColor=0F172A) ![문서 상태 초안](https://img.shields.io/badge/%F0%9F%8F%97%EF%B8%8F%20Status-Draft-F59E0B?style=flat-square&labelColor=0F172A)
 
 # AIF-C01 Task 5.2 Part 5 - 데이터 품질 관리·통합·기본 데이터 관리·Glue Data Catalog·Glue Data Quality·보안·규정 준수·수명 주기 관리·Lake Formation·S3 스토리지 등급·수명 주기 규칙
 
