@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.1 Part 6 - 아티팩트 추적·버전 관리·재생성 / CodeCommit·S3 접두사·ECR·훈련 작업 ID·Model Registry·Model Cards·계보 추적·Feature Store·Model Dashboard (5.1 마무리)'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-1-Part6.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.1 Part 6 - 아티팩트 추적·버전 관리·재생성 / CodeCommit·S3 접두사·ECR·훈련 작업 ID·Model Registry·Model Cards·계보 추적·Feature Store·Model Dashboard (5.1 마무리)
 

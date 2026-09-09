@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 3.1 Part 1 - FM 애플리케이션 설계 고려 사항 / 모델 선택 기준'
-domain: 'D3'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html'
   - 'docs/Refs/AIF-C01-Task3-1-Part1.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D3</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d3-metadata.svg" alt="도메인 D3 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 3.1 Part 1 - FM 애플리케이션 설계 고려 사항 / 모델 선택 기준
 

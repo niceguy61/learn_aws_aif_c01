@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.1 Part 5 - AI 특정 취약성 / 데이터 포이즈닝·적대적 입력·모델 반전·리버스 엔지니어링·프롬프트 인젝션 / 완화 모범 사례 / SageMaker Model Monitor'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-1-Part5.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.1 Part 5 - AI 특정 취약성 / 데이터 포이즈닝·적대적 입력·모델 반전·리버스 엔지니어링·프롬프트 인젝션 / 완화 모범 사례 / SageMaker Model Monitor
 

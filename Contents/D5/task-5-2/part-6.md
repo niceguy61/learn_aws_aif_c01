@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.2 Part 6 - AI 거버넌스 전략 구현 단계 / 책임 범위 식별·5범위 매트릭스·솔루션 찾기 왼쪽→오른쪽 Comprehend·Translate→Bedrock RAG→JumpStart 미세 조정 / 정책 문서화·교육·모니터링 메커니즘·검토 수정 (5.2 마무리)'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-2-Part6.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.2 Part 6 - AI 거버넌스 전략 구현 단계 / 책임 범위 식별·5범위 매트릭스·솔루션 찾기 왼쪽→오른쪽 Comprehend·Translate→Bedrock RAG→JumpStart 미세 조정 / 정책 문서화·교육·모니터링 메커니즘·검토 수정 (5.2 마무리)
 

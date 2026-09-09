@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 4.0 Overview - 영역 4 : 책임감 있는 AI 가이드라인'
-domain: 'D4'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html'
   - 'docs/Refs/AIF-C01-Task4-Intro.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d4-metadata.svg" alt="도메인 D4 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 4.0 Overview - 영역 4 : 책임감 있는 AI 가이드라인
 

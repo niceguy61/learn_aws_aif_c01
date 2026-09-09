@@ -1,8 +1,5 @@
 ---
 title: 'Task 2 Ref Doc'
-domain: 'D2'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html'
   - 'docs/Refs/AIF-C01-Task2-Ref-doc.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D2</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d2-metadata.svg" alt="도메인 D2 · 입문 · 초안" height="28" /></p>
 
 # Task 2 Ref Doc
 - https://aws.amazon.com/ko/blogs/startups/selecting-the-right-foundation-model-for-your-startup/

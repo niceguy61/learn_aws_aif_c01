@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.2 Part 1 - 거버넌스·규정 준수 규제 인식 / 규정 준수 표준·감사·공동 책임·Artifact·SOC 2·ISO 27001·고객 규정 준수 센터'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-2-Part1.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.2 Part 1 - 거버넌스·규정 준수 규제 인식 / 규정 준수 표준·감사·공동 책임·Artifact·SOC 2·ISO 27001·고객 규정 준수 센터
 

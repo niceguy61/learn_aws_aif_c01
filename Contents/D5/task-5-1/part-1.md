@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.1 Part 1 - AI 시스템 보호 / 공동 책임 모델 / 클라우드 자체 vs 클라우드 내 / IAM / 루트 / MFA / IAM 사용자'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-1-Part1.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.1 Part 1 - AI 시스템 보호 / 공동 책임 모델 / 클라우드 자체 vs 클라우드 내 / IAM / 루트 / MFA / IAM 사용자
 

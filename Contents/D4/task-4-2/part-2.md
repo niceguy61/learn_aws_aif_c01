@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 4.2 Part 2 - 투명성·설명 가능성 목표 충족 도구 / 오픈 소스·서비스 카드·Model Cards·Shapley·PDP·인간 중심·A2I·RLHF (4.2 마무리)'
-domain: 'D4'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html'
   - 'docs/Refs/AIF-C01-Task4-2-Part2.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d4-metadata.svg" alt="도메인 D4 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 4.2 Part 2 - 투명성·설명 가능성 목표 충족 도구 / 오픈 소스·서비스 카드·Model Cards·Shapley·PDP·인간 중심·A2I·RLHF (4.2 마무리)
 

@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 4.1 Part 2 - 편향·신뢰성·진실성 측정/모니터링 AWS 서비스 / SageMaker Clarify / 지표'
-domain: 'D4'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html'
   - 'docs/Refs/AIF-C01-Task4-1-Part2.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D4</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d4-metadata.svg" alt="도메인 D4 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 4.1 Part 2 - 편향·신뢰성·진실성 측정/모니터링 AWS 서비스 / SageMaker Clarify / 지표
 

@@ -1,8 +1,5 @@
 ---
 title: 'AIF-C01 Task 5.2 Part 4 - 데이터 거버넌스 정의·3부분 큐레이션·발견·이해·보호 / 역할 소유자·담당자·IT / 프로파일링·카탈로그·계보 / Glue DataBrew'
-domain: 'D5'
-level: 'beginner'
-status: 'draft'
 source_urls:
   - 'https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html'
   - 'docs/Refs/AIF-C01-Task5-2-Part4.md'
@@ -10,7 +7,7 @@ source_checked: '2026-09-04'
 ---
 
 <!-- metadata-badges -->
-<p><kbd>도메인 D5</kbd> <kbd>입문</kbd> <kbd>초안</kbd></p>
+<p><img src="../../../assets/badges/d5-metadata.svg" alt="도메인 D5 · 입문 · 초안" height="28" /></p>
 
 # AIF-C01 Task 5.2 Part 4 - 데이터 거버넌스 정의·3부분 큐레이션·발견·이해·보호 / 역할 소유자·담당자·IT / 프로파일링·카탈로그·계보 / Glue DataBrew
 
