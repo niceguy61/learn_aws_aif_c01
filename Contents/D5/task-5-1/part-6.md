@@ -101,6 +101,28 @@ erDiagram
   MODEL ||--o{ MODEL_CARD : documented_by
 ```
 
+## 초보자 학습 보조
+
+### 한 줄 요약과 선수 지식
+
+- **한 줄 요약:** 코드·데이터·컨테이너·훈련·모델·배포의 버전과 계보를 남겨야 모델을 재현하고 승인 근거를 설명할 수 있습니다.
+- **선수 지식:** 계보(lineage)는 결과물이 어떤 데이터·코드·작업을 거쳐 만들어졌는지의 연결 이력입니다.
+
+### 자주 하는 오해
+
+- **오해:** Model Registry는 모델 파일을 저장하는 장소일 뿐이다.
+  **바로잡기:** 모델 버전·상태·훈련 지표와 승인 흐름을 관리하며, Model Cards와 계보 정보는 거버넌스와 감사 설명을 돕습니다.
+
+### 스스로 답하는 확인 질문
+
+1. 배포 중인 모델이 어떤 데이터세트로 훈련됐는지 알아야 하는 이유는 무엇인가요?
+2. Model Registry와 Model Card는 각각 어떤 정보를 관리하나요?
+
+### 공식 범위와 출처
+
+- **시험 핵심:** 공식 Task 5.1의 소스 인용, 데이터 출처 문서화, 데이터 계보와 SageMaker Model Cards 연결 범위를 다룹니다.
+- [콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스 — AWS 공식 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html), 확인일: 2026-09-09
+
 ---
 
 [이전](part-5.md) | [인덱스](README.md) | [다음](../task-5-2/part-1.md)

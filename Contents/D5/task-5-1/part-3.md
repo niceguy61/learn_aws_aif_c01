@@ -88,6 +88,28 @@ sequenceDiagram
   AWS->>Trail: API 이벤트 기록
 ```
 
+## 초보자 학습 보조
+
+### 한 줄 요약과 선수 지식
+
+- **한 줄 요약:** IAM Identity Center는 조직의 기존 로그인 체계와 AWS를 연결해 임시 권한을 중앙에서 관리하고, CloudTrail은 API 활동을 감사 기록으로 남깁니다.
+- **선수 지식:** 페더레이션은 외부 자격 증명 제공업체의 인증 결과를 사용해 AWS에 임시로 접근하는 방식입니다.
+
+### 자주 하는 오해
+
+- **오해:** CloudTrail을 켜면 모든 보안 문제가 자동으로 해결된다.
+  **바로잡기:** CloudTrail은 누가 언제 어떤 API 호출을 했는지 기록합니다. 로그의 보존·검토·경보와 권한 통제는 별도로 설계해야 합니다.
+
+### 스스로 답하는 확인 질문
+
+1. 여러 AWS 계정을 쓰는 조직에서 IAM Identity Center가 개별 IAM 사용자보다 편리한 이유는 무엇인가요?
+2. S3 Public Access Block과 S3 버킷 권한 정책의 관계를 설명할 수 있나요?
+
+### 공식 범위와 출처
+
+- **시험 핵심:** 공식 Task 5.1의 IAM, 데이터 액세스 제어, 감사 추적과 로깅 요구 사항을 다룹니다.
+- [콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스 — AWS 공식 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html), 확인일: 2026-09-09
+
 ---
 
 [이전](part-2.md) | [인덱스](README.md) | [다음](part-4.md)

@@ -108,6 +108,28 @@ sequenceDiagram
   Audit-->>Asset: 감사 보고와 개선 항목
 ```
 
+## 초보자 학습 보조
+
+### 한 줄 요약과 선수 지식
+
+- **한 줄 요약:** Audit Manager는 감사 증적을 모으고, Config는 리소스 구성을 점검하며, Inspector는 취약점을 찾고, Guardrails는 AI 입출력 정책을 적용합니다.
+- **선수 지식:** 구성(configuration)은 AWS 리소스의 설정 상태이며, 취약점은 공격에 악용될 수 있는 소프트웨어·설정의 약점입니다.
+
+### 자주 하는 오해
+
+- **오해:** Config와 Inspector는 같은 보안 검사 도구다.
+  **바로잡기:** Config는 리소스 구성과 규칙 준수를 중심으로 보고, Inspector는 워크로드·소프트웨어의 취약점을 중심으로 찾습니다.
+
+### 스스로 답하는 확인 질문
+
+1. 감사 보고서에 필요한 증적을 모으는 데 Audit Manager가 하는 역할은 무엇인가요?
+2. PII가 포함된 모델 응답을 수정하거나 차단해야 한다면 어떤 Bedrock Guardrails 기능을 검토하나요?
+
+### 공식 범위와 출처
+
+- **시험 핵심:** 공식 Task 5.2의 AWS Config, Amazon Inspector, AWS Audit Manager, CloudTrail, Trusted Advisor 등 규정 준수 지원 도구를 다룹니다.
+- [콘텐츠 도메인 5: AI 솔루션의 보안, 규정 준수 및 거버넌스 — AWS 공식 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html), 확인일: 2026-09-09
+
 ---
 
 [이전](part-2.md) | [인덱스](README.md) | [다음](part-4.md)

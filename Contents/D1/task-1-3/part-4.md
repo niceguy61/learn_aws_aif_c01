@@ -20,11 +20,11 @@
 
 ```mermaid
 flowchart LR
-  Client["📱 클라이언트 앱 (웹/모바일)"] -->|POST 요청 (입력 데이터)| APIGW["Amazon API Gateway"]
-  APIGW --> SMEP["SageMaker 실시간 엔드포인트<br/>(ML 인스턴스 클러스터)"]
-  SMEP --> Model["Docker 컨테이너 ➔ 모델 추론"]
-  Model --> SMEP
-  SMEP -->|밀리초 즉시 응답 (JSON)| Client
+  Client["📱 클라이언트 앱 (웹/모바일)"] -->|POST 요청| APIGW["Amazon API Gateway"]
+  APIGW -->|요청 전달| SMEP["SageMaker 실시간 엔드포인트<br/>ML 인스턴스 클러스터"]
+  SMEP -->|모델 추론| Model["Docker 컨테이너"]
+  Model -->|결과 반환| SMEP
+  SMEP -->|즉시 응답| Client
 
   style Client fill:#F0F4F8,stroke:#232F3E
   style APIGW fill:#FF9900,color:#232F3E
@@ -59,13 +59,10 @@ flowchart LR
 flowchart TD
   Req{"추론 요청의 특성과 요구 지연 시간은?"}
 
-  Req -->|대용량 데이터 일괄 처리 / 지연 허용| Batch["📦 <b>배치 변환 (Batch Transform)</b><br/>• 영구 엔드포인트 없음<br/>• GB 단위 대규모 오프라인 작업<br/>• 작업 완료 시 컴퓨팅 자동 종료"]
-  
-  Req -->|대용량 페이로드 / 긴 처리 시간 (최대 1시간)| Async["⏳ <b>비동기 추론 (Asynchronous)</b><br/>• 내부 S3 대기열(Queue) 기반 처리<br/>• 트래픽 없을 시 <b>인스턴스 0개로 축소</b> 가능 (비용 0원)"]
-
-  Req -->|간헐적/불규칙 트래픽 / 밀리초 지연| Serverless["⚡ <b>서버리스 추론 (Serverless)</b><br/>• 인스턴스 관리 없이 자동 확장<br/>• 트래픽 없을 시 <b>0으로 축소</b><br/>• 실제 추론 실행 시간(ms)만 과금"]
-
-  Req -->|지속적이고 일정한 트래픽 / 초저지연 필수| RealTime["🚀 <b>실시간 추론 (Real-time)</b><br/>• 24/7 가동되는 영구 REST 엔드포인트<br/>• 대화형 챗봇, 생성형 AI 서비스<br/>• Auto Scaling 지원"]
+  Req -->|배치| Batch["📦 <b>배치 변환 (Batch Transform)</b><br/>• 영구 엔드포인트 없음<br/>• GB 단위 대규모 오프라인 작업<br/>• 작업 완료 시 컴퓨팅 자동 종료"]
+  Req -->|비동기| Async["⏳ <b>비동기 추론 (Asynchronous)</b><br/>• 내부 S3 대기열(Queue) 기반 처리<br/>• 트래픽 없을 시 <b>인스턴스 0개로 축소</b> 가능 (비용 0원)"]
+  Req -->|서버리스| Serverless["⚡ <b>서버리스 추론 (Serverless)</b><br/>• 인스턴스 관리 없이 자동 확장<br/>• 트래픽 없을 시 <b>0으로 축소</b><br/>• 실제 추론 실행 시간(ms)만 과금"]
+  Req -->|실시간| RealTime["🚀 <b>실시간 추론 (Real-time)</b><br/>• 24/7 가동되는 영구 REST 엔드포인트<br/>• 대화형 챗봇, 생성형 AI 서비스<br/>• Auto Scaling 지원"]
 
   style Req fill:#232F3E,color:#FFFFFF,stroke:#232F3E
   style Batch fill:#FEF7E0,stroke:#F9AB00,color:#B06000
@@ -144,6 +141,29 @@ sequenceDiagram
   end
   API-->>Client: 응답 또는 결과 위치
 ```
+
+## 초보자 학습 보조
+
+### 한 줄 요약과 선수 지식
+
+- 선수 지식: 추론은 훈련된 모델에 새 입력을 주고 결과를 받는 단계입니다.
+- 한 줄 요약: **대량·지연 허용이면 배치, 긴 처리면 비동기, 불규칙한 요청이면 서버리스, 즉시 응답이면 실시간을 먼저 비교합니다.**
+
+### 자주 하는 오해
+
+- **오해:** 실시간 엔드포인트가 항상 가장 좋은 추론 방식이다.
+- **바로잡기:** 응답 시간, 요청 크기, 처리량, 트래픽 패턴, 운영 비용을 함께 고려해야 합니다.
+
+### 스스로 답하는 확인 질문
+
+1. 매일 밤 수백만 건을 처리해도 되는 업무에는 어떤 추론 방식이 적합한가요?
+2. 지속적인 대화형 응답이 필요한 애플리케이션은 어떤 방식을 우선 검토하나요?
+
+### 공식 범위와 출처
+
+- **시험 핵심:** AIF-C01 Domain 1 Task 1.1의 추론 유형과 Task 1.3의 프로덕션 모델 사용 방식에 연결됩니다.
+- **AWS 실무 확장:** 구현·비용·시간 제한 세부 사항은 서비스 업데이트에 따라 변할 수 있습니다.
+- [콘텐츠 도메인 1: AI 및 ML의 기초 — AWS 공식 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html), 확인일: 2026-09-09
 
 ---
 

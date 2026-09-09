@@ -18,16 +18,13 @@
 
 ```mermaid
 flowchart TB
-  subgraph AI ["🤖 AI (인공지능) - 인간의 지능적 행동(학습·추론·인지)을 모방하는 광범위한 컴퓨터 과학"]
-    direction TB
-    subgraph ML ["📊 ML (기계 학습) - 명시적 프로그래밍 없이 데이터 패턴을 학습해 예측"]
-      direction TB
-      subgraph DL ["🧠 딥러닝 (Deep Learning) - 다층 인공신경망으로 복잡한 비정형 데이터 처리"]
-        direction TB
-        GenAI ["✨ 생성형 AI (GenAI)<br/>학습된 패턴을 바탕으로 새로운 독창적 콘텐츠(글·그림·코드) 생성"]
-      end
-    end
-  end
+  AI["🤖 AI (인공지능)<br/>인간의 지능적 행동을 모방하는 광범위한 컴퓨터 과학"]
+  ML["📊 ML (기계 학습)<br/>데이터 패턴을 학습해 예측"]
+  DL["🧠 딥러닝 (Deep Learning)<br/>다층 인공신경망으로 복잡한 비정형 데이터 처리"]
+  GenAI["✨ 생성형 AI (GenAI)<br/>학습된 패턴으로 새로운 콘텐츠 생성"]
+
+  AI --> ML --> DL --> GenAI
+
   style AI fill:#F0F4F8,stroke:#232F3E,stroke-width:2px,color:#232F3E
   style ML fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#1A73E8
   style DL fill:#FEF7E0,stroke:#F9AB00,stroke-width:2px,color:#B06000
@@ -163,6 +160,33 @@ mindmap
     GenAI
       새 콘텐츠 생성
 ```
+
+## 초보자 학습 보조
+
+### 이 문서에서 배울 것
+
+AI, ML, 딥러닝, 생성형 AI의 포함 관계를 구분하고, 각 기술이 어떤 문제를 푸는지 큰 그림에서 설명할 수 있습니다.
+
+### 선수 지식과 한 줄 요약
+
+- 선수 지식: **데이터**는 모델이 패턴을 찾는 재료이고, **모델**은 그 패턴을 이용해 결과를 만드는 규칙 묶음입니다.
+- 한 줄 요약: **AI는 넓은 문제 해결 분야이고, ML과 딥러닝은 그 안에서 데이터를 학습하는 방법이며, 생성형 AI는 새 콘텐츠를 만드는 활용 방식입니다.**
+
+### 자주 하는 오해
+
+- **오해:** AI, ML, 딥러닝, 생성형 AI는 서로 같은 말이다.
+- **바로잡기:** 모두 AI와 관련 있지만 범위가 다릅니다. 모든 AI가 ML은 아니고, 모든 ML이 딥러닝은 아니며, 생성형 AI는 새 텍스트·이미지·코드 등을 만드는 목적에 초점을 둡니다.
+
+### 스스로 답하는 확인 질문
+
+1. 사진에서 결함을 찾는 모델과 새 제품 설명을 쓰는 모델은 각각 어떤 AI 활용에 더 가깝나요?
+2. ML이 AI의 부분집합이라는 말은 무엇을 뜻하나요?
+
+### 공식 범위와 출처
+
+- **시험 핵심:** AIF-C01 Domain 1 Task 1.1의 기본 AI 용어 정의와 AI·ML·GenAI·딥러닝의 유사점·차이점에 연결됩니다.
+- **AWS 실무 확장:** 본문의 산업 사례와 개별 서비스 연결은 개념을 적용하는 예시이며, 공식 Task 문구 자체와 구분해 읽습니다.
+- [콘텐츠 도메인 1: AI 및 ML의 기초 — AWS 공식 시험 안내서](https://docs.aws.amazon.com/ko_kr/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html), 확인일: 2026-09-09
 
 ---
 
